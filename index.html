@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.7.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.7.2 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.7.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.7.2";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1218,7 +1218,7 @@ function openGear(){
     <label>Stabilisator (Objektiv und Kamera zusammen)</label><select id="g_stab">${[0,1,2,3,4,5].map(n=>`<option value="${n}">${n?n+" Stufe"+(n>1?"n":""):"keiner"}</option>`).join("")}</select>
     <details class="box"><summary>Wo finde ich das? <span class="chev">${I.chev}</span></summary><div class="small">
       <p>Die Angaben stehen vorne auf dem Objektiv oder am Ring, z. B. „18-300mm 1:3.5-6.3“: Brennweite 18 bis 300 mm, größte Blende f/3.5 bei 18 mm und f/6.3 bei 300 mm. Bei einer Festbrennweite steht nur eine Zahl, z. B. „35mm 1:1.8“ – dann bleibt „bis“ leer.</p>
-      <p>Hat dein Objektiv „OSS“ (Sony), „VC“ (Tamron), „OS“ (Sigma), „IS“ (Canon) oder „VR“ (Nikon) im Namen, ist ein Stabilisator eingebaut. Hat zusätzlich die Kamera einen im Gehäuse (in den Daten „IBIS“ oder bei Sony „SteadyShot INSIDE“), gilt die Angabe für beide zusammen.</p>
+      <p>Hat dein Objektiv „OSS“ (Sony), „VC“ (Tamron), „OS“ (Sigma), „IS“ (Canon) oder „VR“ (Nikon) im Namen, ist ein Stabilisator eingebaut. Hat auch die Kamera einen Stabilisator („IBIS“, bei Sony „SteadyShot INSIDE“), arbeiten beide zusammen. Die Stufen werden aber nicht addiert: Trag den gemeinsamen Wert ein, wenn der Hersteller einen nennt, sonst den höheren der beiden.</p>
       <p>Die Stufen stehen in den technischen Daten, z. B. „bis zu 4 Stufen (CIPA)“. Am besten 1–2 Stufen weniger eintragen als angegeben – im Alltag schafft man meist weniger als im Labor.</p>
       <p><b>Steht keine Zahl dabei</b> (das ist häufig, auch bei Sony und Tamron), vorsichtig 2 Stufen eintragen.</p>
       <p><b>Selbst testen:</b> Bei der längsten Brennweite mit der Zeit aus der Faustregel ohne Stabilisator beginnen (Rechner „Zeit aus der Hand“ mit „ohne“) und dann die Zeit schrittweise verdoppeln, z. B. 1/500, 1/250, 1/125, 1/60 s. Je Zeit mehrere Fotos machen. Die längste Zeit, bei der die meisten Bilder noch scharf sind, zeigt deine Stufen: Jede Verdopplung ist eine Stufe.</p></div></details>
