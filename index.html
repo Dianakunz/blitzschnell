@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.6.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.6.1 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -33,6 +33,7 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 14px 8p
 .topbar h1{font-size:20px;margin:0;flex:1;font-weight:600}
 .iconbtn{background:none;border:0;padding:6px;border-radius:8px;cursor:pointer;display:flex}
 .iconbtn svg{width:24px;height:24px}
+dt.gl-on,dd.gl-on{background:var(--accentBg)}dt.gl-on{border-radius:8px 8px 0 0;padding:4px 6px 0}dd.gl-on{border-radius:0 0 8px 8px;padding:0 6px 6px}
 .favcount{position:absolute;top:0;right:0;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--accent);color:#1b1f2a;font-size:10.5px;font-weight:700;line-height:16px;text-align:center}
 .search{margin-top:8px;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 10px}
 .search input{flex:1;border:0;background:none;color:var(--text);font:inherit;padding:10px 0;outline:none}
@@ -166,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.6.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.6.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1810,11 +1811,13 @@ function viewKam(id){
   ${k.text.map(t=>`<p>${esc(t)}</p>`).join("")}${sonyBox(k.sony)}</div>`;
 }
 
-function viewGlossar(){
+function glSlug(t){return t.toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+function viewGlossar(sub){
   let h=`<h2>Glossar A–Z</h2><dl class="gl">`;let last="";
   for(const [t,d,type,id] of [...GLOSSAR].sort((a,b)=>a[0].localeCompare(b[0],"de"))){
     const L=t[0].toUpperCase();if(L!==last){h+=`<div class="letter">${L}</div>`;last=L}
-    h+=`<dt>${esc(t)}</dt><dd>${esc(d)}${type?` <a class="lk small" href="${href(type,id)}">mehr</a>`:""}</dd>`;
+    const sl=glSlug(t),on=sub===sl;
+    h+=`<dt id="gl-${sl}"${on?' class="gl-on"':""}>${esc(t)}</dt><dd${on?' class="gl-on"':""}>${esc(d)}${type?` <a class="lk small" href="${href(type,id)}">mehr</a>`:""}</dd>`;
   }
   return h+"</dl>";
 }
@@ -1827,7 +1830,7 @@ function searchIndex(){
   GRUND.filter(g=>!g.soon).forEach(g=>r.push({t:g.title,k:"Grundlagen",h:"#grundlagen/"+g.id,txt:g.short+" "+g.text.join(" ")+" "+(g.list||[]).join(" ")+" "+(g.list2||[]).join(" ")}));
   REGELN.forEach(x=>r.push({t:x.title,k:"Faustregel",h:"#regeln/"+x.id,txt:x.rule+" "+x.text}));
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
-  GLOSSAR.forEach(([t,d,type,id])=>r.push({t:t,k:"Glossar",h:type?href(type,id):"#glossar",txt:d}));
+  GLOSSAR.forEach(([t,d])=>r.push({t:t,k:"Glossar",h:"#glossar/"+glSlug(t),txt:d}));
   [["verwacklung","Rechner: Längste Zeit aus der Hand","Verwacklung Kehrwert Brennweite Stabilisator Stufen"],["sterne","Rechner: Längste Zeit für Sterne","500er-Regel NPF Sterne Milchstraße Strichspuren"],["schaerfe","Rechner: Schärfentiefe","Schärfentiefe hyperfokale Distanz Abstand Blende"],["graufilter","Rechner: Belichtungszeit mit Graufilter","Graufilter ND Langzeitbelichtung"]].forEach(([id,t,txt])=>r.push({t,k:"Rechner",h:"#regeln/rechner-"+id,txt}));
   r.push({t:"Belichtungs-Spielwiese",k:"Regeln",h:"#regeln/spielwiese",txt:"Blende Zeit ISO ausprobieren Belichtung Simulation Rauschen Bewegung Hintergrund Lichtwert"});
   r.push({t:"Sonnenzeiten",k:"Himmel",h:"#himmel/sonne",txt:"Sonnenaufgang Sonnenuntergang goldene Stunde blaue Stunde Dämmerung Mondaufgang Monduntergang Nacht Tageslänge Ort"});
@@ -1906,7 +1909,7 @@ function render(){
   else if(tab==="grundlagen")h=sub?viewGrund(sub):viewGrundlagen();
   else if(tab==="regeln")h=sub==="spielwiese"?viewSpiel():viewRegeln();
   else if(tab==="kamera")h=sub?viewKam(sub):viewKamera();
-  else if(tab==="glossar")h=viewGlossar();
+  else if(tab==="glossar")h=viewGlossar(sub);
   else if(tab==="himmel"||tab==="mond")h=viewHimmel(sub);
   else h=viewMotive();
   $("#main").innerHTML=h;
@@ -1922,6 +1925,7 @@ function bind(tab,sub){
     document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{S.set("var_"+sub,+b.dataset.v);const y=scrollY;render();scrollTo(0,y)});
     const n=$("#note");if(n)n.oninput=()=>S.set("note_"+sub,n.value);
   }
+  if(tab==="glossar"&&sub){const el=document.getElementById("gl-"+sub);if(el)setTimeout(()=>el.scrollIntoView({block:"center"}),40)}
   if(tab==="himmel"||tab==="mond"){
     document.querySelectorAll("[data-loc]").forEach(b=>b.onclick=openLoc);
     const keep=()=>{const y=scrollY;render();scrollTo(0,y)};
