@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.2.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.3.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -62,6 +62,13 @@ h3{font-size:16px;margin:16px 0 6px}
 .sw-bar{position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,#3b4256,#8a90a2 50%,#f4eccf);margin-top:8px}
 .sw-bar i{position:absolute;top:-4px;width:4px;height:16px;border-radius:2px;background:var(--accent);transform:translateX(-2px)}
 .sw-res div{margin:3px 0}
+.ic-in svg{width:17px;height:17px;vertical-align:-3px}
+.sk-bar{width:100%;height:34px;display:block;border-radius:8px;overflow:hidden}
+.sk-ax{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:2px}
+.sk-leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:8px}
+.sk-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.sk-t{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px;margin-top:6px}
+.sk-t b{font-variant-numeric:tabular-nums;white-space:nowrap}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px;cursor:pointer}
 .chip.on{background:var(--accentBg);border-color:var(--accent);color:var(--accentText)}
@@ -150,7 +157,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.2.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.3.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -178,6 +185,7 @@ const I = {
   bug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="12" rx="4"/><path d="M12 8V5M9.5 5.5 8 4M14.5 5.5 16 4M8 12H4M16 12h4M8 16H5M16 16h3"/></svg>',
   mountain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 20 6-10 4 6 2-3 6 7z"/><circle cx="17" cy="6" r="2"/></svg>',
   sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
   sky:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 3.2A5.5 5.5 0 0 0 20.8 10.5 5.5 5.5 0 1 1 13.5 3.2z"/><path d="M7 20h9a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6 1.4A3 3 0 0 0 7 20z"/></svg>',
   moon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>',
   stars:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5zM18 14l.8 1.7 1.7.8-1.7.8L18 19l-.8-1.7-1.7-.8 1.7-.8zM6 15l.6 1.4 1.4.6-1.4.6L6 19l-.6-1.4L4 17l1.4-.6z"/></svg>',
@@ -614,11 +622,11 @@ const CARDS = [
       ["Weißabgleich","fest, z. B. Tageslicht – oder Auto und in RAW korrigieren"],
       ["Stabilisator","auf dem Stativ aus"]
     ],
-    tips:["Die blaue Stunde beginnt kurz nach Sonnenuntergang und dauert je nach Jahreszeit etwa 20–40 Minuten. Rechtzeitig da sein und Standort vorher suchen.","Das Licht ändert sich schnell: Anfangs reichen wenige Sekunden, später werden es 10–30 Sekunden. Regelmäßig nachjustieren.","Mit f/11–16 werden Straßenlaternen zu Sternen.","Wasser davor (Fluss, Pfütze) verdoppelt die Lichter als Spiegelung."],
+    tips:["Die blaue Stunde beginnt kurz nach Sonnenuntergang und dauert je nach Jahreszeit etwa 20–40 Minuten – die genauen Zeiten für deinen Ort stehen im Reiter Himmel. Rechtzeitig da sein und Standort vorher suchen.","Das Licht ändert sich schnell: Anfangs reichen wenige Sekunden, später werden es 10–30 Sekunden. Regelmäßig nachjustieren.","Mit f/11–16 werden Straßenlaternen zu Sternen.","Wasser davor (Fluss, Pfütze) verdoppelt die Lichter als Spiegelung."],
     errors:["Zu spät gekommen → Himmel schon schwarz.","Lichter ausgefressen → Histogramm prüfen, etwas kürzer belichten.","Verwackelt → Stativ, Selbstauslöser, Stabilisator aus."],
     sony:["Längere Zeiten als 30 s im M-Modus über [BULB].","[Langzeit-RM] (je nach Modell auch [Langzeitbel.-RM]) verdoppelt die Wartezeit nach jedem Bild – bei Zeitdruck ausschalten und das Rauschen später korrigieren."],
     tryit:"Vom gleichen Standpunkt alle 5 Minuten ein Foto machen, vom Sonnenuntergang bis zur Dunkelheit. Welches gefällt dir am besten?",
-    see:[["karte","lichtspuren","Lichtspuren"],["karte","stadt","Stadtansichten"],["grund","zeit","Belichtungszeit"]]
+    see:[["mond","","Sonnenzeiten (Himmel)"],["karte","lichtspuren","Lichtspuren"],["karte","stadt","Stadtansichten"],["grund","zeit","Belichtungszeit"]]
   },
   {
     id:"feuerwerk",cat:"nacht",title:"Feuerwerk",icon:"firework",
@@ -1119,7 +1127,7 @@ const ANLEITUNG = [
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Sensorgröße","Beim ersten Start wählst du die Sensorgröße deiner Kamera. Davon hängen Crop-Faktor, Faustregeln zur Brennweite und alle Rechner ab. Ändern kannst du sie oben im Reiter Regeln oder in den Optionen."],
   ["Belichtungs-Spielwiese","Ganz oben im Reiter Regeln: Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
-  ["Himmel","Im Reiter Himmel steht der Mondkalender: die heutige Mondphase, die nächsten Phasen und alle Neu- und Vollmonde des kommenden Jahres – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. Die Berechnung läuft auf deinem Gerät, auch ohne Internet."],
+  ["Himmel","Im Reiter Himmel siehst du für deinen Ort Sonnenauf- und -untergang, goldene und blaue Stunde, die dunkle Nacht für Sterne sowie Mondauf- und -untergang – für heute, morgen oder jedes andere Datum. Den Ort legst du einmal fest (aktueller Standort, Ortssuche oder Koordinaten); er bleibt auf deinem Gerät. Darunter steht der Mondkalender: die heutige Mondphase, die nächsten Phasen und alle Neu- und Vollmonde des kommenden Jahres – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. Die Berechnung läuft auf deinem Gerät, auch ohne Internet."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
   ["Offline","Nach dem ersten Öffnen funktioniert die App auch ohne Internet. Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
 ];
@@ -1274,6 +1282,167 @@ function swUpdate(changed){
   $("#sw_res").innerHTML=h;
   const nm={a:"die Zeit",s:"die Blende",iso:"die ISO"}[st.mode];
   $("#sw_auto").textContent=st.mode==="m"?"Alles von Hand – so wie im M-Modus ohne ISO-Auto.":clamped?`Grenze erreicht: ${nm} lässt sich nicht weiter verstellen, deshalb stimmt die Belichtung nicht mehr. Ändere einen der anderen Werte.`:`Die Kamera stellt ${nm} so ein, dass die Belichtung passt (grauer Regler).`;
+}
+
+/* ---------- Sonne und Mond am Ort (Sonne nach NOAA/Meeus, Mond vereinfacht nach Meeus Kap. 47) ---------- */
+const RAD=Math.PI/180;
+function jdOf(date){return date.getTime()/86400000+2440587.5}
+/* Sonne nach NOAA (Meeus): Deklination und Zeitgleichung */
+function sunPos(date){
+  const T=(jdOf(date)-2451545)/36525;
+  const L0=(280.46646+T*(36000.76983+0.0003032*T))%360;
+  const M=357.52911+T*(35999.05029-0.0001537*T);
+  const e=0.016708634-T*(0.000042037+0.0000001267*T);
+  const C=Math.sin(M*RAD)*(1.914602-T*(0.004817+0.000014*T))+Math.sin(2*M*RAD)*(0.019993-0.000101*T)+Math.sin(3*M*RAD)*0.000289;
+  const om=125.04-1934.136*T;
+  const lam=L0+C-0.00569-0.00478*Math.sin(om*RAD);
+  const eps0=23+(26+(21.448-T*(46.815+T*(0.00059-T*0.001813)))/60)/60;
+  const eps=eps0+0.00256*Math.cos(om*RAD);
+  const dec=Math.asin(Math.sin(eps*RAD)*Math.sin(lam*RAD));
+  const ra=Math.atan2(Math.cos(eps*RAD)*Math.sin(lam*RAD),Math.cos(lam*RAD));
+  return {dec,ra,T};
+}
+function gmst(date){const d=jdOf(date)-2451545;return ((280.46061837+360.98564736629*d)%360+360)%360}
+function altOf(ra,dec,date,lat,lon){
+  const H=(gmst(date)+lon)*RAD-ra;
+  return Math.asin(Math.sin(lat*RAD)*Math.sin(dec)+Math.cos(lat*RAD)*Math.cos(dec)*Math.cos(H))/RAD;
+}
+function sunAlt(date,lat,lon){const p=sunPos(date);return altOf(p.ra,p.dec,date,lat,lon)}
+/* Mond, vereinfacht (Hauptterme nach Meeus Kap. 47), Genauigkeit wenige Minuten */
+function moonPos(date){
+  const d=jdOf(date)-2451545,T=d/36525;
+  const L=218.3165+13.17639648*d, D=297.8502+12.19074912*d, M=357.5291+0.98560028*d, Mp=134.9634+13.06499295*d, F=93.2721+13.22935024*d;
+  const s=x=>Math.sin(x*RAD);
+  const lon=L+6.289*s(Mp)+1.274*s(2*D-Mp)+0.658*s(2*D)+0.214*s(2*Mp)-0.186*s(M)-0.114*s(2*F)+0.059*s(2*D-2*Mp)+0.057*s(2*D-M-Mp)+0.053*s(2*D+Mp)+0.046*s(2*D-M)-0.041*s(M-Mp)-0.035*s(D)-0.031*s(M+Mp);
+  const lat=5.128*s(F)+0.281*s(Mp+F)+0.278*s(Mp-F)+0.173*s(2*D-F)+0.055*s(2*D-Mp+F)+0.046*s(2*D-Mp-F)+0.033*s(2*D+F)+0.017*s(2*Mp+F);
+  const dist=385000.56-20905*Math.cos(Mp*RAD)-3699*Math.cos((2*D-Mp)*RAD)-2956*Math.cos(2*D*RAD);
+  const eps=(23.439291-0.0130042*T)*RAD;
+  const l=lon*RAD,b=lat*RAD;
+  const ra=Math.atan2(Math.sin(l)*Math.cos(eps)-Math.tan(b)*Math.sin(eps),Math.cos(l));
+  const dec=Math.asin(Math.sin(b)*Math.cos(eps)+Math.cos(b)*Math.sin(eps)*Math.sin(l));
+  return {ra,dec,dist};
+}
+function moonAlt(date,lat,lon){
+  const p=moonPos(date);const h=altOf(p.ra,p.dec,date,lat,lon);
+  const par=Math.asin(6378.14/p.dist)/RAD;
+  /* Höhe relativ zur Auf-/Untergangshöhe nach Meeus (h0 = 0,7275·Parallaxe − 0°34'): 0 = Mond geht auf/unter */
+  return h-(0.7275*par-0.5667);
+}
+/* Alle Durchgänge einer Höhe zwischen start und end finden (Schritte 10 min, dann Halbierung) */
+function crossings(fn,h0,start,end){
+  const out=[];const step=10*60000;
+  let t0=start.getTime(),a0=fn(new Date(t0))-h0;
+  for(let t=t0+step;t<=end.getTime()+1;t+=step){
+    const a1=fn(new Date(t))-h0;
+    if((a0<0)!==(a1<0)){let lo=t-step,hi=t,alo=a0;
+      for(let k=0;k<20;k++){const mid=(lo+hi)/2,am=fn(new Date(mid))-h0;if((am<0)===(alo<0)){lo=mid;alo=am}else hi=mid}
+      out.push({t:new Date((lo+hi)/2),up:a1>a0});}
+    a0=a1;
+  }
+  return out;
+}
+
+let skyDay=0; /* 0 = heute, 1 = morgen … */
+const SK_COL={day:"#9fd0f0",gold:"#f2b84b",blue:"#3e6fd0",dusk:"#273569",night:"#121733"};
+const SK_LBL={day:"Tag",gold:"Goldene Stunde",blue:"Blaue Stunde",dusk:"Dämmerung",night:"Nacht (dunkel)"};
+function skZone(a){return a>6?"day":a>-4?"gold":a>-8?"blue":a>-18?"dusk":"night"}
+function skyData(day,lat,lon){
+  const s=new Date(day.getFullYear(),day.getMonth(),day.getDate()),e=new Date(s.getTime()+86400000);
+  const fs=d=>sunAlt(d,lat,lon);
+  const cr=h=>crossings(fs,h,s,e);
+  const up=(h)=>(cr(h).find(x=>x.up)||{}).t, dn=(h)=>{const l=cr(h).filter(x=>!x.up);return (l[l.length-1]||{}).t};
+  let noon=s,max=-99;for(let t=s.getTime();t<e.getTime();t+=5*60000){const a=fs(new Date(t));if(a>max){max=a;noon=new Date(t)}}
+  const zones=[];for(let k=0;k<144;k++)zones.push(skZone(fs(new Date(s.getTime()+(k+0.5)*600000))));
+  const mo=crossings(d=>moonAlt(d,lat,lon),0,s,e);
+  const nEnd=(crossings(fs,-18,e,new Date(e.getTime()+14*3600000)).find(x=>x.up)||{}).t;
+  return {s,e,noon,max,zones,
+    rise:up(-0.833),set:dn(-0.833),b1:up(-8),b2:up(-4),g2:up(6),g1:dn(6),b3:dn(-4),b4:dn(-8),n1:up(-18),n2:dn(-18),nEnd,
+    mrise:(mo.find(x=>x.up)||{}).t,mset:(mo.find(x=>!x.up)||{}).t,minNight:Math.min(...zones.map((z,k)=>fs(new Date(s.getTime()+(k+0.5)*600000))))};
+}
+const tm=d=>d?fmtT(d):"–";
+function skyLoc(){return S.get("loc",null)}
+function viewSky(){
+  const loc=skyLoc();
+  if(!loc)return `<h2>Sonne und Licht</h2><div class="card"><div class="title" style="font-size:17px"><span class="ic-in">${I.pin}</span> Wo fotografierst du?</div>
+    <p class="small">Für Sonnenaufgang, goldene und blaue Stunde und Mondaufgang braucht die App deinen Ort. Er bleibt nur auf deinem Gerät gespeichert.</p>
+    <button class="btn primary" data-loc>Ort festlegen</button></div>`;
+  const now=new Date(),day=new Date(now.getFullYear(),now.getMonth(),now.getDate()+skyDay);
+  const d=skyData(day,loc.lat,loc.lon);
+  const W=144;let bar="";for(let k=0;k<W;){let j=k;while(j<W&&d.zones[j]===d.zones[k])j++;bar+=`<rect x="${k}" y="0" width="${j-k+0.3}" height="10" fill="${SK_COL[d.zones[k]]}"/>`;k=j}
+  const nowX=skyDay===0?((now-d.s)/86400000*W):-1;
+  const range=(a,b)=>a&&b?`${tm(a)} – ${tm(b)}`:"–";
+  const len=d.rise&&d.set?Math.round((d.set-d.rise)/60000):null;
+  const dayLbl=["Heute","Morgen","Übermorgen"];
+  const mph=moonNow(new Date(day.getTime()+20*3600000));
+  let mtip="";
+  if(mph.illum>0.85&&d.mrise&&d.set&&Math.abs(d.mrise-d.set)<90*60000)
+    mtip=`<div class="try"><b>${I.bulb}Mond mit Landschaft</b><div class="small" style="margin-top:4px">Der fast volle Mond geht ${d.mrise>d.set?Math.round((d.mrise-d.set)/60000)+" Minuten nach":Math.round((d.set-d.mrise)/60000)+" Minuten vor"} Sonnenuntergang auf – dann sind Mond und Landschaft ähnlich hell.</div></div>`;
+  return `<h2>Sonne und Licht</h2>
+  <div class="row" style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="small grow" style="flex:1"><span class="ic-in">${I.pin}</span> ${esc(loc.name)}</span><button class="btn" data-loc>Ändern</button></div>
+  <div class="chips" style="margin-top:0">${[0,1,2].map(k=>`<button class="chip ${skyDay===k?"on":""}" data-skd="${k}">${dayLbl[k]}</button>`).join("")}
+    <input type="date" id="sk_date" value="${day.getFullYear()}-${String(day.getMonth()+1).padStart(2,"0")}-${String(day.getDate()).padStart(2,"0")}" style="border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--card);color:var(--text);font:inherit;font-size:14px"></div>
+  <div class="card">
+    <div class="crumb">${fmtD(day)}</div>
+    <svg class="sk-bar" viewBox="0 0 ${W} 10" preserveAspectRatio="none" shape-rendering="crispEdges" style="margin-top:6px">${bar}${nowX>=0?`<rect x="${nowX-0.7}" y="0" width="1.4" height="10" fill="#e5484d"/>`:""}</svg>
+    <div class="sk-ax"><span>0</span><span>6</span><span>12</span><span>18</span><span>24 Uhr</span></div>
+    <div class="sk-leg">${["day","gold","blue","dusk","night"].map(z=>`<span><i style="background:${SK_COL[z]}"></i>${SK_LBL[z]}</span>`).join("")}${nowX>=0?`<span><i style="background:#e5484d"></i>Jetzt</span>`:""}</div>
+  </div>
+  <div class="card"><b>Morgens</b><div class="sk-t">
+    <b>${range(d.b1,d.b2)}</b><span>Blaue Stunde</span>
+    <b>${tm(d.rise)}</b><span>Sonnenaufgang</span>
+    <b>${range(d.b2,d.g2)}</b><span>Goldene Stunde</span></div></div>
+  <div class="card"><b>Abends</b><div class="sk-t">
+    <b>${range(d.g1,d.b3)}</b><span>Goldene Stunde</span>
+    <b>${tm(d.set)}</b><span>Sonnenuntergang</span>
+    <b>${range(d.b3,d.b4)}</b><span>Blaue Stunde</span></div></div>
+  <div class="card"><div class="sk-t" style="margin-top:0">
+    <b>${tm(d.noon)}</b><span>Höchster Sonnenstand (${Math.round(d.max)}°)</span>
+    ${len!==null?`<b>${Math.floor(len/60)} h ${len%60} min</b><span>Tageslänge</span>`:""}
+    <b>${d.n2?`${tm(d.n2)} – ${tm(d.nEnd)}`:"–"}</b><span>${d.n2?"Richtig dunkel für Sterne (astronomische Nacht bis zum nächsten Morgen)":"Keine richtige Nacht – der Himmel wird nicht ganz dunkel (Sommer)"}</span>
+    <b>${tm(d.mrise)}</b><span>Mondaufgang</span>
+    <b>${tm(d.mset)}</b><span>Monduntergang</span></div>
+    <div class="small muted" style="margin-top:6px">Mond: ${esc(mph.name)}, ca. ${Math.round(mph.illum*100)} % beleuchtet${!d.mrise||!d.mset?" · „–“ heißt: an diesem Tag kein Auf- bzw. Untergang":""}</div></div>
+  ${mtip}
+  <details class="box"><summary>Wie ist das definiert? <span class="chev">${I.chev}</span></summary><div class="small">
+    <p>Feste Regeln gibt es nicht, Fotografen-Apps und Webseiten verwenden unterschiedliche Grenzen. Blitzschnell rechnet mit verbreiteten Werten:</p>
+    <ul><li><b>Goldene Stunde:</b> Sonne zwischen 6° über und 4° unter dem Horizont. Manche Apps zählen nur die Zeit über dem Horizont (0° bis 6°).</li>
+    <li><b>Blaue Stunde:</b> Sonne 4° bis 8° unter dem Horizont. Andere nehmen 4° bis 6° – dann ist sie kürzer.</li>
+    <li><b>Astronomische Nacht:</b> Sonne mehr als 18° unter dem Horizont – erst dann ist der Himmel ganz dunkel.</li></ul>
+    <p>Berechnet auf deinem Gerät nach den Formeln der US-Wetterbehörde NOAA bzw. von Jean Meeus, ohne Internet. Abweichung meist unter einer Minute beim Sonnenstand und wenige Minuten beim Mond. Berge, Gebäude und Wetter sind nicht berücksichtigt – hinter einem Hügel verschwindet die Sonne früher. Die Uhrzeiten gelten in der Zeitzone deines Geräts.</p></div></details>
+  ${seeLinks([["karte","blaue-stunde","Blaue Stunde"],["grund","licht","Licht"],["karte","mond","Mond fotografieren"],["karte","sterne","Sterne fotografieren"]])}`;
+}
+function openLoc(){
+  const loc=skyLoc();
+  const o=openSheet(`<div class="sh"><h2>Ort festlegen</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
+  <p class="small">Der Ort wird nur auf deinem Gerät gespeichert und auf etwa 1 km gerundet.</p>
+  <button class="btn primary" id="lc_gps" style="width:100%"><span class="ic-in">${I.pin}</span> Aktuellen Standort verwenden</button>
+  <div class="small muted" id="lc_gps_msg" style="margin-top:4px"></div>
+  <div style="margin-top:14px"><b>Ort suchen</b> <span class="small muted">(braucht Internet)</span></div>
+  <div style="display:flex;gap:8px;margin-top:6px"><input id="lc_q" type="search" placeholder="z. B. Hamburg" style="flex:1;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit"><button class="btn" id="lc_go">Suchen</button></div>
+  <div class="list" id="lc_res" style="margin-top:8px"></div>
+  <details class="box"><summary>Koordinaten von Hand <span class="chev">${I.chev}</span></summary><div class="small">
+    <p>Breite und Länge in Grad, z. B. aus einer Karten-App (Norden und Osten positiv).</p>
+    <div style="display:flex;gap:8px"><input id="lc_lat" inputmode="decimal" placeholder="Breite, z. B. 52.52" value="${loc?loc.lat:""}" style="flex:1;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text)"><input id="lc_lon" inputmode="decimal" placeholder="Länge, z. B. 13.40" value="${loc?loc.lon:""}" style="flex:1;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text)"></div>
+    <button class="btn" id="lc_man" style="margin-top:8px">Übernehmen</button></div></details>
+  <p class="small muted">Für die Ortssuche wird nur der eingegebene Ortsname an den kostenlosen Dienst Open-Meteo geschickt. Der aktuelle Standort verlässt dein Gerät nicht.</p>`);
+  const save=(lat,lon,name)=>{lat=Math.round(lat*100)/100;lon=Math.round(lon*100)/100;S.set("loc",{lat,lon,name});o.close();toast("Ort gespeichert");render()};
+  const deg=(lat,lon)=>`${num(Math.abs(lat))}° ${lat>=0?"N":"S"}, ${num(Math.abs(lon))}° ${lon>=0?"O":"W"}`;
+  o.querySelector("#lc_gps").onclick=()=>{const m=o.querySelector("#lc_gps_msg");
+    if(!navigator.geolocation){m.textContent="Dein Gerät bzw. Browser bietet keine Standortabfrage an.";return}
+    m.textContent="Standort wird ermittelt …";
+    navigator.geolocation.getCurrentPosition(p=>{const la=p.coords.latitude,lo=p.coords.longitude;save(la,lo,"Mein Standort ("+deg(Math.round(la*100)/100,Math.round(lo*100)/100)+")")},
+      err=>{m.textContent=err.code===1?"Zugriff auf den Standort wurde nicht erlaubt. Du kannst ihn in den Browser-Einstellungen freigeben oder den Ort suchen.":"Standort konnte nicht ermittelt werden. Bitte den Ort suchen."},{timeout:15000,maximumAge:600000});};
+  const go=async()=>{const q=o.querySelector("#lc_q").value.trim(),r=o.querySelector("#lc_res");if(!q)return;
+    r.innerHTML=`<div class="small muted">Suche …</div>`;
+    try{const res=await fetch("https://geocoding-api.open-meteo.com/v1/search?count=6&language=de&format=json&name="+encodeURIComponent(q));
+      const j=await res.json();const l=j.results||[];
+      if(!l.length){r.innerHTML=`<div class="small muted">Nichts gefunden. Anders schreiben oder einen größeren Ort in der Nähe versuchen.</div>`;return}
+      r.innerHTML=l.map((x,k)=>`<button class="item" data-k="${k}"><span class="grow"><span class="t">${esc(x.name)}</span><br><span class="s">${esc([x.admin1,x.country].filter(Boolean).join(", "))}</span></span></button>`).join("");
+      r.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const x=l[+b.dataset.k];save(x.latitude,x.longitude,x.name+(x.admin1?", "+x.admin1:""))});
+    }catch(e){r.innerHTML=`<div class="small muted">Keine Verbindung zum Internet. Ohne Internet geht der aktuelle Standort oder die Eingabe von Koordinaten.</div>`}};
+  o.querySelector("#lc_go").onclick=go;o.querySelector("#lc_q").onkeydown=e=>{if(e.key==="Enter")go()};
+  o.querySelector("#lc_man").onclick=()=>{const la=parseFloat(o.querySelector("#lc_lat").value.replace(",",".")),lo=parseFloat(o.querySelector("#lc_lon").value.replace(",","."));
+    if(!(Math.abs(la)<=90&&Math.abs(lo)<=180)){toast("Bitte gültige Werte eingeben");return}save(la,lo,deg(Math.round(la*100)/100,Math.round(lo*100)/100))};
 }
 
 /* ---------- Mondphasen (Berechnung nach J. Meeus, Astronomical Algorithms) ---------- */
@@ -1542,6 +1711,7 @@ function searchIndex(){
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
   GLOSSAR.forEach(([t,d,type,id])=>r.push({t:t,k:"Glossar",h:type?href(type,id):"#glossar",txt:d}));
   r.push({t:"Belichtungs-Spielwiese",k:"Regeln",h:"#regeln/spielwiese",txt:"Blende Zeit ISO ausprobieren Belichtung Simulation Rauschen Bewegung Hintergrund Lichtwert"});
+  r.push({t:"Sonnenzeiten",k:"Himmel",h:"#himmel",txt:"Sonnenaufgang Sonnenuntergang goldene Stunde blaue Stunde Dämmerung Mondaufgang Monduntergang Nacht Tageslänge Ort"});
   r.push({t:"Mondkalender",k:"Himmel",h:"#himmel",txt:"Mondphase heute Vollmond Neumond Halbmond Viertel Termine Kalender"});
   return r;
 }
@@ -1617,7 +1787,7 @@ function render(){
   else if(tab==="regeln")h=sub==="spielwiese"?viewSpiel():viewRegeln();
   else if(tab==="kamera")h=sub?viewKam(sub):viewKamera();
   else if(tab==="glossar")h=viewGlossar();
-  else if(tab==="himmel"||tab==="mond")h=viewMond();
+  else if(tab==="himmel"||tab==="mond")h=viewSky()+viewMond();
   else h=viewMotive();
   $("#main").innerHTML=h;
   bind(tab,sub);
@@ -1630,6 +1800,11 @@ function bind(tab,sub){
   if(tab==="motive"&&sub){
     document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{S.set("var_"+sub,+b.dataset.v);const y=scrollY;render();scrollTo(0,y)});
     const n=$("#note");if(n)n.oninput=()=>S.set("note_"+sub,n.value);
+  }
+  if(tab==="himmel"||tab==="mond"){
+    document.querySelectorAll("[data-loc]").forEach(b=>b.onclick=openLoc);
+    document.querySelectorAll("[data-skd]").forEach(b=>b.onclick=()=>{skyDay=+b.dataset.skd;const y=scrollY;render();scrollTo(0,y)});
+    const di=$("#sk_date");if(di)di.onchange=()=>{if(!di.value)return;const [Y,M,D]=di.value.split("-").map(Number);const n=new Date();skyDay=Math.round((new Date(Y,M-1,D)-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/86400000);const y=scrollY;render();scrollTo(0,y)};
   }
   if(tab==="regeln"&&sub==="spielwiese"){
     ["#sw_sc","#sw_a","#sw_j","#sw_i"].forEach(s=>{const e=$(s);e.oninput=e.onchange=()=>swUpdate(s)});
