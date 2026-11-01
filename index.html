@@ -6,7 +6,8 @@
 <title>Blitzschnell</title>
 <meta name="theme-color" content="#1d2230">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzFkMjIzMCIvPjxwYXRoIGQ9Ik0xNTAgMTY4aDQ0bDIyLTM0aDgwbDIyIDM0aDQ0YTM2IDM2IDAgMCAxIDM2IDM2djE1MGEzNiAzNiAwIDAgMS0zNiAzNkgxNTBhMzYgMzYgMCAwIDEtMzYtMzZWMjA0YTM2IDM2IDAgMCAxIDM2LTM2eiIgZmlsbD0iI2YyZjJmMiIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI4MCIgcj0iNzgiIGZpbGw9IiMxZDIyMzAiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyODAiIHI9IjU2IiBmaWxsPSIjM2I0MjU2Ii8+PGNpcmNsZSBjeD0iMjM0IiBjeT0iMjU4IiByPSIxNCIgZmlsbD0iI2YyZjJmMiIgb3BhY2l0eT0iMC41NSIvPjxyZWN0IHg9IjE0NiIgeT0iMTk2IiB3aWR0aD0iMzYiIGhlaWdodD0iMjAiIHJ4PSI2IiBmaWxsPSIjMWQyMjMwIi8+PHBhdGggZD0iTTM1MiA1MiAzMDAgMTUwaDQwbC0yMiA3OCA3NC0xMDhoLTQ0bDMwLTY4eiIgZmlsbD0iI2ZmYzIxYSIgc3Ryb2tlPSIjMWQyMjMwIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+">
+<link rel="icon" href="icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{
@@ -27,7 +28,7 @@ a{color:var(--link)}
 .wrap{max-width:640px;margin:0 auto;padding:0 14px 96px}
 header{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 14px 8px;max-width:640px;margin:0 auto}
 .topbar{display:flex;align-items:center;gap:10px}
-.topbar img{width:34px;height:34px;border-radius:9px}
+.topbar .logo{width:34px;height:34px;display:flex}.logo svg{width:100%;height:100%}
 .topbar h1{font-size:20px;margin:0;flex:1;font-weight:600}
 .iconbtn{background:none;border:0;padding:6px;border-radius:8px;cursor:pointer;display:flex}
 .iconbtn svg{width:24px;height:24px}
@@ -112,7 +113,7 @@ textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:1
 .sheet .sh{display:flex;align-items:center}
 .sheet .sh h2{flex:1;margin:0}
 .welcome{position:fixed;inset:0;background:#1d2230;color:#f2f2f2;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
-.welcome img{width:132px;height:132px;border-radius:30px}
+.welcome .logo{width:132px;height:132px;display:block}
 .welcome h1{font-size:34px;margin:20px 0 6px}
 .welcome p{margin:2px 0;color:#c9cdd8;font-size:17px}
 .welcome .btn{margin-top:30px;font-size:17px;padding:12px 28px}
@@ -123,7 +124,7 @@ textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:1
 <body>
 <header>
   <div class="topbar">
-    <img src="icon-192.png" alt="">
+    <span id="logoTop" class="logo"></span>
     <h1>Blitzschnell</h1>
     <button class="iconbtn" id="optBtn" aria-label="Optionen"></button>
   </div>
@@ -136,7 +137,8 @@ textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:1
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.1.0";
+const VERSION = "0.1.1";
+const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
 const I = {
@@ -740,7 +742,7 @@ function bind(tab,sub){
 /* ---------- Start ---------- */
 function init(){
   applyTheme();
-  $("#optBtn").innerHTML=I.gear;$("#optBtn").onclick=openOptions;
+  $("#logoTop").innerHTML=LOGO;$("#optBtn").innerHTML=I.gear;$("#optBtn").onclick=openOptions;
   $("#searchIcon").innerHTML=I.search;
   $("#nav").innerHTML=TABS.map(t=>`<button data-tab="${t.id}">${I[t.icon]}<span>${t.name}</span></button>`).join("");
   document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{$("#q").value="";location.hash=b.dataset.tab;render()});
@@ -750,7 +752,7 @@ function init(){
   render();
   if(!S.get("welcomed",false)){
     const w=document.createElement("div");w.className="welcome";
-    w.innerHTML=`<img src="icon-512.png" alt=""><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><button class="btn primary">Los geht's</button>`;
+    w.innerHTML=`<span class="logo">${LOGO}</span><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><button class="btn primary">Los geht's</button>`;
     w.querySelector("button").onclick=()=>{S.set("welcomed",true);w.remove()};
     document.body.appendChild(w);
   }
