@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.0.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.1.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.0.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.1.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -242,7 +242,7 @@ const CARDS = [
       ["Weißabgleich","fest, z. B. Tageslicht oder ca. 4000 K"],
       ["Stabilisator","auf dem Stativ aus"]
     ],
-    tips:["Einen dunklen Ort weit weg von Stadtlicht suchen.","Rund um Neumond fotografieren – der Mond überstrahlt sonst die Sterne.","Einen Vordergrund wie Baum, Hütte oder Felsen mit einplanen.","Für die Augen eine Stirnlampe mit Rotlicht mitnehmen.","Ersatzakku einstecken: Kälte und lange Belichtungen leeren den Akku schnell."],
+    tips:["Einen dunklen Ort weit weg von Stadtlicht suchen.","Rund um Neumond fotografieren – der Mond überstrahlt sonst die Sterne. Die Termine stehen im Reiter Mond.","Einen Vordergrund wie Baum, Hütte oder Felsen mit einplanen.","Für die Augen eine Stirnlampe mit Rotlicht mitnehmen.","Ersatzakku einstecken: Kälte und lange Belichtungen leeren den Akku schnell."],
     errors:["Unscharfe Sterne: Der Unendlich-Anschlag am Objektiv ist oft nicht ganz exakt → mit der Fokuslupe an einem hellen Stern scharfstellen.","Sterne als kurze Striche: Belichtungszeit zu lang für die Brennweite.","Verwackelt durch Wind oder Antippen → Selbstauslöser nehmen, Stativ beschweren.","Beschlagene Frontlinse in feuchten Nächten."],
     sony:[
       "Fokuslupe: Fokusmodus auf MF stellen und am Fokusring drehen – die Kamera vergrößert automatisch, wenn [MF-Unterstützung] eingeschaltet ist.",
@@ -250,7 +250,7 @@ const CARDS = [
       "Fernauslösen geht auch per Smartphone-App von Sony."
     ],
     tryit:"Die gleiche Szene mit 10 s, 20 s und 30 s fotografieren und am Rechner groß ansehen: Ab wann werden die Sterne zu Strichen?",
-    see:[["rechner","sterne","Rechner: Zeit für Sterne"],["karte","mond","Mond"],["grund","fokus","Fokus und Autofokus"],["grund","format","RAW oder JPEG"]]
+    see:[["mond","","Mondkalender"],["rechner","sterne","Rechner: Zeit für Sterne"],["karte","mond","Mond"],["grund","fokus","Fokus und Autofokus"],["grund","format","RAW oder JPEG"]]
   },
   {
     id:"mond",cat:"nacht",title:"Mond",icon:"moon",
@@ -275,7 +275,7 @@ const CARDS = [
       "Auf dem Stativ den Stabilisator ausschalten (am Objektiv-Schalter oder im Kameramenü unter [SteadyShot]).",
       "Mit der Fokuslupe lässt sich der Mondrand gut manuell scharfstellen."
     ],
-    see:[["karte","sterne","Sterne"],["regel","looney","Looney 11"],["kamera","zebra","Zebra"],["grund","korrektur","Belichtungskorrektur"]]
+    see:[["mond","","Mondkalender"],["karte","sterne","Sterne"],["regel","looney","Looney 11"],["kamera","zebra","Zebra"],["grund","korrektur","Belichtungskorrektur"]]
   },
   {
     id:"wildtiere",cat:"tiere",title:"Wildtiere",icon:"paw",
@@ -1092,7 +1092,9 @@ const GLOSSAR = [
   ["Hyperfokale Distanz","Fokusentfernung, bei der alles von der halben Entfernung bis unendlich scharf ist.","rechner","schaerfe"],
   ["NPF-Regel","Genauere Regel für die längste Zeit bei Sternfotos; berücksichtigt Blende und Pixelgröße.","rechner","sterne"],
   ["Stufe (EV)","Maß für Licht: eine Stufe = doppelt oder halb so viel Licht.","regel","stufen"],
-  ["Speicherabruf (MR)","Gespeicherte Einstellungspakete am Moduswahlrad abrufen.","kamera","mr"]
+  ["Speicherabruf (MR)","Gespeicherte Einstellungspakete am Moduswahlrad abrufen.","kamera","mr"],
+  ["Neumond","Der Mond steht zwischen Erde und Sonne und ist unsichtbar – beste Zeit für Sternfotos.","mond",""],
+  ["Terminator","Grenze zwischen beleuchteter und dunkler Mondseite; dort wirken Krater besonders plastisch.","karte","mond"]
 ];
 
 /* ---------- Anleitung ---------- */
@@ -1105,6 +1107,7 @@ const ANLEITUNG = [
   ["Regeln","Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Sensorgröße","Beim ersten Start wählst du die Sensorgröße deiner Kamera. Davon hängen Crop-Faktor, Faustregeln zur Brennweite und alle Rechner ab. Ändern kannst du sie oben im Reiter Regeln oder in den Optionen."],
+  ["Mond","Der Reiter Mond zeigt die heutige Mondphase, die nächsten Phasen und alle Neu- und Vollmonde des kommenden Jahres – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. Die Berechnung läuft auf deinem Gerät, auch ohne Internet."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
   ["Offline","Nach dem ersten Öffnen funktioniert die App auch ohne Internet. Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
 ];
@@ -1128,7 +1131,7 @@ const num=x=>String(Math.round(x*10)/10).replace(".",",");
 const $ = s=>document.querySelector(s);
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function toast(t){document.querySelectorAll(".toast").forEach(x=>x.remove());const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
-function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/"}[type]+id}
+function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/",mond:"#mond"}[type]+id}
 function seeLinks(arr){
   if(!arr||!arr.length)return"";
   const one=s=>{const soon=s[0]==="karte"&&(CARDS.find(c=>c.id===s[1])||{}).soon;
@@ -1147,13 +1150,93 @@ function fmtTime(sec){
   return "1/"+best+" s";
 }
 
+/* ---------- Mondphasen (Berechnung nach J. Meeus, Astronomical Algorithms) ---------- */
+function moonPhaseJD(k,phase){ // phase 0 new,1 first q,2 full,3 last q ; k integer
+  const kk=k+phase/4, T=kk/1236.85, d=Math.PI/180;
+  let JDE=2451550.09766+29.530588861*kk+0.00015437*T*T-0.00000015*T**3+0.00000000073*T**4;
+  const E=1-0.002516*T-0.0000074*T*T;
+  const M=(2.5534+29.1053567*kk-0.0000014*T*T-0.00000011*T**3)*d;
+  const Mp=(201.5643+385.81693528*kk+0.0107582*T*T+0.00001238*T**3-0.000000058*T**4)*d;
+  const F=(160.7108+390.67050284*kk-0.0016118*T*T-0.00000227*T**3+0.000000011*T**4)*d;
+  const Om=(124.7746-1.56375588*kk+0.0020672*T*T+0.00000215*T**3)*d;
+  const s=Math.sin,c=Math.cos;let corr;
+  if(phase===0||phase===2){
+    const a=phase===0?[-0.40720,0.17241,0.01608,0.01039,0.00739,-0.00514,0.00208]:[-0.40614,0.17302,0.01614,0.01043,0.00734,-0.00515,0.00209];
+    corr=a[0]*s(Mp)+a[1]*E*s(M)+a[2]*s(2*Mp)+a[3]*s(2*F)+a[4]*E*s(Mp-M)+a[5]*E*s(Mp+M)+a[6]*E*E*s(2*M)
+      -0.00111*s(Mp-2*F)-0.00057*s(Mp+2*F)+0.00056*E*s(2*Mp+M)-0.00042*s(3*Mp)+0.00042*E*s(M+2*F)+0.00038*E*s(M-2*F)-0.00024*E*s(2*Mp-M)-0.00017*s(Om)-0.00007*s(Mp+2*M)+0.00004*s(2*Mp-2*F)+0.00004*s(3*M)+0.00003*s(Mp+M-2*F)+0.00003*s(2*Mp+2*F)-0.00003*s(Mp+M+2*F)+0.00003*s(Mp-M+2*F)-0.00002*s(Mp-M-2*F)-0.00002*s(3*Mp+M)+0.00002*s(4*Mp);
+  } else {
+    corr=-0.62801*s(Mp)+0.17172*E*s(M)-0.01183*E*s(Mp+M)+0.00862*s(2*Mp)+0.00804*s(2*F)+0.00454*E*s(Mp-M)+0.00204*E*E*s(2*M)-0.0018*s(Mp-2*F)-0.0007*s(Mp+2*F)-0.0004*s(3*Mp)-0.00034*E*s(2*Mp-M)+0.00032*E*s(M+2*F)+0.00032*E*s(M-2*F)-0.00028*E*E*s(Mp+2*M)+0.00027*E*s(2*Mp+M)-0.00017*s(Om)-0.00005*s(Mp-M-2*F)+0.00004*s(2*Mp+2*F)-0.00004*s(Mp+M+2*F)+0.00004*s(Mp-2*M)+0.00003*s(Mp+M-2*F)+0.00003*s(3*M)+0.00002*s(2*Mp-2*F)+0.00002*s(Mp-M+2*F)-0.00002*s(3*Mp+M);
+    const W=0.00306-0.00038*E*c(M)+0.00026*c(Mp)-0.00002*c(Mp-M)+0.00002*c(Mp+M)+0.00002*c(2*F);
+    corr+=phase===1?W:-W;
+  }
+  return JDE+corr-69/86400; // TT->UT approx
+}
+const jdToDate=jd=>new Date((jd-2440587.5)*86400000);
+
+const SYN=29.530588861;
+function kNear(date){return Math.floor(((date.getTime()/86400000+2440587.5)-2451550.09766)/SYN);}
+function phaseList(from,count){
+  const out=[];let k=kNear(from)-1;
+  while(out.length<count){for(let p=0;p<4;p++){const d=jdToDate(moonPhaseJD(k,p));if(d>=from&&out.length<count)out.push({p,d});}k++;}
+  return out;
+}
+function moonNow(now){
+  let k=kNear(now)+1;let nm=jdToDate(moonPhaseJD(k,0));
+  while(nm>now){k--;nm=jdToDate(moonPhaseJD(k,0));}
+  const next=jdToDate(moonPhaseJD(k+1,0));
+  const P=(next-nm)/86400000, age=(now-nm)/86400000, th=2*Math.PI*age/P;
+  const illum=(1-Math.cos(th))/2;
+  const fq=jdToDate(moonPhaseJD(k,1)),fm=jdToDate(moonPhaseJD(k,2)),lq=jdToDate(moonPhaseJD(k,3));
+  const near=(d)=>Math.abs(now-d)<0.9*86400000;
+  let name;
+  if(near(nm)||near(next))name="Neumond";else if(near(fm))name="Vollmond";else if(near(fq))name="Erstes Viertel (zunehmender Halbmond)";else if(near(lq))name="Letztes Viertel (abnehmender Halbmond)";
+  else if(now<fq)name="Zunehmende Sichel";else if(now<fm)name="Zunehmender Mond";else if(now<lq)name="Abnehmender Mond";else name="Abnehmende Sichel";
+  return {age,P,th,illum,name,waxing:now<fm};
+}
+function moonSVG(th,size){
+  const r=45,c=50;const wax=th<=Math.PI;const t=wax?th:2*Math.PI-th;const x=r*Math.cos(t);
+  const path=`M ${c},${c-r} A ${r} ${r} 0 0 1 ${c},${c+r} A ${Math.abs(x)} ${r} 0 0 ${x>0?0:1} ${c},${c-r} Z`;
+  return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" aria-hidden="true"><circle cx="50" cy="50" r="45" fill="#3b4256"/><path d="${path}" fill="#f4eccf" ${wax?"":'transform="translate(100,0) scale(-1,1)"'}/><circle cx="50" cy="50" r="45" fill="none" stroke="#8a90a2" stroke-width="1"/></svg>`;
+}
+const PH_NAMES=["Neumond","Erstes Viertel","Vollmond","Letztes Viertel"];
+const fmtD=d=>d.toLocaleDateString("de-DE",{weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"});
+const fmtT=d=>d.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});
+function inDays(d){const n=new Date();const a=new Date(n.getFullYear(),n.getMonth(),n.getDate()),b=new Date(d.getFullYear(),d.getMonth(),d.getDate());const x=Math.round((b-a)/86400000);return x===0?"heute":x===1?"morgen":"in "+x+" Tagen";}
+function viewMond(){
+  const now=new Date(),m=moonNow(now);
+  const next4=phaseList(now,4);
+  let tip;
+  if(m.illum<0.15)tip="Wenig Mondlicht: gute Zeit für Sterne und Milchstraße (dunklen Ort vorausgesetzt).";
+  else if(m.illum>0.92)tip="Rund um Vollmond: Für Mond mit Landschaft ist der Abend vor Vollmond ideal – dann geht der Mond kurz vor Sonnenuntergang auf. Für Sterne ist es jetzt zu hell.";
+  else if(Math.abs(m.illum-0.5)<0.2)tip="Halbmond: Am Schattenrand (Terminator) sieht man die Krater besonders plastisch.";
+  else tip=m.waxing?"Zunehmender Mond: Er steht am Abend am Himmel – gut für Mondfotos am frühen Abend.":"Abnehmender Mond: Er geht spät auf und steht am Morgen am Himmel.";
+  const yr=phaseList(now,60).filter(x=>x.p===0||x.p===2);
+  const rows=[];for(const x of yr){rows.push(x);if(rows.length>=26)break;}
+  const add=(d,n)=>new Date(d.getTime()+n*86400000);
+  return `<h2>Mondkalender</h2>
+  <div class="card" style="display:flex;gap:16px;align-items:center">${moonSVG(m.th,96)}
+    <div><div class="crumb">Heute, ${fmtD(now)}</div><div class="title" style="font-size:19px">${esc(m.name)}</div>
+    <div class="small muted">ca. ${Math.round(m.illum*100)} % beleuchtet · ${num(m.age)} Tage nach Neumond</div></div></div>
+  <div class="try"><b>${I.bulb}Fürs Fotografieren</b><div class="small" style="margin-top:4px">${esc(tip)}</div></div>
+  <h2>Die nächsten Phasen</h2>
+  <div class="list">${next4.map(x=>`<div class="item" style="cursor:default"><span>${moonSVG([0,Math.PI/2,Math.PI,3*Math.PI/2][x.p],34)}</span><span class="grow"><span class="t">${PH_NAMES[x.p]}</span><br><span class="s">${fmtD(x.d)}, ${fmtT(x.d)} Uhr</span></span><span class="badge">${inDays(x.d)}</span></div>`).join("")}</div>
+  <h2>Neumond und Vollmond im nächsten Jahr</h2>
+  <p class="small muted" style="margin-top:0">Sterne: die Nächte rund um Neumond (ca. 3 Tage davor bis 3 Tage danach). Mond mit Landschaft: der Abend vor Vollmond.</p>
+  <div class="list">${rows.map(x=>x.p===0?
+    `<div class="item" style="cursor:default"><span>${moonSVG(0,30)}</span><span class="grow"><span class="t">Neumond · ${fmtD(x.d)}</span><br><span class="s">Sterne: ca. ${add(x.d,-3).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})} – ${add(x.d,3).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})}</span></span></div>`:
+    `<div class="item" style="cursor:default"><span>${moonSVG(Math.PI,30)}</span><span class="grow"><span class="t">Vollmond · ${fmtD(x.d)}</span><br><span class="s">${fmtT(x.d)} Uhr · Mond mit Landschaft: Abend des ${add(x.d,-1).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})}</span></span></div>`).join("")}</div>
+  <p class="small muted">Berechnet auf deinem Gerät, ohne Internet, nach den Formeln von Jean Meeus (Abweichung meist unter einer Minute). Die Uhrzeit ist der genaue Moment der Phase in der Zeitzone deines Geräts – sehen kann man den Mond in den Nächten rundherum. Die Mondsymbole zeigen den Anblick von der Nordhalbkugel. Auf- und Untergangszeiten hängen vom Ort ab und sind hier noch nicht enthalten.</p>
+  ${seeLinks([["karte","mond","Mond fotografieren"],["karte","sterne","Sterne fotografieren"],["karte","blaue-stunde","Blaue Stunde"]])}`;
+}
+
 /* ---------- Ansichten ---------- */
 const TABS = [
   {id:"motive",name:"Motive",icon:"image"},
   {id:"grundlagen",name:"Grundlagen",icon:"aperture"},
   {id:"regeln",name:"Regeln",icon:"rule"},
   {id:"kamera",name:"Kamera",icon:"camera"},
-  {id:"glossar",name:"Glossar",icon:"book"}
+  {id:"glossar",name:"Glossar",icon:"book"},
+  {id:"mond",name:"Mond",icon:"moon"}
 ];
 let motivFilter="alle";
 function favBtn(key){const on=S.get("fav",[]).includes(key);return `<button class="star ${on?"on":""}" data-fav="${key}" aria-label="Merken">${I.star}</button>`;}
@@ -1330,6 +1413,7 @@ function searchIndex(){
   REGELN.forEach(x=>r.push({t:x.title,k:"Faustregel",h:"#regeln/"+x.id,txt:x.rule+" "+x.text}));
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
   GLOSSAR.forEach(([t,d,type,id])=>r.push({t:t,k:"Glossar",h:type?href(type,id):"#glossar",txt:d}));
+  r.push({t:"Mondkalender",k:"Mond",h:"#mond",txt:"Mondphase heute Vollmond Neumond Halbmond Viertel Termine Kalender"});
   return r;
 }
 function viewSearch(q){
@@ -1404,6 +1488,7 @@ function render(){
   else if(tab==="regeln")h=viewRegeln();
   else if(tab==="kamera")h=sub?viewKam(sub):viewKamera();
   else if(tab==="glossar")h=viewGlossar();
+  else if(tab==="mond")h=viewMond();
   else h=viewMotive();
   $("#main").innerHTML=h;
   bind(tab,sub);
