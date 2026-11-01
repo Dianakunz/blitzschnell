@@ -6,14 +6,16 @@ Blitzschnell ist ein kleines Foto-Nachschlagewerk für Einsteigerinnen und Einst
 
 ## Was drin ist
 
-- **Motive:** Rezept-Karten mit Einstellungen, Tipps, typischen Fehlern und kleinen Übungen („Probier mal“), z. B. Vögel, Sterne, Mond
+- **Motive:** 32 Rezept-Karten mit Einstellungen, Tipps, typischen Fehlern und kleinen Übungen („Probier mal“) – von Vögeln über Landschaft und Nacht bis Porträt und Architektur
 - **Grundlagen:** Belichtungszeit, Blende, ISO, Belichtungsprogramme, Fokus, Schärfentiefe und mehr, kurz erklärt
-- **Regeln:** Faustregeln zum schnellen Nachschlagen und Rechner (Zeit aus der Hand, Sterne, Graufilter)
+- **Regeln:** Faustregeln zum schnellen Nachschlagen und Rechner (Zeit aus der Hand, Sterne mit 500er- und NPF-Regel, Schärfentiefe, Graufilter)
 - **Kamera:** Funktionen moderner Systemkameras, mit Hinweisen für Sony-Kameras
 - **Glossar** von A bis Z
+
+Beim ersten Start wählst du die Sensorgröße deiner Kamera (APS-C, Vollformat, Micro Four Thirds) – Rechner und Faustregeln rechnen dann mit dem passenden Crop-Faktor.
 
 Merkliste und eigene Notizen werden nur im Browser auf dem eigenen Gerät gespeichert.
 
 ## Hinweis
 
-Alle Angaben sind Richtwerte zum Nachschlagen, ohne Gewähr. Die Sony-Menüpfade wurden an einer Sony α6400 geprüft und können bei anderen Modellen abweichen.
+Alle Angaben sind Richtwerte zum Nachschlagen, ohne Gewähr. Die Sony-Menüpfade beziehen sich auf Modelle mit dem älteren Sony-Menü (z. B. α6400) und können bei anderen Modellen abweichen.
