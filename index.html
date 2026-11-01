@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.4.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.5.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -69,6 +69,13 @@ h3{font-size:16px;margin:16px 0 6px}
 .sk-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .sk-t{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px;margin-top:6px}
 .sk-t b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.wx-h{display:flex;overflow-x:auto;gap:6px;padding-bottom:4px;margin-top:8px;-webkit-overflow-scrolling:touch}
+.wx-h div{flex:0 0 auto;min-width:46px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:5px 4px;font-size:12px;background:var(--card2)}
+.wx-h div b{display:block;font-size:13px}
+.wx-cl{display:grid;grid-template-columns:auto 1fr auto;gap:3px 8px;align-items:center;font-size:13px;margin-top:6px}
+.wx-cl i{display:block;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.wx-cl i span{display:block;height:100%;background:#8a9bb5}
+.wx-r{font-weight:600}.wx-r.good{color:#2f8f46}.wx-r.mid{color:#b7791f}.wx-r.bad{color:#c0392b}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px;cursor:pointer}
 .chip.on{background:var(--accentBg);border-color:var(--accent);color:var(--accentText)}
@@ -157,7 +164,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.4.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.5.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1126,16 +1133,16 @@ const ANLEITUNG = [
   ["Regeln","Ganz oben die Belichtungs-Spielwiese, darunter Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Belichtungs-Spielwiese","Zu finden ganz oben im Reiter Regeln, außerdem verlinkt bei den Grundlagen zu Zeit, Blende, ISO und Belichtungsprogrammen. Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
   ["Kamera","Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
-  ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. Alles wird auf deinem Gerät berechnet; nur die Ortssuche braucht Internet."],
+  ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. „Wetter“ zeigt die Vorhersage für die nächsten 16 Tage: Wetterlage, Temperatur, Regen und Wind, die Bewölkung in drei Höhen zu Sonnenauf- und -untergang mit einer groben Einschätzung, ob sich der Himmel färbt, Wolken in der Nacht für Sterne und Nebel am Morgen. Sonne und Mond werden auf deinem Gerät berechnet; Wetter und Ortssuche brauchen Internet."],
   ["Glossar","Fachbegriffe von A bis Z, kurz erklärt. Viele Einträge führen per Tipp zur ausführlichen Erklärung."],
   ["Bedienung",null],
-  ["Suche","Das Suchfeld oben durchsucht Motive, Grundlagen, Faustregeln, Rechner, Kamera-Funktionen, Glossar sowie Spielwiese und Himmel."],
+  ["Suche","Das Suchfeld oben durchsucht Motive, Grundlagen, Faustregeln, Rechner, Kamera-Funktionen, Glossar sowie Spielwiese, Sonnenzeiten, Mond und Wetter."],
   ["Verknüpfungen","Gepunktet unterstrichene Begriffe führen zur passenden Erklärung, z. B. „Blende“ im Rezept zu den Grundlagen. Unter „Siehe auch“ findest du verwandte Themen."],
   ["Merken","Mit dem Stern merkst du dir Motive, Grundlagen, Faustregeln und Kamera-Funktionen. Unter Motive → „Gemerkt“ findest du alles Gemerkte."],
   ["Eigene Notizen","Unten auf jeder Motivkarte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
-  ["Offline und Startbildschirm","Nach dem ersten Öffnen funktioniert die App auch ohne Internet (außer der Ortssuche). Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
+  ["Offline und Startbildschirm","Nach dem ersten Öffnen funktioniert die App auch ohne Internet – außer Ortssuche und Wetter (ohne Verbindung wird der zuletzt geladene Stand gezeigt). Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
 ];
 
 /* ---------- Speicher ---------- */
@@ -1368,7 +1375,7 @@ function skyData(day,lat,lon){
 const tm=d=>d?fmtT(d):"–";
 function skyLoc(){return S.get("loc",null)}
 function skyDayDate(){const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate()+skyDay)}
-function skyTabNow(sub){const t=(sub==="mond"||sub==="sonne")?sub:S.get("skytab","sonne");return t}
+function skyTabNow(sub){return ["sonne","mond","wetter"].includes(sub)?sub:S.get("skytab","sonne")}
 function viewHimmel(sub){
   const loc=skyLoc(),day=skyDayDate(),tab=skyTabNow(sub);
   const dayLbl=["Heute","Morgen","Übermorgen"];
@@ -1380,8 +1387,99 @@ function viewHimmel(sub){
     <button class="btn" id="sk_prev" aria-label="Einen Tag zurück">‹</button>
     <input type="date" id="sk_date" value="${iso}" style="flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--card);color:var(--text);font:inherit">
     <button class="btn" id="sk_next" aria-label="Einen Tag vor">›</button></div>
-  <div class="seg">${[["sonne","Sonne und Licht"],["mond","Mond"]].map(([k,n])=>`<button class="${tab===k?"on":""}" data-skt="${k}">${n}</button>`).join("")}</div>`;
-  return head+(tab==="mond"?skyMoon(day,loc):skySun(day,loc));
+  <div class="seg">${[["sonne","Sonne und Licht"],["mond","Mond"],["wetter","Wetter"]].map(([k,n])=>`<button class="${tab===k?"on":""}" data-skt="${k}">${n}</button>`).join("")}</div>`;
+  return head+(tab==="mond"?skyMoon(day,loc):tab==="wetter"?skyWx(day,loc):skySun(day,loc));
+}
+/* ---------- Wetter (Open-Meteo, CC BY 4.0) ---------- */
+const WX_CODES={0:"Klar",1:"Überwiegend klar",2:"Teilweise bewölkt",3:"Bedeckt",45:"Nebel",48:"Nebel mit Reif",51:"Leichter Nieselregen",53:"Nieselregen",55:"Starker Nieselregen",56:"Gefrierender Nieselregen",57:"Gefrierender Nieselregen",61:"Leichter Regen",63:"Regen",65:"Starker Regen",66:"Gefrierender Regen",67:"Gefrierender Regen",71:"Leichter Schneefall",73:"Schneefall",75:"Starker Schneefall",77:"Schneegriesel",80:"Leichte Regenschauer",81:"Regenschauer",82:"Starke Regenschauer",85:"Schneeschauer",86:"Starke Schneeschauer",95:"Gewitter",96:"Gewitter mit Hagel",99:"Gewitter mit Hagel"};
+const WX_VARS="temperature_2m,precipitation_probability,precipitation,weather_code,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility,wind_speed_10m,wind_gusts_10m";
+let wxMem=null;
+function wxIcon(c){return c<=1?I.sun:(c===45||c===48)?I.cloud:c>=51?I.water:I.cloud}
+async function wxGet(loc,force){
+  const key=loc.lat+","+loc.lon, fresh=x=>x&&x.key===key&&Date.now()-x.t<60*60000;
+  if(!force&&fresh(wxMem))return wxMem;
+  const st=S.get("wx",null);if(!force&&fresh(st)){wxMem=st;return st}
+  try{
+    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=${WX_VARS}&forecast_days=16&timeformat=unixtime&timezone=auto`);
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    const j=await r.json();
+    wxMem={key,t:Date.now(),h:j.hourly};try{S.set("wx",wxMem)}catch(e){}
+    return wxMem;
+  }catch(e){
+    if(st&&st.key===key){wxMem=Object.assign({},st,{offline:true});return wxMem}
+    throw e;
+  }
+}
+function wxDay(w,day){
+  const s=day.getTime()/1000,e=s+86400,h=w.h,out=[];
+  for(let k=0;k<h.time.length;k++)if(h.time[k]>=s&&h.time[k]<e){const o={t:new Date(h.time[k]*1000)};for(const v of WX_VARS.split(","))o[v]=h[v]?h[v][k]:null;out.push(o)}
+  return out;
+}
+function wxAt(rows,date){if(!date||!rows.length)return null;let b=rows[0];for(const r of rows)if(Math.abs(r.t-date)<Math.abs(b.t-date))b=r;return Math.abs(b.t-date)<=90*60000?b:null}
+function wxColor(r){
+  if(!r)return null;
+  const L=r.cloud_cover_low??0,M=r.cloud_cover_mid??0,H=r.cloud_cover_high??0,T=r.cloud_cover??0,P=r.precipitation_probability??0;
+  if(P>=60||(r.precipitation??0)>=0.5)return ["bad","gering","Regen wahrscheinlich."];
+  if(L>=70)return ["bad","gering","Dichte tiefe Wolken verdecken vermutlich die Sonne."];
+  if(T<10)return ["mid","mittel","Klarer Himmel: Farben meist nur als Streifen am Horizont, dafür gutes goldenes Licht auf dem Motiv."];
+  if(Math.max(M,H)>=20&&L<40&&T<=85)return ["good","gut","Mittelhohe oder hohe Wolken, kaum tiefe – die können sich farbig verfärben."];
+  if(T>85)return ["bad","gering","Fast geschlossene Wolkendecke."];
+  return ["mid","mittel","Gemischte Bewölkung – kann klappen, muss aber nicht."];
+}
+function wxClouds(r){
+  const bar=(n,v)=>`<span>${n}</span><i><span style="width:${Math.round(v??0)}%"></span></i><span>${v==null?"–":Math.round(v)+" %"}</span>`;
+  return `<div class="wx-cl">${bar("Tief",r.cloud_cover_low)}${bar("Mittel",r.cloud_cover_mid)}${bar("Hoch",r.cloud_cover_high)}</div>`;
+}
+function skyWx(day,loc){
+  if(!loc)return `<div class="card" style="margin-top:14px"><div class="title" style="font-size:17px"><span class="ic-in">${I.pin}</span> Wo fotografierst du?</div><p class="small">Für das Wetter braucht die App deinen Ort.</p><button class="btn primary" data-loc>Ort festlegen</button></div>`;
+  if(skyDay<0||skyDay>15)return `<div class="card" style="margin-top:14px"><p class="small" style="margin:0">Eine Wettervorhersage gibt es nur für heute und die nächsten 15 Tage. ${skyDay<0?"Für vergangene Tage zeigt die App kein Wetter.":"Wähle einen früheren Tag."}</p></div>`;
+  return `<div id="wx_box" style="margin-top:14px"><div class="card small muted">Wetter wird geladen …</div></div>`;
+}
+function wxRender(day,loc,w){
+  const rows=wxDay(w,day);const box=$("#wx_box");if(!box)return;
+  if(!rows.length){box.innerHTML=`<div class="card small">Für diesen Tag liegen keine Wetterdaten vor.</div>`;return}
+  const sd=skyData(day,loc.lat,loc.lon), mph=moonNow(new Date(day.getTime()+22*3600000));
+  const temps=rows.map(r=>r.temperature_2m).filter(x=>x!=null);
+  const pmax=Math.max(0,...rows.map(r=>r.precipitation_probability??0)), psum=rows.reduce((a,r)=>a+(r.precipitation??0),0);
+  const wmax=Math.max(0,...rows.map(r=>r.wind_speed_10m??0)), gmax=Math.max(0,...rows.map(r=>r.wind_gusts_10m??0));
+  const codes=rows.filter(r=>r.t.getHours()>=8&&r.t.getHours()<=20).map(r=>r.weather_code);const main=codes.length?codes.sort((a,b)=>codes.filter(x=>x===b).length-codes.filter(x=>x===a).length)[0]:rows[12]?.weather_code;
+  const light=(lbl,t)=>{const r=wxAt(rows,t);if(!r)return "";const c=wxColor(r);
+    return `<div class="card"><b>${lbl} · ${tm(t)} Uhr</b><div class="small" style="margin-top:4px">Chance auf farbigen Himmel: <span class="wx-r ${c[0]}">${c[1]}</span> – ${c[2]}</div>
+      <div class="small muted" style="margin-top:4px">Bewölkung gesamt ${Math.round(r.cloud_cover??0)} %${r.precipitation_probability!=null?` · Regenrisiko ${r.precipitation_probability} %`:""}</div>${wxClouds(r)}</div>`};
+  /* Nacht: Stunden der astronomischen Nacht, sonst 22–4 Uhr */
+  const nS=sd.n2||new Date(day.getTime()+22*3600000), nE=sd.nEnd||new Date(day.getTime()+28*3600000);
+  const nightRows=wxDay(w,day).concat(wxDay(w,new Date(day.getTime()+86400000))).filter(r=>r.t>=nS&&r.t<=nE);
+  let night="";
+  if(nightRows.length){const cc=Math.round(nightRows.reduce((a,r)=>a+(r.cloud_cover??0),0)/nightRows.length);
+    const q=cc<=20?["good","gut"]:cc<=50?["mid","mittel"]:["bad","schlecht"];
+    const moonTxt=mph.illum<0.25?"Der Mond stört kaum.":mph.illum<0.6?`Der Mond ist zu ${Math.round(mph.illum*100)} % beleuchtet – Zeiten unter „Mond“ prüfen.`:`Der Mond ist zu ${Math.round(mph.illum*100)} % beleuchtet und hellt den Himmel auf.`;
+    night=`<div class="card"><b>Nacht · Sterne</b><div class="small" style="margin-top:4px">Wolken nachts im Mittel ${cc} %: <span class="wx-r ${q[0]}">${q[1]}</span>. ${moonTxt}${sd.n2?"":" (Keine richtig dunkle Nacht – gerechnet 22–4 Uhr.)"}</div></div>`;}
+  /* Nebel am Morgen */
+  const mRows=rows.filter(r=>sd.rise&&Math.abs(r.t-sd.rise)<=2.5*3600000&&r.visibility!=null);
+  const vmin=mRows.length?Math.min(...mRows.map(r=>r.visibility)):null;
+  const fog=vmin!=null&&vmin<1000?`<div class="try"><b>${I.bulb}Nebel möglich</b><div class="small" style="margin-top:4px">Rund um Sonnenaufgang sinkt die Sichtweite auf etwa ${vmin<100?"unter 100 m":Math.round(vmin/100)*100+" m"}. Nebel macht stimmungsvolle Bilder – Bäume und Landschaft wirken geheimnisvoll, Sonnenstrahlen werden sichtbar.</div></div>`:"";
+  const hours=rows.filter(r=>r.t.getHours()>=5&&r.t.getHours()<=23);
+  box.innerHTML=`${w.offline?`<div class="warnbox small" style="margin-bottom:10px">Keine Internetverbindung – gezeigt wird der letzte Stand von ${fmtT(new Date(w.t))} Uhr.</div>`:""}
+  <div class="card" style="display:flex;gap:14px;align-items:center"><span class="ic" style="width:40px;height:40px">${wxIcon(main)}</span>
+    <div><div class="title" style="font-size:18px">${esc(WX_CODES[main]||"–")}</div>
+    <div class="small muted">${temps.length?`${Math.round(Math.min(...temps))} bis ${Math.round(Math.max(...temps))} °C`:""} · Regen ${pmax} %${psum>=0.1?` (${num(psum)} mm)`:""} · Wind bis ${Math.round(wmax)} km/h${gmax>=40?`, Böen ${Math.round(gmax)} km/h`:""}</div></div></div>
+  ${light("Morgens zum Sonnenaufgang",sd.rise)}
+  ${light("Abends zum Sonnenuntergang",sd.set)}
+  ${night}${fog}
+  ${gmax>=50?`<div class="warnbox small" style="margin-top:10px">Böen bis ${Math.round(gmax)} km/h: Stativ beschweren, lange Belichtungen können verwackeln.</div>`:""}
+  <div class="card"><b>Stunde für Stunde</b><div class="small muted">Bewölkung · Temperatur · Regenrisiko</div>
+    <div class="wx-h">${hours.map(r=>`<div><b>${r.t.getHours()}</b>${Math.round(r.cloud_cover??0)} %<br>${r.temperature_2m==null?"–":Math.round(r.temperature_2m)+"°"}<br>${r.precipitation_probability==null?"–":r.precipitation_probability+" %"}</div>`).join("")}</div></div>
+  <details class="box"><summary>Wie wird das eingeschätzt? <span class="chev">${I.chev}</span></summary><div class="small">
+    <p><b>Wolkenhöhen</b> laut Open-Meteo: tief bis 3 km (dazu zählt auch Nebel), mittel 3–8 km, hoch über 8 km.</p>
+    <p><b>Farbiger Himmel:</b> Am schönsten färben sich mittelhohe und hohe Wolken (z. B. Schleier- und Schäfchenwolken), wenn die Sonne unter ihnen hindurchscheinen kann. Dichte tiefe Wolken oder Regen versperren das Licht. Ganz ohne Wolken gibt es meist nur einen Farbstreifen am Horizont. Die App leitet daraus eine grobe Einschätzung ab – mehr nicht.</p>
+    <p><b>Grenzen:</b> Die Vorhersage gilt für deinen Ort. Für die Farben zählt aber auch, ob der Horizont in Richtung Sonne (abends Westen, morgens Osten) frei ist – das kann die App nicht wissen. Wolken lassen sich schwerer vorhersagen als Temperatur; ab etwa 3–4 Tagen im Voraus werden die Angaben deutlich unsicherer.</p>
+    <p><b>Sterne:</b> Wolken im Mittel über die dunkle Nacht; bis 20 % gut, bis 50 % mittel. <b>Nebel:</b> Sichtweite unter 1 km.</p></div></details>
+  <p class="small muted">Wetterdaten: <a class="lk" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (Lizenz CC BY 4.0), aktualisiert ${fmtT(new Date(w.t))} Uhr. <button class="lk small" id="wx_reload" style="background:none;border:0;padding:0">Neu laden</button></p>`;
+  const rl=$("#wx_reload");if(rl)rl.onclick=()=>wxLoad(day,loc,true);
+}
+async function wxLoad(day,loc,force){
+  try{const w=await wxGet(loc,force);wxRender(day,loc,w)}
+  catch(e){const b=$("#wx_box");if(b)b.innerHTML=`<div class="card small">Das Wetter konnte nicht geladen werden. Dafür braucht die App eine Internetverbindung. <button class="lk small" id="wx_retry" style="background:none;border:0;padding:0">Erneut versuchen</button></div>`;const r=$("#wx_retry");if(r)r.onclick=()=>wxLoad(day,loc,true)}
 }
 function skySun(day,loc){
   if(!loc)return `<div class="card" style="margin-top:14px"><div class="title" style="font-size:17px"><span class="ic-in">${I.pin}</span> Wo fotografierst du?</div>
@@ -1729,6 +1827,7 @@ function searchIndex(){
   [["verwacklung","Rechner: Längste Zeit aus der Hand","Verwacklung Kehrwert Brennweite Stabilisator Stufen"],["sterne","Rechner: Längste Zeit für Sterne","500er-Regel NPF Sterne Milchstraße Strichspuren"],["schaerfe","Rechner: Schärfentiefe","Schärfentiefe hyperfokale Distanz Abstand Blende"],["graufilter","Rechner: Belichtungszeit mit Graufilter","Graufilter ND Langzeitbelichtung"]].forEach(([id,t,txt])=>r.push({t,k:"Rechner",h:"#regeln/rechner-"+id,txt}));
   r.push({t:"Belichtungs-Spielwiese",k:"Regeln",h:"#regeln/spielwiese",txt:"Blende Zeit ISO ausprobieren Belichtung Simulation Rauschen Bewegung Hintergrund Lichtwert"});
   r.push({t:"Sonnenzeiten",k:"Himmel",h:"#himmel/sonne",txt:"Sonnenaufgang Sonnenuntergang goldene Stunde blaue Stunde Dämmerung Mondaufgang Monduntergang Nacht Tageslänge Ort"});
+  r.push({t:"Wetter",k:"Himmel",h:"#himmel/wetter",txt:"Wetter Wolken Bewölkung Regen Wind Nebel Sonnenuntergang Abendrot farbiger Himmel Vorhersage Open-Meteo"});
   r.push({t:"Mondkalender",k:"Himmel",h:"#himmel/mond",txt:"Mondphase heute Vollmond Neumond Halbmond Viertel Termine Kalender"});
   return r;
 }
@@ -1824,6 +1923,7 @@ function bind(tab,sub){
     document.querySelectorAll("[data-skd]").forEach(b=>b.onclick=()=>{skyDay=+b.dataset.skd;keep()});
     const pv=$("#sk_prev"),nx=$("#sk_next");if(pv)pv.onclick=()=>{skyDay--;keep()};if(nx)nx.onclick=()=>{skyDay++;keep()};
     document.querySelectorAll("[data-skt]").forEach(b=>b.onclick=()=>{S.set("skytab",b.dataset.skt);const y=scrollY;history.replaceState(null,"","#himmel/"+b.dataset.skt);lastHash=location.hash;render();scrollTo(0,y)});
+    if($("#wx_box"))wxLoad(skyDayDate(),skyLoc(),false);
     const di=$("#sk_date");if(di)di.onchange=()=>{if(!di.value)return;const [Y,M,D]=di.value.split("-").map(Number);const n=new Date();skyDay=Math.round((new Date(Y,M-1,D)-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/86400000);keep()};
   }
   if(tab==="regeln"&&sub==="spielwiese"){
