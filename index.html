@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 0.1.3 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 0.1.4 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.1.3";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "0.1.4";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -210,19 +210,19 @@ const CARDS = [
       ["Antrieb","Serienbild"],["Brennweite","so lang wie möglich"],["Format","RAW + JPEG"]
     ],
     variants:[
-      {name:"Sitzend",set:{"Belichtungszeit":"1/500–1/1000 s","Blende":"offen","Fokus":"AF-C, kleines Feld (Spot)"},
+      {name:"Sitzend",set:{"Belichtungszeit":"1/500–1/1000 s","Blende":"offen","Fokus":"AF-C, kleiner Fokuspunkt (Spot)"},
        tips:["Auch beim sitzenden Vogel nicht zu lange Zeiten: Bei langer Brennweite verwackelt man leicht, und kleine Vögel zappeln ständig."],
        tryit:"Am Futterhaus je 10 Fotos mit 1/250 s und mit 1/1000 s machen und vergleichen, wie viele scharf sind."},
-      {name:"Im Flug",set:{"Belichtungszeit":"1/2000 s oder kürzer","Blende":"offen bis f/8","Fokus":"AF-C, Zone oder breites Feld"},
-       tips:["Den Vogel schon vor dem Abflug anvisieren und dann mitschwenken.","Zum Üben eignen sich große, langsame Vögel wie Möwen, Reiher oder Greifvögel.","Manche Kameras können Tier-Augen-AF mit Tracking kombinieren, viele aber nicht. Dann lieber Zone oder breites Feld nehmen."],
+      {name:"Im Flug",set:{"Belichtungszeit":"1/2000 s oder kürzer","Blende":"offen bis f/8","Fokus":"AF-C, Fokusfeld Zone oder Breit"},
+       tips:["Den Vogel schon vor dem Abflug anvisieren und dann mitschwenken.","Zum Üben eignen sich große, langsame Vögel wie Möwen, Reiher oder Greifvögel.","Kleine, schnelle Vögel brauchen eher 1/3200 s oder noch kürzer.","Manche Kameras können Tier-Augen-AF mit Tracking kombinieren, viele aber nicht. Dann lieber Fokusfeld Zone oder Breit nehmen."],
        tryit:"Möwen am Wasser: Serien mit 1/1000 s und mit 1/2500 s vergleichen. Ab wann sind die Flügelspitzen scharf?"}
     ],
     tips:["Aufs Auge scharfstellen – ein scharfes Auge macht das Bild.","Auf Augenhöhe des Vogels gehen, nicht von oben fotografieren.","Ruhigen Hintergrund mit viel Abstand zum Vogel suchen, dann wird er schön unscharf.","Platz in Blickrichtung lassen.","Die Sonne möglichst im Rücken haben."],
     errors:["Der Fokus sitzt auf dem Ast statt auf dem Vogel.","Vogel vor hellem Himmel wird zu dunkel → Belichtungskorrektur +0,7 bis +1.","Vogel zu klein im Bild und später zu stark beschnitten → lieber näher heran (Geduld, Tarnung)."],
     sony:[
       "Tier-Augen-AF: MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Motiverkennung] → [Tier]. Augen mancher Tierarten, oft auch von kleinen Vögeln, werden nicht erkannt.",
-      "a6400: Tier-Augen-AF und Tracking lassen sich nicht kombinieren. Für Flugaufnahmen deshalb Fokusfeld Zone oder Breit.",
-      "Schnell umschalten: Mit [BenutzAufnEinst reg.] ein komplettes „Flug-Paket“ (z. B. 1/2000 s, AF-C, Zone, Serienbild) unter [Abruf Ben. Halten 1] speichern und auf eine Taste legen. Solange du die Taste hältst, gelten diese Einstellungen.",
+      "Fokusfeld: Was allgemein „Zone“ heißt, heißt bei Sony [Feld]. Für den sitzenden Vogel [Flexible Spot] S oder M.","Ist [Motiverkennung] auf [Tier] gestellt, lässt sich [Tracking] nicht als Fokusfeld wählen. Für Flugaufnahmen deshalb [Feld] oder [Breit].","a6400: kürzeste Verschlusszeit 1/4000 s.",
+      "Schnell umschalten: Mit [BenutzAufnEinst reg.] ein komplettes „Flug-Paket“ (z. B. 1/2000 s, AF-C, Feld, Serienbild) unter [Abruf Ben. Halten 1] speichern und auf eine Taste legen. Solange du die Taste hältst, gelten diese Einstellungen.",
       "a6400: kein Stabilisator im Gehäuse – den Stabilisator im Objektiv eingeschaltet lassen."
     ],
     see:[["regel","bewegung","Bewegung einfrieren"],["grund","fokus","Fokus und Autofokus"],["kamera","taste","Einstellungen auf eine Taste legen"]]
@@ -246,7 +246,7 @@ const CARDS = [
     errors:["Unscharfe Sterne: Der Unendlich-Anschlag am Objektiv ist oft nicht ganz exakt → mit der Fokuslupe an einem hellen Stern scharfstellen.","Sterne als kurze Striche: Belichtungszeit zu lang für die Brennweite.","Verwackelt durch Wind oder Antippen → Selbstauslöser nehmen, Stativ beschweren.","Beschlagene Frontlinse in feuchten Nächten."],
     sony:[
       "Fokuslupe: Fokusmodus auf MF stellen und am Fokusring drehen – die Kamera vergrößert automatisch, wenn [MF-Unterstützung] eingeschaltet ist.",
-      "[Langzeit-RM] (Rauschminderung bei Langzeitbelichtung): Ist sie an, macht die Kamera nach jedem Foto ein gleich langes Dunkelbild. Das halbiert die Zahl der Fotos pro Stunde.",
+      "[Langzeitbel.-RM] (Rauschminderung bei Langzeitbelichtung): Ist sie an, macht die Kamera nach jedem Foto ein gleich langes Dunkelbild. Das halbiert die Zahl der Fotos pro Stunde.",
       "Fernauslösen geht auch per Smartphone-App von Sony."
     ],
     tryit:"Die gleiche Szene mit 10 s, 20 s und 30 s fotografieren und am Rechner groß ansehen: Ab wann werden die Sterne zu Strichen?",
@@ -261,11 +261,11 @@ const CARDS = [
       ["Weißabgleich","fest, Tageslicht"]
     ],
     variants:[
-      {name:"Mond allein",set:{"Belichtungszeit":"1/125–1/250 s","Blende":"f/8–11","ISO":"so niedrig wie möglich (100–400)","Fokus":"AF-S, Spot auf den Mondrand – oder manuell mit Lupe","Brennweite":"so lang wie möglich"},
-       tips:["Faustregel „Looney 11“: Bei Vollmond Blende f/11 und Zeit = 1/ISO als Startwert.","Nicht zu lange Zeiten: Der Mond wandert – bei viel Brennweite sieht man das schnell.","Halbmond ist oft spannender als Vollmond: Am Schattenrand sieht man die Krater."],
+      {name:"Mond allein",set:{"Belichtungszeit":"1/100–1/250 s (Vollmond)","Blende":"f/8–11","ISO":"so niedrig wie möglich (100–400)","Fokus":"AF-S, Spot auf den Mondrand – oder manuell mit Lupe","Brennweite":"so lang wie möglich"},
+       tips:["Faustregel „Looney 11“: Bei Vollmond Blende f/11 und Zeit = 1/ISO als Startwert.","Nicht zu lange Zeiten: Der Mond wandert – bei viel Brennweite sieht man das schnell.","Halbmond ist oft spannender als Vollmond: Am Schattenrand sieht man die Krater. Er braucht aber etwa 2 Stufen mehr Licht (z. B. 1/60 statt 1/250 s)."],
        tryit:"Eine kleine Belichtungsreihe machen (−1, 0, +1) und vergleichen, wo die Krater am besten zu sehen sind."},
       {name:"Mit Landschaft",set:{"Belichtungszeit":"nach Licht, aus der Hand Kehrwert der Brennweite","Blende":"f/7–10","ISO":"niedrig, ggf. Auto","Fokus":"AF-S auf den Vordergrund bzw. weit entfernt","Brennweite":"lang, damit der Mond groß wirkt"},
-       tips:["In der blauen Stunde fotografieren, nicht in voller Dunkelheit – dann passen Himmel und Mond in der Helligkeit zusammen.","Der Mond sollte tief stehen, mit etwas Markantem in der Ferne davor.","Rund um Vollmond geht der Mond etwa zur Zeit des Sonnenuntergangs auf, ein bis zwei Tage vorher schon etwas früher – ideal für Mond mit Landschaft."],
+       tips:["In der blauen Stunde fotografieren, nicht in voller Dunkelheit – dann passen Himmel und Mond in der Helligkeit zusammen.","Der Mond sollte tief stehen, mit etwas Markantem in der Ferne davor.","Am besten am Abend vor Vollmond: Dann geht der Mond kurz vor Sonnenuntergang auf, und die Landschaft hat noch Licht. Am Vollmondtag selbst geht er erst etwa mit dem Sonnenuntergang auf."],
        tryit:"Den gleichen Mondaufgang alle 10 Minuten fotografieren und vergleichen, wann Himmel und Mond am besten zusammenpassen."}
     ],
     tips:["Die Belichtungsmessung täuscht: Sie will den schwarzen Himmel aufhellen, dann wird der Mond eine weiße Scheibe. Deshalb M-Modus oder deutlich minus korrigieren.","Zebra als Hilfe nutzen: Bei Einstellung 100+ dürfen auf dem Mond keine Streifen erscheinen."],
@@ -339,14 +339,14 @@ const GRUND = [
    merk:"Bewegung wichtig → S. Schärfentiefe wichtig → A. Beides wichtig → M + ISO-Auto.",see:[["grund","korrektur","Belichtungskorrektur"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]]},
   {id:"korrektur",title:"Belichtungskorrektur und Histogramm",short:"Wenn die Kamera sich verschätzt",
    text:["Die Belichtungsmessung der Kamera geht davon aus, dass ein Motiv im Durchschnitt mittelgrau ist. Bei sehr hellen Motiven (Schnee, heller Himmel) wird das Foto deshalb zu dunkel, bei sehr dunklen Motiven zu hell.",
-         "Mit der Belichtungskorrektur (+/−) sagst du der Kamera: „Mach es heller“ bzw. „dunkler“. Sie funktioniert in P, A, S und in M mit ISO-Auto.",
+         "Mit der Belichtungskorrektur (+/−) sagst du der Kamera: „Mach es heller“ bzw. „dunkler“. Sie funktioniert in P, A und S, bei vielen Kameras (z. B. Sony) auch in M mit ISO-Auto.",
          "Das Histogramm zeigt die Helligkeitsverteilung: links dunkel, rechts hell. Stößt der Berg rechts an den Rand, sind helle Stellen ausgefressen – die sind auch per Bearbeitung nicht mehr zu retten."],
    merk:"Helles Motiv → plus. Dunkles Motiv → minus.",see:[["regel","korr","Korrigieren bei Hell und Dunkel"],["kamera","zebra","Zebra"]]},
   {id:"fokus",title:"Fokus und Autofokus",short:"AF-S, AF-C, MF und Fokusfelder",
    text:["AF-S (Einzelbild-AF): Die Kamera stellt einmal scharf, wenn du den Auslöser halb drückst, und hält diese Entfernung. Gut für Unbewegtes.",
          "AF-C (Nachführ-AF): Die Kamera stellt laufend nach, solange du den Auslöser halb drückst. Für alles, was sich bewegt.",
          "MF (manuell): Du drehst selbst am Fokusring. Hilfen dafür sind Fokuslupe und Fokus-Peaking. Gut bei Sternen, Makro oder wenn der Autofokus durch Zweige abgelenkt wird.",
-         "Das Fokusfeld legt fest, wo im Bild die Kamera scharfstellt: Breit (Kamera sucht selbst), Zone (ein Bereich), Spot bzw. Feld (ein kleiner Punkt) oder Tracking (das Motiv wird verfolgt). Augen-AF stellt gezielt auf Augen scharf."],
+         "Das Fokusfeld legt fest, wo im Bild die Kamera scharfstellt: Breit (Kamera sucht selbst), Zone (ein gewählter Bereich, bei Sony „Feld“), Spot (ein kleiner Punkt, bei Sony „Flexible Spot“) oder Tracking (das Motiv wird verfolgt). Augen-AF stellt gezielt auf Augen scharf."],
    merk:"Steht still → AF-S. Bewegt sich → AF-C. Autofokus versagt → MF.",see:[["kamera","augenaf","Augen-AF"],["kamera","peaking","Fokus-Peaking und Fokuslupe"]]},
   {id:"schaerfe",title:"Schärfentiefe",short:"Wie viel vor und hinter dem Motiv scharf ist",
    text:["Scharf ist immer nur eine Ebene. Davor und dahinter gibt es einen Bereich, der noch scharf wirkt – die Schärfentiefe.",
@@ -411,15 +411,15 @@ const KAMERA = [
   {id:"augenaf",title:"Augen-AF",icon:"focus",
    text:["Die Kamera erkennt Augen von Menschen und bei vielen Kameras auch von Tieren und stellt gezielt darauf scharf. Gerade bei offener Blende ist das Gold wert, weil schon wenige Millimeter daneben unscharf sind.",
          "Bei kleinen oder ungewöhnlichen Tieren klappt die Erkennung nicht immer."],
-   sony:["MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Ges/AugPrio. bei AF] → [Ein]","Für Tiere: [Motiverkennung] → [Tier]. Menschen und Tiere gleichzeitig erkennt die a6400 nicht.","a6400: Tier-Augen-AF lässt sich nicht mit dem Fokusfeld Tracking kombinieren."]},
+   sony:["MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Ges/AugPrio. bei AF] → [Ein]","Für Tiere: [Motiverkennung] → [Tier]. Menschen und Tiere gleichzeitig erkennt die a6400 nicht.","Bei [Motiverkennung] auf [Tier] lässt sich [Tracking] nicht als Fokusfeld wählen."]},
   {id:"tracking",title:"Fokusfelder und Tracking",icon:"focus",
-   text:["Das Fokusfeld bestimmt, wo die Kamera scharfstellt. Breit: Die Kamera sucht selbst. Zone: in einem gewählten Bereich. Spot/Feld: an einem kleinen Punkt. Tracking: Ein angetipptes Motiv wird verfolgt, auch wenn es sich durchs Bild bewegt.",
+   text:["Das Fokusfeld bestimmt, wo die Kamera scharfstellt. Breit: Die Kamera sucht selbst. Zone: in einem gewählten Bereich. Spot: an einem kleinen Punkt. Tracking: Ein angetipptes Motiv wird verfolgt, auch wenn es sich durchs Bild bewegt.",
          "Welche Kombinationen möglich sind (z. B. Tracking zusammen mit Tier-Augen-AF), ist von Kamera zu Kamera verschieden."],
-   sony:["Fokusfeld über die Fn-Taste oder MENU → Kamera-Einstlg.1 → [Fokusfeld]."]},
+   sony:["Fokusfeld über die Fn-Taste oder MENU → Kamera-Einstlg.1 → [Fokusfeld].","Sony-Namen: [Breit], [Feld] (= Zone), [Mitte], [Flexible Spot] S/M/L, [Erweit. Flexible Spot], [Tracking].","Bei [Motiverkennung] auf [Tier] steht [Tracking] nicht zur Verfügung."]},
   {id:"isoauto",title:"ISO-Auto mit Mindestzeit",icon:"aperture",
    text:["Viele Kameras können bei ISO-Auto eine Mindest-Belichtungszeit einhalten: Erst wenn diese Zeit erreicht ist, erhöht die Kamera die ISO, statt die Zeit noch länger zu machen.",
          "Praktisch im Modus A oder P, damit die Zeit nicht unbemerkt zu lang wird."],
-   sony:["Im Menü unter [ISO AUTO Min. VS] – entweder eine feste Zeit oder „Schneller/Langsamer“ abhängig von der Brennweite."]},
+   sony:["MENU → Kamera-Einstlg.1 → [ISO-Einstellung] → [ISO AUTO Min. VS] – entweder eine feste Zeit oder „Schneller/Langsamer“ abhängig von der Brennweite."]},
   {id:"taste",title:"Einstellungen auf eine Taste legen",icon:"camera",
    text:["Manche Kameras können ein ganzes Paket aus Einstellungen speichern und per Tastendruck abrufen. So wechselst du in Sekunden z. B. von „Vogel sitzt“ zu „Vogel fliegt“ – mit kurzer Zeit, AF-C und Serienbild auf einmal."],
    sony:["Speichern: MENU → [BenutzAufnEinst reg.] → [Abruf Ben. Halten 1] (bis 3) → gewünschte Einstellungen anhaken, ggf. [Akt. Einstlg importieren].","Auf eine Taste legen: MENU → Kamera-Einstlg.2 → [BenutzerKey] → Taste wählen → [Abruf Ben. Halten 1].","Funktioniert nur in P, A, S und M. Die Einstellungen gelten, solange du die Taste gedrückt hältst."]},
@@ -430,7 +430,7 @@ const KAMERA = [
   {id:"peaking",title:"Fokus-Peaking und Fokuslupe",icon:"focus",
    text:["Beim manuellen Fokussieren helfen zwei Dinge: Die Fokuslupe vergrößert einen Bildausschnitt, Fokus-Peaking färbt scharfe Kanten farbig ein.",
          "Ideal für Sterne, Mond, Makro und alles, wo der Autofokus nicht zuverlässig greift."],
-   sony:["Fokus-Peaking: im Menü unter [Kantenanheb.-Einst.] einschalten.","Lupe automatisch beim Drehen am Fokusring: [MF-Unterstützung] einschalten."]},
+   sony:["Fokus-Peaking: MENU → Kamera-Einstlg.1 → [Kantenanheb.-Einst.] (Anzeige, Stufe, Farbe).","Lupe automatisch beim Drehen am Fokusring: [MF-Unterstützung] einschalten."]},
   {id:"stabi",title:"Stabilisator an der Kamera",icon:"camera",
    text:["Ob deine Kamera einen Stabilisator im Gehäuse hat, steht in den technischen Daten. Wenn nicht, hängt alles vom Objektiv ab.",
          "Auf dem Stativ den Stabilisator meist ausschalten – manche Systeme „suchen“ sonst Bewegung und verursachen leichte Unschärfe."],
