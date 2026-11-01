@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.1.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.2.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -55,6 +55,13 @@ h3{font-size:16px;margin:16px 0 6px}
 .item .grow{flex:1;min-width:0}
 .item.soon{opacity:.55;cursor:default}
 .badge{font-size:11.5px;background:var(--card2);color:var(--muted);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.calc input[type=range]{padding:0;border:0;background:none;accent-color:var(--accent);height:28px}
+.sw-scene{width:100%;max-width:calc(36vh * 1.6);margin:0 auto;border-radius:12px;display:block;overflow:hidden;outline:1px solid var(--line)}
+.sw-val{float:right;font-weight:600}
+.sw-meter{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:2px}
+.sw-bar{position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,#3b4256,#8a90a2 50%,#f4eccf);margin-top:8px}
+.sw-bar i{position:absolute;top:-4px;width:4px;height:16px;border-radius:2px;background:var(--accent);transform:translateX(-2px)}
+.sw-res div{margin:3px 0}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px;cursor:pointer}
 .chip.on{background:var(--accentBg);border-color:var(--accent);color:var(--accentText)}
@@ -90,6 +97,8 @@ li{margin:3px 0}
 .box[open] summary .chev{transform:rotate(180deg)}
 .try{border:1.5px dashed var(--line);border-radius:12px;padding:10px 12px;margin-top:14px}
 .try b{display:flex;align-items:center;gap:8px}
+.try li b{display:inline}
+.sw-stick{position:sticky;top:0;z-index:5;background:var(--card);padding-top:10px}
 .try svg{width:18px;height:18px;color:var(--accent)}
 .warnbox{background:var(--warnBg);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:14.5px;margin-top:10px}
 textarea{width:100%;min-height:80px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit;padding:8px}
@@ -141,7 +150,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.1.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.2.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -851,29 +860,29 @@ const GRUND = [
    text:["Die Belichtungszeit (auch Verschlusszeit) gibt an, wie lange der Verschluss offen ist. Angegeben wird sie in Sekunden oder Bruchteilen davon, z. B. 1/250 s.",
          "Kurze Zeiten frieren Bewegung ein, lange Zeiten lassen Bewegtes verwischen – das kann gewollt sein (Wasser, Lichtspuren) oder stören (verwackelte Fotos).",
          "Aus der Hand gilt grob: nicht länger als der Kehrwert der Brennweite, sonst droht Verwacklung."],
-   merk:"Kurz = eingefroren, lang = verwischt. Halbe Zeit = halb so viel Licht.",see:[["regel","kehrwert","Kehrwert der Brennweite"],["regel","bewegung","Bewegung einfrieren"]]},
+   merk:"Kurz = eingefroren, lang = verwischt. Halbe Zeit = halb so viel Licht.",see:[["spiel","","Belichtungs-Spielwiese"],["regel","kehrwert","Kehrwert der Brennweite"],["regel","bewegung","Bewegung einfrieren"]]},
   {id:"blende",title:"Blende",short:"Wie weit das Objektiv geöffnet ist",
    text:["Die Blende ist eine verstellbare Öffnung im Objektiv. Sie wird als Blendenzahl angegeben, z. B. f/2.8 oder f/8.",
          "Verwirrend, aber wichtig: Eine kleine Zahl bedeutet eine große Öffnung (viel Licht, wenig Schärfentiefe). Eine große Zahl bedeutet eine kleine Öffnung (wenig Licht, viel Schärfentiefe).",
          "„Offene Blende“ heißt die kleinste Zahl, die dein Objektiv kann, z. B. f/1.8 beim 35-mm-Objektiv. Bei Zoomobjektiven hängt sie oft von der Brennweite ab (z. B. f/3.5–6.3)."],
-   merk:"Kleine Zahl = viel Licht und unscharfer Hintergrund. Große Zahl = alles scharf.",see:[["grund","schaerfe","Schärfentiefe"],["regel","stufen","Lichtstufen"]]},
+   merk:"Kleine Zahl = viel Licht und unscharfer Hintergrund. Große Zahl = alles scharf.",see:[["spiel","","Belichtungs-Spielwiese"],["grund","schaerfe","Schärfentiefe"],["regel","stufen","Lichtstufen"]]},
   {id:"iso",title:"ISO",short:"Wie stark das Bildsignal verstärkt wird",
    text:["Die ISO-Zahl legt fest, wie stark die Kamera das Signal des Sensors verstärkt. Doppelte ISO bedeutet: Man braucht nur halb so viel Licht.",
          "Der Preis dafür ist Bildrauschen – je höher die ISO, desto körniger und farbloser wird das Bild. Moderne Kameras liefern aber oft bis ISO 3200 oder 6400 gut brauchbare Fotos.",
          "Ein leicht verrauschtes, aber scharfes Foto ist fast immer besser als ein verwackeltes."],
-   merk:"So niedrig wie möglich, so hoch wie nötig.",see:[["grund","dreieck","Zusammenspiel"]]},
+   merk:"So niedrig wie möglich, so hoch wie nötig.",see:[["spiel","","Belichtungs-Spielwiese"],["grund","dreieck","Zusammenspiel"]]},
   {id:"dreieck",title:"Zusammenspiel: Zeit, Blende, ISO",short:"Das Belichtungsdreieck",
    text:["Belichtungszeit, Blende und ISO bestimmen zusammen, wie hell ein Foto wird. Ändert man einen Wert, muss man einen anderen ausgleichen, damit die Helligkeit gleich bleibt.",
          "Beispiel: Für einen fliegenden Vogel brauchst du eine kürzere Zeit (1/2000 statt 1/500 s = zwei Stufen weniger Licht). Das gleichst du mit offenerer Blende oder höherer ISO aus.",
          "Jeder Wert hat eine Nebenwirkung: Zeit → Bewegung, Blende → Schärfentiefe, ISO → Rauschen. Überleg dir, was beim Motiv am wichtigsten ist, und lege diesen Wert zuerst fest."],
-   merk:"Erst den wichtigsten Wert festlegen, die anderen ausgleichen lassen.",see:[["regel","stufen","Lichtstufen"],["grund","modus","Belichtungsprogramme"]]},
+   merk:"Erst den wichtigsten Wert festlegen, die anderen ausgleichen lassen.",see:[["spiel","","Belichtungs-Spielwiese"],["regel","stufen","Lichtstufen"],["grund","modus","Belichtungsprogramme"]]},
   {id:"modus",title:"Belichtungsprogramme",short:"Auto, P, A, S und M",
    text:["Auto: Die Kamera entscheidet alles. Bequem, aber du hast keinen Einfluss.",
          "P (Programmautomatik): Die Kamera wählt Zeit und Blende, du kannst ISO, Belichtungskorrektur usw. einstellen.",
          "A (Blendenpriorität, bei anderen Herstellern Av): Du wählst die Blende, die Kamera die Zeit. Gut, wenn die Schärfentiefe wichtig ist (Porträt, Landschaft).",
          "S (Zeitpriorität, bei anderen Herstellern Tv): Du wählst die Zeit, die Kamera die Blende. Gut, wenn Bewegung wichtig ist (Tiere, Sport). Anfängerfreundlich.",
          "M (Manuell): Du wählst Zeit und Blende selbst. Mit ISO-Auto gleicht die Kamera die Helligkeit über die ISO aus – so hast du volle Kontrolle und trotzdem eine automatische Belichtung. Ohne ISO-Auto bestimmst du alles selbst, z. B. bei Sternen oder dem Mond."],
-   merk:"Bewegung wichtig → S. Schärfentiefe wichtig → A. Beides wichtig → M + ISO-Auto.",see:[["grund","korrektur","Belichtungskorrektur"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]]},
+   merk:"Bewegung wichtig → S. Schärfentiefe wichtig → A. Beides wichtig → M + ISO-Auto.",see:[["spiel","","Belichtungs-Spielwiese"],["grund","korrektur","Belichtungskorrektur"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]]},
   {id:"korrektur",title:"Belichtungskorrektur und Histogramm",short:"Wenn die Kamera sich verschätzt",
    text:["Die Belichtungsmessung der Kamera geht davon aus, dass ein Motiv im Durchschnitt mittelgrau ist. Bei sehr hellen Motiven (Schnee, heller Himmel) wird das Foto deshalb zu dunkel, bei sehr dunklen Motiven zu hell.",
          "Mit der Belichtungskorrektur (+/−) sagst du der Kamera: „Mach es heller“ bzw. „dunkler“. Sie funktioniert in P, A und S, bei vielen Kameras (z. B. Sony) auch in M mit ISO-Auto.",
@@ -1094,6 +1103,7 @@ const GLOSSAR = [
   ["NPF-Regel","Genauere Regel für die längste Zeit bei Sternfotos; berücksichtigt Blende und Pixelgröße.","rechner","sterne"],
   ["Stufe (EV)","Maß für Licht: eine Stufe = doppelt oder halb so viel Licht.","regel","stufen"],
   ["Speicherabruf (MR)","Gespeicherte Einstellungspakete am Moduswahlrad abrufen.","kamera","mr"],
+  ["Lichtwert (LW, EV)","Zahl für die Helligkeit einer Szene bzw. für gleichwertige Kombinationen aus Blende und Zeit (bei ISO 100). Ein Lichtwert mehr = doppelt so hell. Pralle Sonne ≈ LW 15.","spiel",""],
   ["Neumond","Der Mond steht zwischen Erde und Sonne und ist unsichtbar – beste Zeit für Sternfotos.","mond",""],
   ["Terminator","Grenze zwischen beleuchteter und dunkler Mondseite; dort wirken Krater besonders plastisch.","karte","mond"]
 ];
@@ -1108,6 +1118,7 @@ const ANLEITUNG = [
   ["Regeln","Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Sensorgröße","Beim ersten Start wählst du die Sensorgröße deiner Kamera. Davon hängen Crop-Faktor, Faustregeln zur Brennweite und alle Rechner ab. Ändern kannst du sie oben im Reiter Regeln oder in den Optionen."],
+  ["Belichtungs-Spielwiese","Ganz oben im Reiter Regeln: Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
   ["Himmel","Im Reiter Himmel steht der Mondkalender: die heutige Mondphase, die nächsten Phasen und alle Neu- und Vollmonde des kommenden Jahres – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. Die Berechnung läuft auf deinem Gerät, auch ohne Internet."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
   ["Offline","Nach dem ersten Öffnen funktioniert die App auch ohne Internet. Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
@@ -1132,7 +1143,7 @@ const num=x=>String(Math.round(x*10)/10).replace(".",",");
 const $ = s=>document.querySelector(s);
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function toast(t){document.querySelectorAll(".toast").forEach(x=>x.remove());const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
-function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/",mond:"#himmel"}[type]+id}
+function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/",mond:"#himmel",spiel:"#regeln/spielwiese"}[type]+id}
 function seeLinks(arr){
   if(!arr||!arr.length)return"";
   const one=s=>{const soon=s[0]==="karte"&&(CARDS.find(c=>c.id===s[1])||{}).soon;
@@ -1149,6 +1160,120 @@ function fmtTime(sec){
   const d=1/sec;let best=std[0];
   for(const s of std){if(s>=d-0.001)best=s;else break}
   return "1/"+best+" s";
+}
+
+/* ---------- Belichtungs-Spielwiese ---------- */
+/* Indizes in Drittelstufen. Blende: N = 2^((a+3)/6), a=0 → f/1.4 … a=24 → f/22.
+   Zeit: t = 2^(j/3 − 12), j=0 → 1/4000 s … j=51 → 30 s. ISO = 100·2^(i/3), i=0 → 100 … i=24 → 25600.
+   Abweichung in Drittelstufen: D = 3·LW − (a+3) − 36 + j + i  (positiv = zu hell). */
+const SW_N=["1.4","1.6","1.8","2","2.2","2.5","2.8","3.2","3.5","4","4.5","5","5.6","6.3","7.1","8","9","10","11","13","14","16","18","20","22"];
+const SW_T=["1/4000","1/3200","1/2500","1/2000","1/1600","1/1250","1/1000","1/800","1/640","1/500","1/400","1/320","1/250","1/200","1/160","1/125","1/100","1/80","1/60","1/50","1/40","1/30","1/25","1/20","1/15","1/13","1/10","1/8","1/6","1/5","1/4","1/3","1/2,5","1/2","1/1,6","1/1,3","1","1,3","1,6","2","2,5","3","4","5","6","8","10","13","15","20","25","30"];
+const SW_I=["100","125","160","200","250","320","400","500","640","800","1000","1250","1600","2000","2500","3200","4000","5000","6400","8000","10000","12800","16000","20000","25600"];
+const SW_SC=[ /* Lichtwert bei ISO 100 – typische Werte aus Lichtwert-Tabellen */
+  ["Pralle Sonne",15,"day"],["Dunstige Sonne, weiche Schatten",14,"day"],["Hell bewölkt, keine Schatten",13,"day"],
+  ["Stark bewölkt oder Schatten",12,"day"],["Kurz nach Sonnenuntergang",10,"dusk"],["Helle Straße bei Nacht",8,"night"],
+  ["Wohnzimmer abends",6,"night"],["Landschaft im Vollmondlicht",-3,"night"],["Sternenhimmel, dunkler Ort",-10,"stars"]];
+const SW_MODES=[["m","Nichts","wie M"],["a","Zeit","wie A"],["s","Blende","wie S"],["iso","ISO","wie ISO-Auto"]];
+function swState(){return Object.assign({sc:2,a:9,j:12,i:0,mode:"m"},S.get("sw",{}))}
+function viewSpiel(){
+  const st=swState();
+  return `<div class="crumb"><a class="lk" href="#regeln">Regeln</a></div><h2 style="margin-top:4px">Belichtungs-Spielwiese</h2>
+  <p class="small muted" style="margin-top:0">Verstell Blende, Zeit und ISO und schau, was mit dem Bild passiert. Die Blume ist scharf gestellt, der Vogel fliegt.</p>
+  <div class="card calc" style="padding-top:4px"><div class="sw-stick">
+    <svg id="sw_svg" class="sw-scene" viewBox="0 0 320 200" role="img" aria-label="Beispielbild">
+      <defs>
+        <linearGradient id="sw_sky" x1="0" y1="0" x2="0" y2="1"><stop id="sw_s1" offset="0"/><stop id="sw_s2" offset="1"/></linearGradient>
+        <filter id="sw_fb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="sw_fbv" stdDeviation="0"/></filter>
+        <filter id="sw_fm" x="-50%" y="-20%" width="200%" height="140%"><feGaussianBlur id="sw_fmv" stdDeviation="0 0"/></filter>
+        <filter id="sw_fn"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix type="saturate" values="0"/></filter>
+      </defs>
+      <g id="sw_scene">
+        <g filter="url(#sw_fb)">
+          <rect x="-10" y="-10" width="340" height="220" fill="url(#sw_sky)"/>
+          <g id="sw_stars" fill="#fff">${[[30,20],[70,40],[110,15],[150,35],[200,22],[240,45],[280,18],[300,60],[50,70],[180,60],[260,80],[95,55]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1"/>`).join("")}</g>
+          <circle id="sw_sun" cx="250" cy="48" r="16"/>
+          <path id="sw_h1" d="M-10 130 Q60 95 130 120 T260 110 T330 118 V210 H-10Z"/>
+          <path id="sw_h2" d="M-10 150 Q80 125 170 145 T330 140 V210 H-10Z"/>
+          <g id="sw_trees">${[[40,128],[62,124],[205,128],[228,124],[290,130]].map(([x,y])=>`<rect x="${x-2}" y="${y}" width="4" height="14"/><circle cx="${x}" cy="${y-6}" r="11"/>`).join("")}</g>
+          <rect id="sw_gr" x="-10" y="168" width="340" height="50"/>
+        </g>
+        <g id="sw_bird" filter="url(#sw_fm)"><path d="M215 78 q10 -14 22 -2 q6 -4 10 0 q12 -12 22 2 q-12 -4 -20 4 l-4 6 l-4 -6 q-10 -8 -26 -4z" fill="#2b2b33"/></g>
+        <g id="sw_flower">
+          <path d="M92 200 C94 170 90 150 96 128" stroke="#3f7d3a" stroke-width="4" fill="none"/>
+          <path d="M94 170 q-22 -6 -26 -20 q18 2 26 18z" fill="#4b9445"/>
+          ${[0,60,120,180,240,300].map(r=>`<ellipse cx="96" cy="108" rx="9" ry="18" fill="#f2f2f2" stroke="#d9d9d9" transform="rotate(${r} 96 124) translate(0 -2)"/>`).join("")}
+          <circle cx="96" cy="124" r="9" fill="#f2b705"/>
+        </g>
+      </g>
+      <rect id="sw_exp" x="0" y="0" width="320" height="200" opacity="0"/>
+      <rect id="sw_noise" x="0" y="0" width="320" height="200" filter="url(#sw_fn)" opacity="0"/>
+    </svg>
+    <div class="sw-bar"><i id="sw_mk"></i></div>
+    <div class="sw-meter"><span>−3</span><span>−2</span><span>−1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span></div>
+    <div class="result" id="sw_ev" style="margin:6px 0 0;padding-bottom:8px"></div></div>
+    <label>Licht</label><select id="sw_sc">${SW_SC.map((x,k)=>`<option value="${k}" ${st.sc===k?"selected":""}>${x[0]} (LW ${x[1]})</option>`).join("")}</select>
+    <label style="margin-top:12px">Was passt die Kamera automatisch an?</label>
+    <div class="chips">${SW_MODES.map(m=>`<button class="chip ${st.mode===m[0]?"on":""}" data-swm="${m[0]}">${m[1]} <span class="muted">(${m[2]})</span></button>`).join("")}</div>
+    <label style="margin-top:12px">Blende <span class="sw-val" id="sw_av"></span></label><input type="range" id="sw_a" min="0" max="24" value="${st.a}">
+    <label>Belichtungszeit <span class="sw-val" id="sw_tv"></span></label><input type="range" id="sw_j" min="0" max="51" value="${st.j}">
+    <label>ISO <span class="sw-val" id="sw_iv"></span></label><input type="range" id="sw_i" min="0" max="24" value="${st.i}">
+    <div class="small muted" id="sw_auto" style="margin-top:6px"></div>
+    <div class="small sw-res" id="sw_res" style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px"></div>
+  </div>
+  <div class="try"><b>${I.bulb}Probier mal</b><ul class="small" style="margin:6px 0 0;padding-left:18px">
+    <li><b>Sunny 16:</b> Licht „Pralle Sonne“, Automatik „Nichts“, f/16, ISO 100 und 1/125 s – die Belichtung passt.</li>
+    <li><b>Wie A-Modus:</b> Automatik „Zeit“, dann die Blende von f/2.8 auf f/16 drehen. Der Hintergrund wird schärfer – aber die Zeit länger und der Vogel verwischt.</li>
+    <li><b>Wie S-Modus:</b> Licht „Kurz nach Sonnenuntergang“, Automatik „Blende“, Zeit 1/2000 s. Die Blende geht nicht weit genug auf und das Bild wird zu dunkel – dann hilft nur eine höhere ISO.</li>
+    <li><b>Wie ISO-Auto:</b> Licht „Kurz nach Sonnenuntergang“, Automatik „ISO“, 1/1000 s und f/5.6. Wie hoch muss die ISO für den fliegenden Vogel steigen?</li>
+  </ul></div>
+  <p class="small muted">Vereinfachte Darstellung: Wie unscharf der Hintergrund wirklich wird, hängt auch von Brennweite, Abstand und Sensorgröße ab, wie stark das Rauschen ist, von der Kamera. Die Lichtwerte (LW, englisch EV) sind typische Werte aus Lichtwert-Tabellen; echtes Licht schwankt.</p>
+  ${seeLinks([["grund","dreieck","Zusammenspiel: Zeit, Blende, ISO"],["grund","modus","Belichtungsprogramme"],["regel","bewegung","Bewegung einfrieren"],["rechner","verwacklung","Rechner: Zeit aus der Hand"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]])}`;
+}
+function swUpdate(changed){
+  const st=swState();
+  st.sc=+$("#sw_sc").value; let a=+$("#sw_a").value, j=+$("#sw_j").value, i=+$("#sw_i").value;
+  const sc=SW_SC[st.sc], LW=sc[1];
+  const D=()=>3*LW-(a+3)-36+j+i;
+  let clamped=false;
+  const fix=(v,max)=>{const r=Math.round(v);const c=Math.min(max,Math.max(0,r));if(c!==r)clamped=true;return c};
+  if(st.mode==="a")j=fix(j-D(),51);
+  else if(st.mode==="s")a=fix(a+D(),24);
+  else if(st.mode==="iso")i=fix(i-D(),24);
+  $("#sw_a").value=a;$("#sw_j").value=j;$("#sw_i").value=i;
+  ["a","j","i"].forEach(k=>{$("#sw_"+k).disabled=({a:"s",j:"a",i:"iso"})[k]===st.mode});
+  Object.assign(st,{a,j,i});S.set("sw",st);
+  const N=Math.pow(2,(a+3)/6), t=Math.pow(2,j/3-12), iso=100*Math.pow(2,i/3), dev=D()/3;
+  $("#sw_av").textContent="f/"+SW_N[a].replace(".",",");$("#sw_tv").textContent=SW_T[j]+" s";$("#sw_iv").textContent="ISO "+SW_I[i];
+  /* Bild */
+  const pal={day:["#6fb1e8","#cfe7fa","#fff3b0",1,"#7fb069","#5f9a4f","#3e7a3a","#6aa84f",0],
+             dusk:["#3a3f73","#f0a46b","#ffd28a",1,"#4f6a5a","#3e5a48","#2c4636","#4a6b45",0],
+             night:["#0b1030","#28305a","#f4eccf",0.9,"#26334a","#1e2a3e","#151f2e","#24344a",0.4],
+             stars:["#03050f","#0d1430","#f4eccf",0,"#121a2a","#0e1522","#0a0f18","#121a26",1]}[sc[2]];
+  $("#sw_s1").setAttribute("stop-color",pal[0]);$("#sw_s2").setAttribute("stop-color",pal[1]);
+  $("#sw_sun").setAttribute("fill",pal[2]);$("#sw_sun").setAttribute("opacity",pal[3]);
+  $("#sw_h1").setAttribute("fill",pal[4]);$("#sw_h2").setAttribute("fill",pal[5]);$("#sw_trees").setAttribute("fill",pal[6]);$("#sw_gr").setAttribute("fill",pal[7]);
+  $("#sw_stars").setAttribute("opacity",pal[8]);
+  $("#sw_fbv").setAttribute("stdDeviation",Math.min(9,12/N).toFixed(2));
+  const mb=Math.min(22,t*400);$("#sw_fmv").setAttribute("stdDeviation",mb.toFixed(2)+" 0");
+  $("#sw_noise").setAttribute("opacity",Math.min(0.55,Math.max(0,i/3-1)*0.08).toFixed(2));
+  const shown=Math.max(-4,Math.min(4,dev));
+  /* zu hell: Schleier Richtung Weiß, zu dunkel: Richtung Schwarz */
+  const ex=$("#sw_exp");ex.setAttribute("fill",shown>0?"#fff":"#000");
+  ex.setAttribute("opacity",(shown>0?1-Math.pow(2,-shown*0.6):1-Math.pow(2,shown*0.7)).toFixed(3));
+  $("#sw_mk").style.left=(50+Math.max(-3.3,Math.min(3.3,dev))/3*50*0.857)+"%";
+  /* Texte */
+  const r=Math.round(dev*3)/3, abs=Math.abs(r);
+  const st3=x=>{const w=Math.floor(x+1e-9),f=Math.round((x-w)*3);return (w?String(w):"")+(f?(w?" ":"")+["","⅓","⅔"][f]:"")||"0"};
+  $("#sw_ev").textContent=abs<0.34?"Belichtung passt":(abs>3?(r>0?"Viel zu hell":"Viel zu dunkel"):`${st3(abs)} ${abs>1?"Stufen":"Stufe"} zu ${r>0?"hell":"dunkel"}`);
+  const Nd=parseFloat(SW_N[a]);
+  const bg=Nd<=2.8?"sehr unscharf – die Blume hebt sich deutlich ab":Nd<=5.6?"leicht unscharf":Nd<=11?"ziemlich scharf":"fast alles scharf (bei f/16–22 wird das ganze Bild durch Beugung etwas weicher)";
+  const mv=t<=1/2000?"eingefroren, auch die Flügel":t<=1/500?"fast eingefroren, Flügelspitzen evtl. leicht verwischt":t<=1/125?"Flügel verwischen":"stark verwischt";
+  const ns=iso<=400?"kaum":iso<=1600?"wenig, meist kein Problem":iso<=6400?"sichtbar, vor allem in dunklen Bereichen":"deutlich";
+  let h=`<div><b>Hintergrund:</b> ${bg}</div><div><b>Fliegender Vogel:</b> ${mv}</div><div><b>Rauschen:</b> ${ns} <span class="muted">(je nach Kamera)</span></div>`;
+  if(t>=1/30)h+=`<div><b>Verwacklung:</b> aus der Hand wird es je nach Brennweite knapp – <a class="lk" href="#regeln/rechner-verwacklung">Rechner</a>, Stativ oder Stabilisator</div>`;
+  $("#sw_res").innerHTML=h;
+  const nm={a:"die Zeit",s:"die Blende",iso:"die ISO"}[st.mode];
+  $("#sw_auto").textContent=st.mode==="m"?"Alles von Hand – so wie im M-Modus ohne ISO-Auto.":clamped?`Grenze erreicht: ${nm} lässt sich nicht weiter verstellen, deshalb stimmt die Belichtung nicht mehr. Ändere einen der anderen Werte.`:`Die Kamera stellt ${nm} so ein, dass die Belichtung passt (grauer Regler).`;
 }
 
 /* ---------- Mondphasen (Berechnung nach J. Meeus, Astronomical Algorithms) ---------- */
@@ -1320,7 +1445,9 @@ function viewGrund(id){
 
 function viewRegeln(){
   const crop=cropNow();
-  let h=`<div style="margin-top:12px">${sensorBar()}</div><p class="small muted" style="margin:6px 0 0">Brennweiten-Regeln und Rechner rechnen mit diesem Faktor.</p><h2>Faustregeln</h2>`;
+  let h=`<div style="margin-top:12px">${sensorBar()}</div><p class="small muted" style="margin:6px 0 0">Brennweiten-Regeln und Rechner rechnen mit diesem Faktor.</p>
+  <a class="item" href="#regeln/spielwiese" style="margin-top:14px;text-decoration:none;color:inherit"><span class="ic">${I.aperture}</span><span class="grow"><span class="t">Belichtungs-Spielwiese</span><br><span class="s">Blende, Zeit und ISO ausprobieren und sehen, was passiert</span></span><span class="chev">${I.chev}</span></a>
+  <h2>Faustregeln</h2>`;
   h+=REGELN.map(r=>`<div class="rule" id="regel-${r.id}"><div class="t" style="display:flex;align-items:center;justify-content:space-between">${esc(r.title)}${favBtn("r:"+r.id)}</div><div class="r">${esc(r.rule)}</div><div class="small">${esc(r.text)}</div>${r.calc?`<div class="small" style="margin-top:6px"><a class="lk" href="#regeln/rechner-${r.calc}">Zum Rechner</a></div>`:""}</div>`).join("");
   h+=`<h2>Rechner</h2><p class="small muted" style="margin-top:0">Gerechnet mit: ${crop.name} (Faktor ${num(crop.f)}).</p>
   <div class="card calc" id="rechner-verwacklung"><b>Längste Zeit aus der Hand</b>
@@ -1414,6 +1541,7 @@ function searchIndex(){
   REGELN.forEach(x=>r.push({t:x.title,k:"Faustregel",h:"#regeln/"+x.id,txt:x.rule+" "+x.text}));
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
   GLOSSAR.forEach(([t,d,type,id])=>r.push({t:t,k:"Glossar",h:type?href(type,id):"#glossar",txt:d}));
+  r.push({t:"Belichtungs-Spielwiese",k:"Regeln",h:"#regeln/spielwiese",txt:"Blende Zeit ISO ausprobieren Belichtung Simulation Rauschen Bewegung Hintergrund Lichtwert"});
   r.push({t:"Mondkalender",k:"Himmel",h:"#himmel",txt:"Mondphase heute Vollmond Neumond Halbmond Viertel Termine Kalender"});
   return r;
 }
@@ -1486,7 +1614,7 @@ function render(){
   if(q.trim())h=viewSearch(q);
   else if(tab==="motive")h=sub?viewCard(sub):viewMotive();
   else if(tab==="grundlagen")h=sub?viewGrund(sub):viewGrundlagen();
-  else if(tab==="regeln")h=viewRegeln();
+  else if(tab==="regeln")h=sub==="spielwiese"?viewSpiel():viewRegeln();
   else if(tab==="kamera")h=sub?viewKam(sub):viewKamera();
   else if(tab==="glossar")h=viewGlossar();
   else if(tab==="himmel"||tab==="mond")h=viewMond();
@@ -1503,7 +1631,12 @@ function bind(tab,sub){
     document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{S.set("var_"+sub,+b.dataset.v);const y=scrollY;render();scrollTo(0,y)});
     const n=$("#note");if(n)n.oninput=()=>S.set("note_"+sub,n.value);
   }
-  if(tab==="regeln"){
+  if(tab==="regeln"&&sub==="spielwiese"){
+    ["#sw_sc","#sw_a","#sw_j","#sw_i"].forEach(s=>{const e=$(s);e.oninput=e.onchange=()=>swUpdate(s)});
+    document.querySelectorAll("[data-swm]").forEach(b=>b.onclick=()=>{const st=swState();st.mode=b.dataset.swm;S.set("sw",st);document.querySelectorAll("[data-swm]").forEach(x=>x.classList.toggle("on",x===b));swUpdate()});
+    swUpdate();
+  }
+  else if(tab==="regeln"){
     ["#cv_f","#cv_s","#cs_f","#cs_n_","#cs_mp","#cd_f","#cd_n","#cd_s","#cg_t","#cg_n"].forEach(s=>{const e=$(s);if(e)e.oninput=e.onchange=calcAll});
     calcAll();
     if(sub){const el=document.getElementById(sub.startsWith("rechner-")?sub:"regel-"+sub);if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),30)}
