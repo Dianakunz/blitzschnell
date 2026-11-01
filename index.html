@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.7.5 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.8.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.7.5";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.8.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -299,7 +299,7 @@ const CARDS = [
     tips:["Die Belichtungsmessung täuscht: Sie will den schwarzen Himmel aufhellen, dann wird der Mond eine weiße Scheibe. Deshalb M-Modus oder deutlich minus korrigieren.","Zebra als Hilfe nutzen: Bei Einstellung 100+ dürfen auf dem Mond keine Streifen erscheinen."],
     errors:["Mond nur eine helle Scheibe ohne Struktur → überbelichtet.","Unscharf durch Antippen der Kamera → Selbstauslöser.","Mond in voller Dunkelheit mit Landschaft: Entweder ist der Mond zu hell oder die Landschaft schwarz."],
     sony:[
-      "Zebra: MENU → Kamera-Einstlg.2 → [Zebra-Einstlg.] → Zebra-Anzeige [Ein], Stufe [100+].",
+      "Zebra: MENU → Kamera-Einstlg.2 → [Zebra-Einstellung] → Zebra-Anzeige [Ein], Stufe [100+].",
       "Auf dem Stativ den Stabilisator ausschalten (am Objektiv-Schalter oder im Kameramenü unter [SteadyShot]).",
       "Mit der Fokuslupe lässt sich der Mondrand gut manuell scharfstellen."
     ],
@@ -1042,11 +1042,11 @@ const KAMERA = [
   {id:"zebra",title:"Zebra",icon:"sun",
    text:["Zebra legt ein Streifenmuster über Bereiche ab einer gewählten Helligkeit. So siehst du schon vor dem Auslösen, wo das Bild ausfrisst.",
          "Bei der Stufe 100+ zeigt es Stellen, die zu hell werden. Beim Mond dürfen also keine Streifen auf der Mondscheibe sein."],
-   sony:["MENU → Kamera-Einstlg.2 → [Zebra-Einstlg.] → Zebra-Anzeige [Ein], Zebra-Stufe z. B. [100+]."]},
+   sony:["MENU → Kamera-Einstlg.2 → [Zebra-Einstellung] → Zebra-Anzeige [Ein], Zebra-Stufe z. B. [100+]."]},
   {id:"peaking",title:"Fokus-Peaking und Fokuslupe",icon:"focus",
    text:["Beim manuellen Fokussieren helfen zwei Dinge: Die Fokuslupe vergrößert einen Bildausschnitt, Fokus-Peaking färbt scharfe Kanten farbig ein.",
          "Ideal für Sterne, Mond, Makro und alles, wo der Autofokus nicht zuverlässig greift."],
-   sony:["Fokus-Peaking: MENU → Kamera-Einstlg.1 → [Kantenanheb.-Einst.] (Anzeige, Stufe, Farbe).","Lupe automatisch beim Drehen am Fokusring: [MF-Unterstützung] einschalten."]},
+   sony:["Fokus-Peaking: MENU → Kamera-Einstlg.1 → [Kantenanh.-Einstlg] (Anzeige, Stufe, Farbe).","Lupe automatisch beim Drehen am Fokusring: [MF-Unterstützung] einschalten."]},
   {id:"fn",title:"Fn-Menü und eigene Tasten",icon:"camera",
    text:["Die Fn-Taste öffnet ein Schnellmenü mit den wichtigsten Einstellungen – viel schneller als das große Menü. Welche Einstellungen dort erscheinen, kann man meist selbst festlegen.",
          "Zusätzlich lassen sich viele Tasten mit eigenen Funktionen belegen, z. B. Augen-AF, Fokusfeld, Fokuslupe oder ISO.",
@@ -1132,7 +1132,7 @@ const ANLEITUNG = [
   ["Sensorgröße","Beim ersten Start wählst du die Sensorgröße deiner Kamera (APS-C, Vollformat, Micro Four Thirds). Davon hängen Crop-Faktor, Faustregeln zur Brennweite und alle Rechner ab. Ändern kannst du sie oben im Reiter Regeln oder in den Optionen."],
   ["Die Reiter",null],
   ["Motive","Rezept-Karten für typische Situationen. Tippe auf ein Motiv, um die empfohlenen Einstellungen zu sehen. Bei manchen Karten kannst du oben zwischen Varianten wechseln (z. B. Vögel sitzend oder im Flug). Dazu gibt es Tipps, typische Fehler, „Probier mal“-Ideen und Platz für eigene Notizen."],
-  ["Grundlagen","Das Wichtigste zum Verstehen, Kapitel für Kapitel: Belichtungszeit, Blende, ISO und ihr Zusammenspiel, Belichtungsprogramme, Fokus, Schärfentiefe, Brennweite, Licht, Bildgestaltung, Blitz, Objektive und mehr."],
+  ["Grundlagen","Ganz oben „Was ist schiefgelaufen?“: Du wählst aus, wie dein Foto aussieht (z. B. verwackelt, Fokus daneben, zu dunkel, verrauscht, Farbstich), und siehst die häufigsten Ursachen mit Abhilfe und Links. Darunter das Wichtigste zum Verstehen, Kapitel für Kapitel: Belichtungszeit, Blende, ISO und ihr Zusammenspiel, Belichtungsprogramme, Fokus, Schärfentiefe, Brennweite, Licht, Bildgestaltung, Blitz, Objektive und mehr."],
   ["Regeln","Ganz oben die Belichtungs-Spielwiese, darunter Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Belichtungs-Spielwiese","Zu finden ganz oben im Reiter Regeln, außerdem verlinkt bei den Grundlagen zu Zeit, Blende, ISO und Belichtungsprogrammen. Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
   ["Kamera","Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
@@ -1168,7 +1168,7 @@ const num=x=>String(Math.round(x*10)/10).replace(".",",");
 const $ = s=>document.querySelector(s);
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function toast(t){document.querySelectorAll(".toast").forEach(x=>x.remove());const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
-function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/",mond:"#himmel/",spiel:"#regeln/spielwiese"}[type]+id}
+function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/",mond:"#himmel/",fehler:"#grundlagen/fehler/",spiel:"#regeln/spielwiese"}[type]+id}
 function seeLinks(arr){
   if(!arr||!arr.length)return"";
   const one=s=>{const soon=s[0]==="karte"&&(CARDS.find(c=>c.id===s[1])||{}).soon;
@@ -1637,6 +1637,60 @@ function openLoc(){
     if(!(Math.abs(la)<=90&&Math.abs(lo)<=180)){toast("Bitte gültige Werte eingeben");return}save(la,lo,deg(Math.round(la*100)/100,Math.round(lo*100)/100))};
 }
 
+
+/* ---------- Was ist schiefgelaufen? (Problem → Ursache → Abhilfe) ---------- */
+const FEHLER=[
+  {id:"verwackelt",title:"Alles leicht unscharf, Kanten doppelt oder verschmiert",sym:"Das ganze Bild ist unscharf, auch Dinge, die stillstanden – oft mit Doppelkonturen in eine Richtung.",name:"Verwackelt",
+   c:[["Die Belichtungszeit war für die Brennweite zu lang.","Kürzere Zeit wählen – Faustregel: höchstens 1 / (Brennweite × Crop-Faktor). Mit ISO-Auto und Mindestzeit passiert das nicht mehr so leicht.",[["regel","kehrwert","Kehrwert der Brennweite"],["rechner","verwacklung","Rechner"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]]],
+     ["Der Stabilisator war aus oder das Objektiv hat keinen.","Stabilisator einschalten (Schalter am Objektiv bzw. Menü) oder entsprechend kürzere Zeiten wählen.",[["grund","stabi","Bildstabilisator"]]],
+     ["Beim Auslösen gewackelt.","Auslöser sanft drücken, Ellbogen an den Körper, anlehnen oder abstützen. Eine kurze Serie hilft: Das zweite oder dritte Bild ist oft schärfer.",[["kamera","serie","Serienbild"]]],
+     ["Auf dem Stativ: Auslösen oder Stabilisator haben gestört.","Selbstauslöser (2 s) oder Fernauslöser nutzen. Viele Hersteller, auch Sony, empfehlen, den Stabilisator auf dem Stativ auszuschalten; manche neueren Objektive erkennen das Stativ selbst. Im Zweifel ausschalten – und danach wieder einschalten.",[["kamera","fern","Fernauslösen"],["grund","antrieb","Antrieb"]]]]},
+  {id:"bewegung",title:"Motiv verwischt, Hintergrund scharf",sym:"Was sich bewegt hat, ist verschmiert; Stillstehendes ist scharf.",name:"Bewegungsunschärfe",
+   c:[["Die Zeit war zu lang für die Bewegung.","Kürzere Zeit: Gehen etwa 1/250 s, Laufen und spielende Tiere etwa 1/1000 s, Vögel im Flug 1/2000 s und kürzer. Dafür S-Modus oder M mit ISO-Auto.",[["regel","bewegung","Bewegung einfrieren"],["grund","modus","Belichtungsprogramme"]]],
+     ["Der Stabilisator wurde überschätzt.","Er gleicht nur deine eigene Bewegung aus, nicht die des Motivs.",[["grund","stabi","Bildstabilisator"]]]]},
+  {id:"fokus",title:"Etwas anderes ist scharf als das Motiv",sym:"Es gibt eine scharfe Stelle – nur liegt sie davor oder dahinter (z. B. Zweige scharf, Vogel unscharf).",name:"Fokus daneben",
+   c:[["Die Kamera hat im großen Fokusfeld das Falsche gewählt.","Kleineres Fokusfeld (Spot/Feld) aufs Motiv legen oder Augen-AF bzw. Tier-Erkennung nutzen.",[["kamera","tracking","Fokusfelder und Tracking"],["kamera","augenaf","Augen-AF"]]],
+     ["AF-S bei einem Motiv, das sich bewegt.","AF-C wählen – dann führt die Kamera die Schärfe nach.",[["grund","fokus","Fokus und Autofokus"]]],
+     ["Zu nah dran.","Jedes Objektiv hat eine Naheinstellgrenze; darunter kann es nicht scharfstellen. Etwas zurückgehen.",[["grund","objektive","Objektive und Zubehör"]]],
+     ["Scharfgestellt und dann den Ausschnitt verschoben.","Bei offener Blende und geringem Abstand verrutscht dabei die Schärfe. Besser das Fokusfeld aufs Motiv verschieben.",[["grund","fokus","Fokus und Autofokus"]]]]},
+  {id:"schaerfentiefe",title:"Nur ein schmaler Streifen ist scharf",sym:"Die richtige Stelle ist scharf, aber zu wenig davor und dahinter (z. B. Augen scharf, Nasenspitze nicht; bei Makros nur ein Teil der Blüte).",name:"Zu wenig Schärfentiefe",
+   c:[["Offene Blende, kurzer Abstand oder lange Brennweite.","Abblenden (größere Blendenzahl, z. B. f/8), etwas weiter weg gehen oder kürzere Brennweite. Bei Makros eher f/8–f/16.",[["grund","schaerfe","Schärfentiefe"],["rechner","schaerfe","Rechner Schärfentiefe"],["regel","blendewahl","Blende nach Motiv"]]]]},
+  {id:"hintergrund",title:"Hintergrund wird nicht unscharf",sym:"Das Motiv hebt sich nicht ab, der Hintergrund lenkt ab.",name:"Hintergrund zu scharf",
+   c:[["Die Blendenzahl war zu groß.","Blende öffnen (kleinste Zahl deines Objektivs), z. B. im A-Modus.",[["grund","blende","Blende"]]],
+     ["Der Hintergrund ist zu nah am Motiv.","Motiv mit mehr Abstand zum Hintergrund fotografieren – das wirkt oft stärker als die Blende.",[["grund","schaerfe","Schärfentiefe"]]],
+     ["Kurze Brennweite oder großer Abstand zum Motiv.","Näher heran oder längere Brennweite (heranzoomen) und den Ausschnitt so wählen, dass das Motiv groß ist.",[["grund","brennweite","Brennweite"]]]]},
+  {id:"dunkel",title:"Bild zu dunkel",sym:"Alles oder das Motiv ist zu dunkel, z. B. ein Gesicht vor hellem Himmel.",name:"Unterbelichtet",
+   c:[["Heller Hintergrund, Gegenlicht oder Schnee haben die Belichtungsmessung getäuscht.","Belichtungskorrektur ins Plus (bei Schnee oft +1 bis +2). Die Kamera will alles auf mittleres Grau bringen.",[["grund","korrektur","Belichtungskorrektur"],["regel","korr","Korrigieren bei Hell und Dunkel"]]],
+     ["Die Belichtungskorrektur vom letzten Mal war noch eingestellt.","Korrektur auf 0 zurückstellen – am besten vor jedem Losgehen prüfen.",[["grund","korrektur","Belichtungskorrektur"]]],
+     ["Im M-Modus mit fester ISO passten die Werte nicht mehr zum Licht.","Auf die Belichtungsskala im Sucher achten oder ISO-Auto nutzen.",[["grund","modus","Belichtungsprogramme"],["kamera","isoauto","ISO-Auto"]]],
+     ["Mit Blitz: Das Motiv war zu weit weg.","Der eingebaute Blitz reicht nur wenige Meter. Näher heran oder ISO erhöhen.",[["grund","blitz","Blitz"]]]]},
+  {id:"hell",title:"Bild zu hell, weiße Flächen ohne Zeichnung",sym:"Himmel oder helle Stellen sind reines Weiß, Details fehlen.",name:"Überbelichtet",
+   c:[["Dunkler Hintergrund oder dunkles Motiv haben die Messung getäuscht.","Belichtungskorrektur ins Minus. Zebra und Histogramm zeigen schon vor bzw. nach dem Auslösen, wo es zu hell wird.",[["grund","korrektur","Belichtungskorrektur und Histogramm"],["kamera","zebra","Zebra"]]],
+     ["Zu viel Licht für die gewählte Blende (kürzeste Zeit erreicht).","Bei Sonne und offener Blende kommt die Kamera an ihre kürzeste Zeit. Abblenden, ISO auf den niedrigsten Wert oder Graufilter nutzen.",[["rechner","graufilter","Graufilter"],["grund","dreieck","Zusammenspiel"]]]]},
+  {id:"rauschen",title:"Bild körnig oder verrauscht",sym:"Feines Korn und Farbflecken, besonders in dunklen Bereichen; Details wirken matschig.",name:"Bildrauschen",
+   c:[["Hohe ISO wegen wenig Licht.","Mehr Licht nutzen, Blende öffnen oder längere Zeit (mit Stabilisator oder Stativ) – dann reicht eine niedrigere ISO. Ein leicht verrauschtes, scharfes Bild ist aber besser als ein verwackeltes.",[["grund","iso","ISO"],["grund","dreieck","Zusammenspiel"]]],
+     ["Zu dunkel fotografiert und nachträglich aufgehellt.","Aufhellen verstärkt das Rauschen stark. Lieber beim Fotografieren richtig belichten.",[["grund","korrektur","Belichtungskorrektur"]]],
+     ["JPEG statt RAW.","RAW-Dateien lassen sich am Rechner besser entrauschen.",[["grund","format","RAW oder JPEG"]]]]},
+  {id:"farbstich",title:"Farbstich: zu gelb, zu blau oder grünlich",sym:"Weiß sieht nicht weiß aus, Hauttöne wirken falsch.",name:"Farbstich",
+   c:[["Der automatische Weißabgleich lag bei Kunst- oder Mischlicht daneben.","Passende Voreinstellung wählen (z. B. Glühlampe) oder einen eigenen Weißabgleich messen.",[["grund","wb","Weißabgleich"]]],
+     ["Im JPEG ist der Farbstich fest eingebrannt.","Mit RAW lässt sich der Weißabgleich nachträglich verlustfrei ändern.",[["grund","format","RAW oder JPEG"]]]]},
+  {id:"flau",title:"Bild flau, milchig, wenig Kontrast",sym:"Alles wirkt grau und verschleiert, Farben sind blass, manchmal mit hellen Flecken.",name:"Flau",
+   c:[["Streulicht durch Gegenlicht.","Gegenlichtblende aufsetzen, die Sonne mit der Hand oder einem Hut abschatten oder den Standort leicht ändern.",[["grund","licht","Licht"],["grund","objektive","Objektive und Zubehör"]]],
+     ["Fingerabdruck oder Schmutz auf der Frontlinse.","Linse mit Blasebalg und Mikrofasertuch reinigen.",[]],
+     ["Dunst in der Ferne.","Anderes Licht wählen (morgens ist die Luft oft klarer). Ein Polfilter kann Dunst etwas verringern.",[["grund","objektive","Objektive und Zubehör"]]]]},
+  {id:"sterne",title:"Sterne sind kleine Striche statt Punkte",sym:"Statt runder Punkte zeigen die Sterne kurze Linien.",name:"Sternspuren",
+   c:[["Die Zeit war zu lang – die Erde dreht sich.","Kürzere Zeit nach der 500er- oder der strengeren NPF-Regel wählen.",[["rechner","sterne","Rechner Sterne"],["karte","sterne","Sterne fotografieren"]]]]},
+  {id:"schief",title:"Horizont schief",sym:"Meer, See oder Horizont kippen zur Seite.",name:"Schiefer Horizont",
+   c:[["Kamera nicht gerade gehalten.","Gitterlinien und – falls vorhanden – die elektronische Wasserwaage einschalten. Nachträglich lässt es sich gerade drehen, kostet aber etwas vom Rand.",[["grund","gestaltung","Bildgestaltung"]]]]}
+];
+function viewFehler(open){
+  return `<div class="crumb"><a class="lk" href="#grundlagen">Grundlagen</a></div><h2 style="margin-top:4px">Was ist schiefgelaufen?</h2>
+  <p class="small muted" style="margin-top:0">Such dir aus, wie dein Foto aussieht – darunter stehen die häufigsten Ursachen und was hilft. Oft sehen verschiedene Fehler ähnlich aus; die Beschreibung hilft beim Unterscheiden.</p>
+  ${FEHLER.map(f=>`<details class="box" id="fe-${f.id}" ${open===f.id?"open":""}><summary><span><b>${esc(f.title)}</b><br><span class="small muted" style="font-weight:400">${esc(f.sym)}</span></span> <span class="chev">${I.chev}</span></summary>
+    <div class="small">${f.c.map(([u,h,links])=>`<div style="margin:10px 0 0"><b>${esc(u)}</b><div style="margin-top:2px">${esc(h)}</div>${links.length?`<div style="margin-top:3px">${links.map(l=>`<a class="lk" href="${href(l[0],l[1])}">${esc(l[2])}</a>`).join(" · ")}</div>`:""}</div>`).join("")}</div></details>`).join("")}
+  <p class="small muted">Tipp: Am Kameradisplay stark hineinzoomen – so erkennst du schon unterwegs, ob ein Bild verwackelt oder der Fokus danebenliegt.</p>`;
+}
+
 /* ---------- Mondphasen (Berechnung nach J. Meeus, Astronomical Algorithms) ---------- */
 function moonPhaseJD(k,phase){ // phase 0 new,1 first q,2 full,3 last q ; k integer
   const kk=k+phase/4, T=kk/1236.85, d=Math.PI/180;
@@ -1798,7 +1852,8 @@ function viewCard(id){
 }
 
 function viewGrundlagen(){
-  return `<h2>Grundlagen</h2><p class="muted small" style="margin-top:0">Das Wichtigste zum Verstehen – in Ruhe lesen oder schnell nachschlagen.</p><div class="list">${GRUND.map(g=>g.soon?
+  return `<h2>Grundlagen</h2><p class="muted small" style="margin-top:0">Das Wichtigste zum Verstehen – in Ruhe lesen oder schnell nachschlagen.</p>
+  <a class="item" href="#grundlagen/fehler" style="text-decoration:none;color:inherit;margin-bottom:14px"><span class="ic">${I.alert}</span><span class="grow"><span class="t">Was ist schiefgelaufen?</span><br><span class="s">Unscharf, zu dunkel, verrauscht? Vom Problem zur Ursache</span></span><span class="chev">${I.chev}</span></a><div class="list">${GRUND.map(g=>g.soon?
     `<div class="item soon"><span class="ic">${I.aperture}</span><span class="grow"><span class="t">${esc(g.title)}</span></span><span class="badge">in Arbeit</span></div>`:
     `<a class="item" href="#grundlagen/${g.id}" style="text-decoration:none;color:inherit"><span class="ic">${I.aperture}</span><span class="grow"><span class="t">${esc(g.title)}</span><br><span class="s">${esc(g.short)}</span></span></a>`).join("")}</div>`;
 }
@@ -1918,6 +1973,8 @@ function searchIndex(){
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
   GLOSSAR.forEach(([t,d])=>r.push({t:t,k:"Glossar",h:"#glossar/"+glSlug(t),txt:d}));
   [["verwacklung","Rechner: Längste Zeit aus der Hand","Verwacklung Kehrwert Brennweite Stabilisator Stufen"],["sterne","Rechner: Längste Zeit für Sterne","500er-Regel NPF Sterne Milchstraße Strichspuren"],["schaerfe","Rechner: Schärfentiefe","Schärfentiefe hyperfokale Distanz Abstand Blende"],["graufilter","Rechner: Belichtungszeit mit Graufilter","Graufilter ND Langzeitbelichtung"]].forEach(([id,t,txt])=>r.push({t,k:"Rechner",h:"#regeln/rechner-"+id,txt}));
+  r.push({t:"Was ist schiefgelaufen?",k:"Grundlagen",h:"#grundlagen/fehler",txt:"Fehler Problem unscharf verwackelt dunkel hell Rauschen Farbstich"});
+  FEHLER.forEach(f=>r.push({t:f.title,k:"Was ist schiefgelaufen?",h:"#grundlagen/fehler/"+f.id,txt:f.sym+" "+f.c.map(x=>x[0]+" "+x[1]).join(" ")}));
   r.push({t:"Meine Ausrüstung",k:"Optionen",h:"",act:"gear",txt:"Objektiv Objektive Ausrüstung Brennweite Blende Stabilisator eintragen"});
   r.push({t:"Belichtungs-Spielwiese",k:"Regeln",h:"#regeln/spielwiese",txt:"Blende Zeit ISO ausprobieren Belichtung Simulation Rauschen Bewegung Hintergrund Lichtwert"});
   r.push({t:"Sonnenzeiten",k:"Himmel",h:"#himmel/sonne",txt:"Sonnenaufgang Sonnenuntergang goldene Stunde blaue Stunde Dämmerung Mondaufgang Monduntergang Nacht Tageslänge Ort"});
@@ -2003,7 +2060,7 @@ function render(){
   let h;
   if(q.trim())h=viewSearch(q);
   else if(tab==="motive")h=sub?viewCard(sub):viewMotive();
-  else if(tab==="grundlagen")h=sub?viewGrund(sub):viewGrundlagen();
+  else if(tab==="grundlagen")h=sub==="fehler"?viewFehler(hash.split("/")[2]):sub?viewGrund(sub):viewGrundlagen();
   else if(tab==="regeln")h=sub==="spielwiese"?viewSpiel():viewRegeln();
   else if(tab==="kamera")h=sub?viewKam(sub):viewKamera();
   else if(tab==="glossar")h=viewGlossar(sub);
@@ -2024,6 +2081,7 @@ function bind(tab,sub){
   }
   document.querySelectorAll("[data-gear]").forEach(b=>b.onclick=openGear);
   ["calc","spiel"].forEach(w=>{const e=$("#gear_sel_"+w);if(e)e.onchange=()=>{gearPick(e.value);const y=scrollY;render();scrollTo(0,y)}});
+  if(tab==="grundlagen"&&sub==="fehler"){const id=location.hash.split("/")[2];const el=id&&document.getElementById("fe-"+id);if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),40)}
   if(tab==="glossar"&&sub){const el=document.getElementById("gl-"+sub);if(el)setTimeout(()=>el.scrollIntoView({block:"center"}),40)}
   if(tab==="himmel"||tab==="mond"){
     document.querySelectorAll("[data-loc]").forEach(b=>b.onclick=openLoc);
