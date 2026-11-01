@@ -11,7 +11,7 @@ Blitzschnell ist ein kleines Foto-Nachschlagewerk für Einsteigerinnen und Einst
 - **Regeln:** Faustregeln zum schnellen Nachschlagen und Rechner (Zeit aus der Hand, Sterne mit 500er- und NPF-Regel, Schärfentiefe, Graufilter)
 - **Kamera:** Funktionen moderner Systemkameras, mit Hinweisen für Sony-Kameras
 - **Glossar** von A bis Z
-- **Mond:** Mondphase heute, die nächsten Phasen und alle Neu- und Vollmonde der kommenden zwölf Monate – berechnet auf dem Gerät, auch ohne Internet
+- **Himmel:** Mondkalender mit der Mondphase heute, die nächsten Phasen und alle Neu- und Vollmonde der kommenden zwölf Monate – berechnet auf dem Gerät, auch ohne Internet
 
 Beim ersten Start wählst du die Sensorgröße deiner Kamera (APS-C, Vollformat, Micro Four Thirds) – Rechner und Faustregeln rechnen dann mit dem passenden Crop-Faktor.
 
