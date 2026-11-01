@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 0.2.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 0.2.1 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.2.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "0.2.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -205,25 +205,25 @@ const CARDS = [
     id:"voegel",cat:"tiere",title:"Vögel",icon:"feather",
     intro:"Klein, schnell, scheu: kurze Zeit, langes Tele und viel Geduld.",
     recipe:[
-      ["Modus","S (einfacher) oder M + ISO-Auto"],
-      ["Belichtungszeit",""],["Blende",""],["ISO","Auto"],["Fokus",""],
+      ["Modus",""],
+      ["Belichtungszeit",""],["Blende",""],["ISO",""],["Fokus",""],
       ["Antrieb","Serienbild"],["Brennweite","so lang wie möglich"],["Format","RAW + JPEG"]
     ],
     variants:[
-      {name:"Sitzend",set:{"Belichtungszeit":"1/500–1/1000 s","Blende":"offen","Fokus":"AF-C, kleiner Fokuspunkt (Spot)"},
-       tips:["Auch beim sitzenden Vogel nicht zu lange Zeiten: Bei langer Brennweite verwackelt man leicht, und kleine Vögel zappeln ständig."],
+      {name:"Sitzend",set:{"Modus":"A (Blende) + ISO-Auto mit Mindestzeit","Belichtungszeit":"Mindestzeit 1/500–1/1000 s","Blende":"offen","ISO":"Auto mit Mindestzeit","Fokus":"AF-C, kleiner Fokuspunkt (Spot)"},
+       tips:["Im A-Modus wählt die Kamera die Zeit selbst. Deshalb bei ISO-Auto eine Mindestzeit einstellen: Erst wenn diese Zeit erreicht ist, erhöht die Kamera die ISO, statt länger zu belichten. Ist auch die höchste erlaubte ISO erreicht, wird die Zeit trotzdem länger – dann im Display auf die Zeit achten.","Auch ein sitzender Vogel bewegt sich: Putzt er sich oder schlägt mit den Flügeln, werden die Flügel bei 1/500 s unscharf. Dann kurz auf eine kürzere Zeit wechseln (z. B. in S oder mit dem Einstellungspaket auf einer Taste).","Bei langer Brennweite verwackelt man leicht – die Mindestzeit schützt auch davor."],
        tryit:"Am Futterhaus je 10 Fotos mit 1/250 s und mit 1/1000 s machen und vergleichen, wie viele scharf sind."},
-      {name:"Im Flug",set:{"Belichtungszeit":"1/2000 s oder kürzer","Blende":"offen bis f/8","Fokus":"AF-C, Fokusfeld Zone oder Breit"},
-       tips:["Den Vogel schon vor dem Abflug anvisieren und dann mitschwenken.","Zum Üben eignen sich große, langsame Vögel wie Möwen, Reiher oder Greifvögel.","Kleine, schnelle Vögel brauchen eher 1/3200 s oder noch kürzer.","Manche Kameras können Tier-Augen-AF mit Tracking kombinieren, viele aber nicht. Dann lieber Fokusfeld Zone oder Breit nehmen."],
+      {name:"Im Flug",set:{"Modus":"S (einfacher) oder M + ISO-Auto","Belichtungszeit":"1/2000 s oder kürzer","Blende":"offen bis f/8","ISO":"Auto","Fokus":"AF-C, Tracking mit Tier-Erkennung – falls nicht möglich: Zone oder Breit"},
+       tips:["Den Vogel schon vor dem Abflug anvisieren und dann mitschwenken.","Zum Üben eignen sich große, langsame Vögel wie Möwen, Reiher oder Greifvögel.","Kleine, schnelle Vögel brauchen eher 1/3200 s oder noch kürzer.","Ideal ist Tracking mit Tier- bzw. Vogelerkennung: Die Kamera verfolgt den Vogel und stellt aufs Auge scharf. Neuere Kameras können das meist; bei manchen älteren Modellen lassen sich Tier-Erkennung und Tracking nicht kombinieren – dann Zone oder Breit nehmen."],
        tryit:"Möwen am Wasser: Serien mit 1/1000 s und mit 1/2500 s vergleichen. Ab wann sind die Flügelspitzen scharf?"}
     ],
     tips:["Aufs Auge scharfstellen – ein scharfes Auge macht das Bild.","Auf Augenhöhe des Vogels gehen, nicht von oben fotografieren.","Ruhigen Hintergrund mit viel Abstand zum Vogel suchen, dann wird er schön unscharf.","Platz in Blickrichtung lassen.","Die Sonne möglichst im Rücken haben."],
     errors:["Der Fokus sitzt auf dem Ast statt auf dem Vogel.","Vogel vor hellem Himmel wird zu dunkel → Belichtungskorrektur +0,7 bis +1.","Vogel zu klein im Bild und später zu stark beschnitten → lieber näher heran (Geduld, Tarnung)."],
     sony:[
       "Tier-Augen-AF: MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Motiverkennung] → [Tier]. Augen mancher Tierarten, oft auch von kleinen Vögeln, werden nicht erkannt.",
-      "Fokusfeld: Was allgemein „Zone“ heißt, heißt bei Sony [Feld]. Für den sitzenden Vogel [Flexible Spot] S oder M.","Ist [Motiverkennung] auf [Tier] gestellt, lässt sich [Tracking] nicht als Fokusfeld wählen. Für Flugaufnahmen deshalb [Feld] oder [Breit].","a6400: kürzeste Verschlusszeit 1/4000 s.",
+      "Fokusfeld: Was allgemein „Zone“ heißt, heißt bei Sony [Feld]. Für den sitzenden Vogel [Flexible Spot] S oder M.","Für Flugaufnahmen [Tracking] mit Tier-Erkennung – bei älteren Modellen (z. B. a6400) nicht kombinierbar, dann [Feld] oder [Breit].","Mindestzeit für den A-Modus: MENU → Kamera-Einstlg.1 → [ISO-Einstellung] → [ISO AUTO Min. VS] → z. B. 1/500.",
       "Schnell umschalten: Mit [BenutzAufnEinst reg.] ein komplettes „Flug-Paket“ (z. B. 1/2000 s, AF-C, Feld, Serienbild) unter [Abruf Ben. Halten 1] speichern und auf eine Taste legen. Solange du die Taste hältst, gelten diese Einstellungen.",
-      "a6400: kein Stabilisator im Gehäuse – den Stabilisator im Objektiv eingeschaltet lassen."
+      "Nicht jede Sony hat einen Stabilisator im Gehäuse (z. B. die a6400 nicht) – dann den Stabilisator im Objektiv eingeschaltet lassen."
     ],
     see:[["karte","flugshow","Flugshow"],["karte","wildtiere","Wildtiere"],["regel","bewegung","Bewegung einfrieren"],["kamera","taste","Einstellungen auf eine Taste legen"]]
   },
@@ -304,14 +304,14 @@ const CARDS = [
       ["Belichtungszeit","1/1000–1/2000 s"],
       ["Blende","f/5.6–8"],
       ["ISO","Auto"],
-      ["Fokus","AF-C, Fokusfeld Zone oder Breit"],
+      ["Fokus","AF-C, Tracking mit Tier-Erkennung – falls nicht möglich: Zone oder Breit"],
       ["Antrieb","Serienbild"],
       ["Brennweite","mittleres bis langes Tele"],
       ["Format","RAW + JPEG"]
     ],
     tips:["Eine etwas geschlossenere Blende (f/5.6–8) gibt mehr Schärfentiefe – so bleibt das Tier scharf, auch wenn der Fokus nicht ganz exakt sitzt.","Das Tier schon vor der Bewegung anvisieren und mitschwenken.","Klappt der Autofokus nicht, auf einen Punkt der Laufbahn vorfokussieren und auslösen, wenn das Tier dort ist.","Was quer durchs Bild läuft, braucht kürzere Zeiten als etwas, das auf dich zukommt.","Platz in Laufrichtung lassen."],
     errors:["Zeit zu lang → Beine und Kopf verwischt.","Fokus springt auf den Hintergrund → kleineres Fokusfeld wählen.","Nur ein einzelnes Foto statt einer Serie – der beste Moment ist dann oft verpasst."],
-    sony:["Ist [Motiverkennung] auf [Tier] gestellt, lässt sich [Tracking] nicht wählen. Entweder Tier-Augen-AF mit [Feld]/[Breit] – oder ohne Tier-Erkennung mit [Tracking].","Mit [BenutzAufnEinst reg.] lässt sich ein „Action-Paket“ auf eine Taste legen (siehe Kamera → Einstellungen auf eine Taste legen).","a6400: kürzeste Verschlusszeit 1/4000 s."],
+    sony:["Fokusfeld [Tracking] zusammen mit Tier-Erkennung, falls deine Kamera das erlaubt. Bei älteren Modellen (z. B. a6400) geht nur eins von beiden: Tier-Augen-AF mit [Feld]/[Breit] oder [Tracking] ohne Tier-Erkennung.","Mit [BenutzAufnEinst reg.] lässt sich ein „Action-Paket“ auf eine Taste legen (siehe Kamera → Einstellungen auf eine Taste legen)."],
     tryit:"Einen Hund einmal quer vorbeilaufen und einmal auf dich zulaufen lassen, jeweils mit 1/500 s und 1/1500 s. Wo braucht es die kürzere Zeit?",
     see:[["karte","mitzieher","Mitzieher"],["regel","bewegung","Bewegung einfrieren"],["kamera","tracking","Fokusfelder und Tracking"]]
   },
@@ -362,14 +362,14 @@ const CARDS = [
       ["Belichtungszeit","1/1600–1/2500 s"],
       ["Blende","offen bis f/8"],
       ["ISO","Auto"],
-      ["Fokus","AF-C, Fokusfeld Zone oder Breit"],
+      ["Fokus","AF-C, Tracking mit Tier-Erkennung – falls nicht möglich: Zone oder Breit"],
       ["Antrieb","Serienbild"],
       ["Brennweite","Tele, aber nicht ganz ausgezoomt"],
       ["Format","RAW + JPEG"]
     ],
     tips:["Einen Platz mit der Sonne im Rücken suchen.","Nicht ganz auszoomen: Die Vögel fliegen oft dicht vorbei, und mit etwas weniger Brennweite findet man sie leichter im Sucher.","Den Vogel schon auf dem Handschuh oder der Stange anvisieren und beim Abflug mitschwenken.","Die Flugbahnen wiederholen sich – beim ersten Durchgang beobachten, dann gezielt fotografieren.","Vor hellem Himmel wird der Vogel zu dunkel → Belichtungskorrektur +1, oder im M-Modus die Belichtung für den Vogel festlegen."],
     errors:["Vogel vor hellem Himmel als dunkle Silhouette.","Zeit zu lang → Flügelspitzen verwischt.","Autofokus findet den Vogel vor dem Himmel nicht → vorher scharfstellen, Vogel im Fokusfeld halten."],
-    sony:["Flug-Einstellungen mit [BenutzAufnEinst reg.] auf eine Taste legen, um schnell zwischen sitzendem und fliegendem Vogel zu wechseln.","Fokusfeld [Feld] oder [Breit]; [Tracking] geht nur ohne Tier-Erkennung."],
+    sony:["Flug-Einstellungen mit [BenutzAufnEinst reg.] auf eine Taste legen, um schnell zwischen sitzendem und fliegendem Vogel zu wechseln.","Fokusfeld [Tracking] mit Tier-Erkennung – bei älteren Modellen (z. B. a6400) nicht kombinierbar, dann [Feld] oder [Breit]."],
     tryit:"Wenn ein großer Vogel langsam vorbeigleitet: einmal 1/2000 s, einmal 1/250 s und dabei mitschwenken. Das zweite wird ein Mitzieher mit verwischtem Hintergrund.",
     see:[["karte","voegel","Vögel"],["karte","mitzieher","Mitzieher"],["kamera","taste","Einstellungen auf eine Taste legen"]]
   },
@@ -502,11 +502,11 @@ const KAMERA = [
   {id:"augenaf",title:"Augen-AF",icon:"focus",
    text:["Die Kamera erkennt Augen von Menschen und bei vielen Kameras auch von Tieren und stellt gezielt darauf scharf. Gerade bei offener Blende ist das Gold wert, weil schon wenige Millimeter daneben unscharf sind.",
          "Bei kleinen oder ungewöhnlichen Tieren klappt die Erkennung nicht immer."],
-   sony:["MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Ges/AugPrio. bei AF] → [Ein]","Für Tiere: [Motiverkennung] → [Tier]. Menschen und Tiere gleichzeitig erkennt die a6400 nicht.","Bei [Motiverkennung] auf [Tier] lässt sich [Tracking] nicht als Fokusfeld wählen."]},
+   sony:["MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Ges/AugPrio. bei AF] → [Ein]","Für Tiere: [Motiverkennung] → [Tier]. Ältere Modelle erkennen entweder Menschen oder Tiere, nicht beides gleichzeitig.","Neuere Modelle (z. B. a6700) erkennen auch Vögel und Insekten und kombinieren die Erkennung mit Tracking; bei älteren (z. B. a6400) ist Tracking mit Tier-Erkennung nicht möglich."]},
   {id:"tracking",title:"Fokusfelder und Tracking",icon:"focus",
    text:["Das Fokusfeld bestimmt, wo die Kamera scharfstellt. Breit: Die Kamera sucht selbst. Zone: in einem gewählten Bereich. Spot: an einem kleinen Punkt. Tracking: Ein angetipptes Motiv wird verfolgt, auch wenn es sich durchs Bild bewegt.",
          "Welche Kombinationen möglich sind (z. B. Tracking zusammen mit Tier-Augen-AF), ist von Kamera zu Kamera verschieden."],
-   sony:["Fokusfeld über die Fn-Taste oder MENU → Kamera-Einstlg.1 → [Fokusfeld].","Sony-Namen: [Breit], [Feld] (= Zone), [Mitte], [Flexible Spot] S/M/L, [Erweit. Flexible Spot], [Tracking].","Bei [Motiverkennung] auf [Tier] steht [Tracking] nicht zur Verfügung."]},
+   sony:["Fokusfeld über die Fn-Taste oder MENU → Kamera-Einstlg.1 → [Fokusfeld].","Sony-Namen: [Breit], [Feld] (= Zone), [Mitte], [Flexible Spot] S/M/L, [Erweit. Flexible Spot], [Tracking].","Ob [Tracking] mit Tier-Erkennung kombinierbar ist, hängt vom Modell ab (neuere ja, ältere wie die a6400 nein)."]},
   {id:"isoauto",title:"ISO-Auto mit Mindestzeit",icon:"aperture",
    text:["Viele Kameras können bei ISO-Auto eine Mindest-Belichtungszeit einhalten: Erst wenn diese Zeit erreicht ist, erhöht die Kamera die ISO, statt die Zeit noch länger zu machen.",
          "Praktisch im Modus A oder P, damit die Zeit nicht unbemerkt zu lang wird."],
@@ -525,7 +525,7 @@ const KAMERA = [
   {id:"stabi",title:"Stabilisator an der Kamera",icon:"camera",
    text:["Ob deine Kamera einen Stabilisator im Gehäuse hat, steht in den technischen Daten. Wenn nicht, hängt alles vom Objektiv ab.",
          "Auf dem Stativ den Stabilisator meist ausschalten – manche Systeme „suchen“ sonst Bewegung und verursachen leichte Unschärfe."],
-   sony:["a6400: kein Stabilisator im Gehäuse. Objektive mit OSS (Sony) oder VC (Tamron) stabilisieren selbst.","Ein/Aus: Schalter am Objektiv, falls vorhanden, sonst MENU → [SteadyShot]."]}
+   sony:["Nicht jede Sony hat einen Stabilisator im Gehäuse (z. B. a6400 nein, a6600 und a6700 ja). Objektive mit OSS (Sony) oder VC (Tamron) stabilisieren selbst.","Ein/Aus: Schalter am Objektiv, falls vorhanden, sonst MENU → [SteadyShot]."]}
 ];
 
 /* ---------- Glossar ---------- */
@@ -571,7 +571,7 @@ const ANLEITUNG = [
   ["Eigene Notizen","Unten auf jeder Karte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
   ["Suche","Das Suchfeld oben durchsucht Motive, Grundlagen, Faustregeln, Kamera-Funktionen und Glossar."],
   ["Regeln","Faustregeln zum schnellen Nachschlagen und kleine Rechner, z. B. für die längste Zeit aus der Hand."],
-  ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Menüpfade für Sony-Kameras (geprüft an der a6400). Du kannst sie in den Optionen ausblenden."],
+  ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Sensorgröße","In den Optionen stellst du die Sensorgröße deiner Kamera ein. Die Rechner nutzen den passenden Crop-Faktor."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
   ["Offline","Nach dem ersten Öffnen funktioniert die App auch ohne Internet. Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
