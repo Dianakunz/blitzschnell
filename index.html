@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.9.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.9.1 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.9.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.9.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1135,7 +1135,7 @@ const ANLEITUNG = [
   ["Grundlagen","Ganz oben „Was ist schiefgelaufen?“: Du wählst aus, wie dein Foto aussieht (z. B. verwackelt, Fokus daneben, zu dunkel, verrauscht, Farbstich), und siehst die häufigsten Ursachen mit Abhilfe und Links. Darunter das Wichtigste zum Verstehen, Kapitel für Kapitel: Belichtungszeit, Blende, ISO und ihr Zusammenspiel, Belichtungsprogramme, Fokus, Schärfentiefe, Brennweite, Licht, Bildgestaltung, Blitz, Objektive und mehr."],
   ["Regeln","Ganz oben die Belichtungs-Spielwiese, darunter Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Belichtungs-Spielwiese","Zu finden ganz oben im Reiter Regeln, außerdem verlinkt bei den Grundlagen zu Zeit, Blende, ISO und Belichtungsprogrammen. Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
-  ["Kamera","Ganz oben die Grundeinstellung: was man einmal einstellt und dann so lässt (z. B. RAW + JPEG, Gitterlinien, ISO-Auto mit Mindestzeit). Darunter Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
+  ["Kamera","Ganz oben die Grundeinstellung: was man einmal einstellt und dann so lässt (z. B. Gitterlinien, Zebra, Signaltöne aus) und was man sich vorher überlegen sollte (Dateiformat, Fokusmodus, Augen-AF, ISO-Auto oder feste ISO). Darunter Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
   ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. „Wetter“ zeigt die Vorhersage für die nächsten 16 Tage: Wetterlage, Temperatur, Regen und Wind, die Bewölkung in drei Höhen zu Sonnenauf- und -untergang mit einer groben Einschätzung, ob sich der Himmel färbt, Wolken in der Nacht für Sterne und Nebel am Morgen. Sonne und Mond werden auf deinem Gerät berechnet; Wetter und Ortssuche brauchen Internet."],
   ["Glossar","Fachbegriffe von A bis Z, kurz erklärt. Viele Einträge führen per Tipp zur ausführlichen Erklärung."],
   ["Meine Ausrüstung","Über das Zahnrad → Meine Ausrüstung trägst du deine Objektive ein (Name, Brennweite, größte Blende, Stabilisator) und wählst aus, welches du gerade benutzt – auch direkt im Reiter Regeln und in der Spielwiese. Die Rechner werden damit vorbelegt (Zeit aus der Hand mit der längsten Brennweite, Sterne und Schärfentiefe mit der kürzesten), und die Spielwiese zeigt nur die Blenden, die dein Objektiv schafft. Die Motivkarten bleiben allgemein."],
@@ -1677,24 +1677,31 @@ function viewCheck(){
 }
 
 /* ---------- Grundeinstellung (einmal einstellen) ---------- */
-const GRUNDEIN=[
-  ["RAW + JPEG speichern","Das JPEG ist sofort fertig, das RAW lässt sich später retten (Belichtung, Weißabgleich). Bei Sternen nur RAW.",[["grund","format","RAW oder JPEG"]],"[Dateiformat] → [RAW & JPEG]"],
-  ["Auslösen ohne Speicherkarte sperren","Verhindert, dass du eine ganze Tour ohne Karte fotografierst.",[],"[Auslösen ohne Karte] → [Deaktivieren] (Name bitte prüfen)"],
-  ["Gitterlinien einblenden","Hilft bei geradem Horizont und beim Bildaufbau nach der Drittelregel.",[["grund","gestaltung","Bildgestaltung"]],"[Gitterlinie] → 3×3- bzw. Drittelregel-Raster"],
-  ["AF-C mit Augen- bzw. Gesichtserkennung","Für Menschen und Tiere die beste Grundeinstellung; für Stillleben bei Bedarf AF-S.",[["kamera","augenaf","Augen-AF"],["kamera","tracking","Fokusfelder und Tracking"]],""],
-  ["ISO-Auto mit Mindestzeit und Obergrenze","Die Kamera passt die ISO an, hält aber eine Mindestzeit gegen Verwacklung ein. Obergrenze z. B. 6400.",[["kamera","isoauto","ISO-Auto mit Mindestzeit"]],""],
-  ["Zebra einschalten","Streifen zeigen schon vor dem Auslösen, wo das Bild zu hell wird.",[["kamera","zebra","Zebra"]],""],
-  ["Wichtiges ins Schnellmenü und auf Tasten","Fokusmodus, Fokusfeld, ISO, Bildfolge – ohne Suchen im Menü.",[["kamera","fn","Fn-Menü und eigene Tasten"],["kamera","taste","Einstellungen auf eine Taste legen"]],""],
-  ["Signaltöne aus","Leiser fotografieren – wichtig bei Tieren und in ruhiger Umgebung.",[],"[Audiosignale] → [Aus] (Name bitte prüfen)"],
-  ["Stabilisator an","Am Objektiv-Schalter bzw. – bei Kameras mit eingebautem Stabilisator – im Menü.",[["grund","stabi","Bildstabilisator"]],""],
-  ["Datum und Uhrzeit richtig","Wichtig fürs Sortieren und wenn du Fotos mit Sonnen- und Mondzeiten vergleichst. Sommer-/Winterzeit nicht vergessen.",[],""],
-  ["Weißabgleich Auto, Bildstil Standard, Belichtungskorrektur 0","Das ist die neutrale Ausgangslage, zu der du nach Sonderfällen zurückkehrst.",[["grund","wb","Weißabgleich"],["grund","korrektur","Belichtungskorrektur"]],"Bildstil: [Kreativmodus] → [Standard]"]
+const GRUNDEIN=[ /* [Gruppe, Titel, Text, Links, Sony] – fest = einmal einstellen, wahl = vorher überlegen */
+  ["fest","Auslösen ohne Speicherkarte sperren","Verhindert, dass du eine ganze Tour ohne Karte fotografierst.",[],"[Auslösen ohne Karte] → [Deaktivieren]"],
+  ["fest","Gitterlinien einblenden","Hilft bei geradem Horizont und beim Bildaufbau nach der Drittelregel.",[["grund","gestaltung","Bildgestaltung"]],"[Gitterlinie] → [3x3 Raster]"],
+  ["fest","Zebra einschalten","Streifen zeigen schon vor dem Auslösen, wo das Bild zu hell wird.",[["kamera","zebra","Zebra"]],""],
+  ["fest","Wichtiges ins Schnellmenü und auf Tasten","Fokusmodus, Fokusfeld, ISO, Bildfolge – ohne Suchen im Menü.",[["kamera","fn","Fn-Menü und eigene Tasten"],["kamera","taste","Einstellungen auf eine Taste legen"]],""],
+  ["fest","ISO-Auto vorbereiten","Mindestzeit und Obergrenze (z. B. ISO 6400) einmal festlegen – dann ist ISO-Auto sofort richtig eingestellt, wenn du es brauchst.",[["kamera","isoauto","ISO-Auto mit Mindestzeit"]],""],
+  ["fest","Signaltöne aus","Leiser fotografieren – wichtig bei Tieren und in ruhiger Umgebung.",[],"[Signaltöne] → [Aus]"],
+  ["fest","Stabilisator an","Am Objektiv-Schalter bzw. – bei Kameras mit eingebautem Stabilisator – im Menü. Nur auf dem Stativ ggf. ausschalten.",[["grund","stabi","Bildstabilisator"]],""],
+  ["fest","Datum und Uhrzeit richtig","Wichtig fürs Sortieren und wenn du Fotos mit Sonnen- und Mondzeiten vergleichst. Sommer-/Winterzeit nicht vergessen.",[],""],
+  ["fest","Neutrale Ausgangslage","Weißabgleich Auto, Bildstil Standard, Belichtungskorrektur 0 – dahin kehrst du nach Sonderfällen zurück.",[["grund","wb","Weißabgleich"],["grund","korrektur","Belichtungskorrektur"]],"Bildstil: [Kreativmodus] → [Standard]"],
+  ["wahl","Dateiformat: JPEG, RAW oder beides?","JPEG ist sofort fertig und klein. RAW braucht Bearbeitung am Rechner, lässt aber Belichtung und Weißabgleich nachträglich retten. RAW + JPEG gibt beides, braucht aber den meisten Platz. Überleg dir, ob du die Bilder bearbeiten willst – bei Sternen und schwierigem Licht lohnt sich RAW fast immer.",[["grund","format","RAW oder JPEG"]],"[Dateiformat] → [JPEG], [RAW] oder [RAW & JPEG]"],
+  ["wahl","Fokusmodus: AF-S oder AF-C?","AF-S stellt einmal scharf – gut für Stillstehendes wie Landschaft, Gebäude, Blüten. AF-C führt die Schärfe nach – für Menschen, Tiere und alles, was sich bewegt.",[["grund","fokus","Fokus und Autofokus"]],""],
+  ["wahl","Augen- bzw. Gesichtserkennung nutzen?","Bei Menschen und Tieren sehr hilfreich, bei Landschaft, Makro oder Gebäuden unnötig – dort lieber ein Fokusfeld selbst setzen.",[["kamera","augenaf","Augen-AF"],["kamera","tracking","Fokusfelder und Tracking"]],""],
+  ["wahl","ISO-Auto oder feste ISO?","ISO-Auto passt sich wechselndem Licht an und hält mit der Mindestzeit Bewegung scharf – gut aus der Hand. Auf dem Stativ (Landschaft, Nacht) lieber die niedrigste feste ISO für wenig Rauschen.",[["grund","iso","ISO"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]],""]
 ];
 function viewGrundein(){
+  const item=([g,t,why,links],k)=>`<div class="item" style="cursor:default;align-items:flex-start">${g==="fest"?`<span class="badge" style="flex:0 0 auto">${k+1}</span>`:`<span class="ic" style="flex:0 0 auto;width:28px;height:28px">${I.help}</span>`}<span class="grow"><span class="t">${esc(t)}</span><br><span class="s">${esc(why)}</span>${links.length?`<br><span class="small">${links.map(l=>`<a class="lk" href="${href(l[0],l[1])}">${esc(l[2])}</a>`).join(" · ")}</span>`:""}</span></div>`;
   return `<div class="crumb"><a class="lk" href="#kamera">Kamera</a></div><h2 style="margin-top:4px">Grundeinstellung</h2>
-  <p class="small muted" style="margin-top:0">Einmal einstellen und dann so lassen – eine verbreitete, anfängerfreundliche Ausgangslage. Für besondere Motive stehen die Abweichungen auf den Motivkarten.</p>
-  <div class="list">${GRUNDEIN.map(([t,why,links],k)=>`<div class="item" style="cursor:default;align-items:flex-start"><span class="badge" style="flex:0 0 auto">${k+1}</span><span class="grow"><span class="t">${esc(t)}</span><br><span class="s">${esc(why)}</span>${links.length?`<br><span class="small">${links.map(l=>`<a class="lk" href="${href(l[0],l[1])}">${esc(l[2])}</a>`).join(" · ")}</span>`:""}</span></div>`).join("")}</div>
-  ${sonyBox(["Die meisten Punkte haben eine eigene Kamera-Funktion mit Menüpfad (Links oben).",...GRUNDEIN.filter(g=>g[3]).map(g=>g[0]+": "+g[3]),"Speichern und zurückholen lässt sich so eine Ausgangslage über [BenutzAufnEinst reg.] bzw. die Speicherplätze am Moduswahlrad (MR)."])}
+  <p class="small muted" style="margin-top:0">Manches stellt man einmal ein und lässt es dann so. Anderes hängt davon ab, was du vorhast – dort hilft ein kurzer Gedanke vor dem Losgehen.</p>
+  <h2>Einmal einstellen</h2>
+  <div class="list">${GRUNDEIN.filter(g=>g[0]==="fest").map(item).join("")}</div>
+  <h2>Vorher überlegen</h2>
+  <p class="small muted" style="margin-top:0">Hier gibt es kein Richtig oder Falsch – es kommt aufs Motiv an. Die Motivkarten nennen jeweils, was passt.</p>
+  <div class="list">${GRUNDEIN.filter(g=>g[0]==="wahl").map(item).join("")}</div>
+  ${sonyBox(["Die meisten Punkte haben eine eigene Kamera-Funktion mit Menüpfad (Links oben).",...GRUNDEIN.filter(g=>g[4]).map(g=>g[1].replace(/:.*$/,"").replace(/\?$/,"")+": "+g[4]),"Feste Pakete für bestimmte Motive lassen sich über [BenutzAufnEinst reg.] bzw. die Speicherplätze am Moduswahlrad (MR) speichern und zurückholen."])}
   ${seeLinks([["karte","checkliste","Checkliste vor dem Losgehen"],["kamera","mr","Speicherplätze (MR)"]])}`;
 }
 
