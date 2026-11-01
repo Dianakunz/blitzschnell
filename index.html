@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.6.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.7.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.6.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.7.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1138,13 +1138,14 @@ const ANLEITUNG = [
   ["Kamera","Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
   ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. „Wetter“ zeigt die Vorhersage für die nächsten 16 Tage: Wetterlage, Temperatur, Regen und Wind, die Bewölkung in drei Höhen zu Sonnenauf- und -untergang mit einer groben Einschätzung, ob sich der Himmel färbt, Wolken in der Nacht für Sterne und Nebel am Morgen. Sonne und Mond werden auf deinem Gerät berechnet; Wetter und Ortssuche brauchen Internet."],
   ["Glossar","Fachbegriffe von A bis Z, kurz erklärt. Viele Einträge führen per Tipp zur ausführlichen Erklärung."],
+  ["Meine Ausrüstung","Über das Zahnrad → Meine Ausrüstung trägst du deine Objektive ein (Name, Brennweite, größte Blende, Stabilisator) und wählst aus, welches du gerade benutzt – auch direkt im Reiter Regeln und in der Spielwiese. Die Rechner werden damit vorbelegt (Zeit aus der Hand mit der längsten Brennweite, Sterne und Schärfentiefe mit der kürzesten), und die Spielwiese zeigt nur die Blenden, die dein Objektiv schafft. Die Motivkarten bleiben allgemein."],
   ["Bedienung",null],
   ["Suche","Das Suchfeld oben durchsucht Motive, Grundlagen, Faustregeln, Rechner, Kamera-Funktionen, Glossar sowie Spielwiese, Sonnenzeiten, Mond und Wetter."],
   ["Verknüpfungen","Gepunktet unterstrichene Begriffe führen zur passenden Erklärung, z. B. „Blende“ im Rezept zu den Grundlagen. Unter „Siehe auch“ findest du verwandte Themen."],
   ["Merken","Mit dem Stern merkst du dir Motive, Grundlagen, Faustregeln und Kamera-Funktionen. Alles Gemerkte findest du über den Stern oben rechts neben dem Fragezeichen, nach Bereichen sortiert; die Zahl daran zeigt, wie viele Einträge es sind."],
   ["Eigene Notizen","Unten auf jeder Motivkarte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
-  ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
+  ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Meine Ausrüstung, Sony-Hinweise und Löschen von Merkliste und Notizen."],
   ["Offline und Startbildschirm","Nach dem ersten Öffnen funktioniert die App auch ohne Internet – außer Ortssuche und Wetter (ohne Verbindung wird der zuletzt geladene Stand gezeigt). Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
 ];
 
@@ -1185,6 +1186,70 @@ function fmtTime(sec){
   for(const s of std){if(s>=d-0.001)best=s;else break}
   return "1/"+best+" s";
 }
+
+/* ---------- Meine Ausrüstung ---------- */
+/* Objektiv: {id,name,fmin,fmax,aw (größte Blende kurz),at (größte Blende lang),stab (Stufen)} */
+function gear(){return Object.assign({lenses:[],active:null},S.get("gear",{}))}
+function gearActive(){const g=gear();return g.lenses.find(l=>l.id===g.active)||null}
+const isZoom=l=>l.fmax>l.fmin;
+function lensLabel(l){return `${l.fmin}${isZoom(l)?"–"+l.fmax:""} mm, f/${num(l.aw)}${isZoom(l)&&l.at!==l.aw?"–"+num(l.at):""}`}
+function gearSelect(id){const g=gear();if(!g.lenses.length)return "";
+  return `<select id="${id}" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit">${g.lenses.map(l=>`<option value="${l.id}" ${l.id===g.active?"selected":""}>${esc(l.name)} (${lensLabel(l)})</option>`).join("")}</select>`}
+function gearBar(where){
+  const g=gear();
+  if(!g.lenses.length)return `<div class="small muted" style="margin:8px 0 0">Tipp: Unter <button class="lk small" data-gear style="background:none;border:0;padding:0">Meine Ausrüstung</button> kannst du deine Objektive eintragen – dann ${where==="spiel"?"zeigt die Spielwiese nur die Blenden, die dein Objektiv schafft":"füllen sich die Rechner passend aus"}.</div>`;
+  return `<div style="margin-top:8px"><label class="small" style="display:flex;justify-content:space-between"><span>Mein Objektiv</span><button class="lk small" data-gear style="background:none;border:0;padding:0">Bearbeiten</button></label>${gearSelect("gear_sel_"+where)}</div>`;
+}
+function openGear(){
+  const draw=()=>{const g=gear();
+    o.querySelector("#g_list").innerHTML=g.lenses.length?g.lenses.map(l=>`<div class="item" style="cursor:default"><input type="radio" name="g_act" value="${l.id}" ${l.id===g.active?"checked":""} style="width:20px;height:20px" aria-label="Gerade benutzt"><span class="grow"><span class="t">${esc(l.name)}</span><br><span class="s">${lensLabel(l)}${l.stab?` · Stabilisator ${l.stab} Stufe${l.stab>1?"n":""}`:""}</span></span><button class="btn" data-g_ed="${l.id}">Ändern</button><button class="iconbtn" data-g_del="${l.id}" aria-label="Löschen">${I.x}</button></div>`).join(""):`<p class="small muted">Noch keine Objektive eingetragen.</p>`;
+    o.querySelectorAll("[name=g_act]").forEach(r=>r.onchange=()=>{const g=gear();g.active=r.value;S.set("gear",g);toast("Gerade benutzt: "+(g.lenses.find(l=>l.id===r.value)||{}).name)});
+    o.querySelectorAll("[data-g_del]").forEach(b=>b.onclick=()=>{if(b.dataset.sure){const g=gear();g.lenses=g.lenses.filter(l=>l.id!==b.dataset.g_del);if(g.active===b.dataset.g_del)g.active=g.lenses[0]?.id||null;S.set("gear",g);draw()}else{b.dataset.sure="1";b.innerHTML="<span class='small' style='color:#c0392b'>Löschen?</span>"}});
+    o.querySelectorAll("[data-g_ed]").forEach(b=>b.onclick=()=>fill(gear().lenses.find(l=>l.id===b.dataset.g_ed)));
+  };
+  const inp=(id,ph,mode)=>`<input id="${id}" inputmode="${mode||"decimal"}" placeholder="${ph}" style="width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit">`;
+  const o=openSheet(`<div class="sh"><h2>Meine Ausrüstung</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
+  <p class="small">Trage deine Objektive ein und wähle aus, welches du gerade benutzt. Die Rechner und die Belichtungs-Spielwiese stellen sich dann darauf ein. Die Motivkarten bleiben allgemein.</p>
+  <div class="list" id="g_list"></div>
+  <div class="card calc" style="margin-top:12px"><b id="g_ftitle">Objektiv hinzufügen</b>
+    <label>Name</label>${inp("g_name","z. B. Tele-Zoom","text")}
+    <div style="display:flex;gap:8px"><div style="flex:1"><label>Brennweite von (mm)</label>${inp("g_fmin","18","numeric")}</div><div style="flex:1"><label>bis (mm)</label>${inp("g_fmax","300 (leer = fest)","numeric")}</div></div>
+    <div style="display:flex;gap:8px"><div style="flex:1"><label>Größte Blende (kurz)</label>${inp("g_aw","3.5")}</div><div style="flex:1"><label>bei langer Brennweite</label>${inp("g_at","6.3 (bei Zoom)")}</div></div>
+    <label>Stabilisator (Objektiv und Kamera zusammen)</label><select id="g_stab">${[0,1,2,3,4,5].map(n=>`<option value="${n}">${n?n+" Stufe"+(n>1?"n":""):"keiner"}</option>`).join("")}</select>
+    <details class="box"><summary>Wo finde ich das? <span class="chev">${I.chev}</span></summary><div class="small">
+      <p>Die Angaben stehen vorne auf dem Objektiv oder am Ring, z. B. „18-300mm 1:3.5-6.3“: Brennweite 18 bis 300 mm, größte Blende f/3.5 bei 18 mm und f/6.3 bei 300 mm. Bei einer Festbrennweite steht nur eine Zahl, z. B. „35mm 1:1.8“ – dann bleibt „bis“ leer.</p>
+      <p>Die Stabilisator-Stufen stehen in den technischen Daten des Herstellers. Hat dein Objektiv „OSS“, „VC“, „IS“ oder „VR“ im Namen, ist ein Stabilisator eingebaut. Am besten 1–2 Stufen weniger eintragen als angegeben (siehe Rechner „Zeit aus der Hand“).</p></div></details>
+    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn primary" id="g_save" style="flex:1">Speichern</button><button class="btn" id="g_new">Neu</button></div>
+  </div>`);
+  let edit=null;
+  const v=id=>o.querySelector("#"+id);
+  const fill=l=>{edit=l?l.id:null;v("g_ftitle").textContent=l?"Objektiv ändern":"Objektiv hinzufügen";v("g_name").value=l?l.name:"";v("g_fmin").value=l?l.fmin:"";v("g_fmax").value=l&&isZoom(l)?l.fmax:"";v("g_aw").value=l?l.aw:"";v("g_at").value=l&&isZoom(l)&&l.at!==l.aw?l.at:"";v("g_stab").value=l?l.stab:0;if(l)v("g_name").scrollIntoView({block:"center"})};
+  v("g_new").onclick=()=>fill(null);
+  v("g_save").onclick=()=>{
+    const pf=x=>parseFloat(String(x).replace(",","."));
+    const name=v("g_name").value.trim(),fmin=Math.round(pf(v("g_fmin").value)),fmaxIn=pf(v("g_fmax").value),aw=pf(v("g_aw").value),atIn=pf(v("g_at").value);
+    const fmax=isNaN(fmaxIn)?fmin:Math.round(fmaxIn),at=isNaN(atIn)?aw:atIn;
+    if(!name){toast("Bitte einen Namen eingeben");return}
+    if(!(fmin>0)||fmax<fmin){toast("Bitte die Brennweite prüfen");return}
+    if(!(aw>=0.95&&aw<=32)||!(at>=aw&&at<=32)){toast("Bitte die Blende prüfen (z. B. 3.5)");return}
+    const g=gear(),l={id:edit||("l"+Date.now()),name,fmin,fmax,aw,at,stab:+v("g_stab").value};
+    const k=g.lenses.findIndex(x=>x.id===l.id);if(k>=0)g.lenses[k]=l;else g.lenses.push(l);
+    if(!g.active||!g.lenses.find(x=>x.id===g.active))g.active=l.id;
+    S.set("gear",g);toast(k>=0?"Geändert":"Hinzugefügt");fill(null);draw();
+  };
+  const oc=o.close;o.close=()=>{oc();gearApply(true);render()};
+  draw();
+}
+/* Aktives Objektiv in die Rechner übernehmen */
+function gearApply(force){
+  const l=gearActive();if(!l)return;
+  const last=S.get("gear_applied",null);if(!force&&last===l.id+l.fmin+l.fmax+l.aw+l.stab)return;
+  S.set("cv_f",l.fmax);S.set("cv_s",String(Math.min(5,l.stab||0)));
+  S.set("cs_f",l.fmin);const opts=["1.4","1.8","2","2.8","3.5","4","5.6"];S.set("cs_n_",opts.find(x=>parseFloat(x)>=l.aw-0.05)||"5.6");
+  S.set("cd_f",l.fmin);
+  S.set("gear_applied",l.id+l.fmin+l.fmax+l.aw+l.stab);
+}
+function gearPick(id){const g=gear();g.active=id;S.set("gear",g);gearApply(true)}
 
 /* ---------- Belichtungs-Spielwiese ---------- */
 /* Indizes in Drittelstufen. Blende: N = 2^((a+3)/6), a=0 → f/1.4 … a=24 → f/22.
@@ -1238,6 +1303,7 @@ function viewSpiel(){
     <label>Licht</label><select id="sw_sc">${SW_SC.map((x,k)=>`<option value="${k}" ${st.sc===k?"selected":""}>${x[0]} (LW ${x[1]})</option>`).join("")}</select>
     <label style="margin-top:12px">Was passt die Kamera automatisch an?</label>
     <div class="chips">${SW_MODES.map(m=>`<button class="chip ${st.mode===m[0]?"on":""}" data-swm="${m[0]}">${m[1]} <span class="muted">(${m[2]})</span></button>`).join("")}</div>
+    ${gearBar("spiel")}<div id="sw_lens"></div>
     <label style="margin-top:12px">Blende <span class="sw-val" id="sw_av"></span></label><input type="range" id="sw_a" min="0" max="24" value="${st.a}">
     <label>Belichtungszeit <span class="sw-val" id="sw_tv"></span></label><input type="range" id="sw_j" min="0" max="51" value="${st.j}">
     <label>ISO <span class="sw-val" id="sw_iv"></span></label><input type="range" id="sw_i" min="0" max="24" value="${st.i}">
@@ -1259,11 +1325,21 @@ function swUpdate(changed){
   const sc=SW_SC[st.sc], LW=sc[1];
   const D=()=>3*LW-(a+3)-36+j+i;
   let clamped=false;
-  const fix=(v,max)=>{const r=Math.round(v);const c=Math.min(max,Math.max(0,r));if(c!==r)clamped=true;return c};
+  const fix=(v,max,min=0)=>{const r=Math.round(v);const c=Math.min(max,Math.max(min,r));if(c!==r)clamped=true;return c};
+  /* Blende auf das gewählte Objektiv begrenzen */
+  const lens=gearActive();let aMin=0,lensNote="";
+  if(lens&&st.lensOn!==false){
+    const tele=isZoom(lens)&&lens.at!==lens.aw&&st.lensEnd==="t";
+    const ap=tele?lens.at:lens.aw;aMin=Math.max(0,SW_N.findIndex(x=>parseFloat(x)>=ap-0.05));
+    lensNote=`Blende begrenzt auf ${esc(lens.name)}: offen f/${num(ap)}${isZoom(lens)&&lens.at!==lens.aw?` bei ${tele?lens.fmax:lens.fmin} mm`:""}.`;
+  }
+  $("#sw_a").min=aMin;if(a<aMin)a=aMin;
   if(st.mode==="a")j=fix(j-D(),51);
-  else if(st.mode==="s")a=fix(a+D(),24);
+  else if(st.mode==="s")a=fix(a+D(),24,aMin);
   else if(st.mode==="iso")i=fix(i-D(),24);
   $("#sw_a").value=a;$("#sw_j").value=j;$("#sw_i").value=i;
+  const ln=$("#sw_lens");if(ln){ln.innerHTML=lens?`<div class="chips">${isZoom(lens)&&lens.at!==lens.aw?`<button class="chip ${st.lensEnd!=="t"&&st.lensOn!==false?"on":""}" data-swl="w">${lens.fmin} mm</button><button class="chip ${st.lensEnd==="t"&&st.lensOn!==false?"on":""}" data-swl="t">${lens.fmax} mm</button>`:`<button class="chip ${st.lensOn!==false?"on":""}" data-swl="w">Mein Objektiv</button>`}<button class="chip ${st.lensOn===false?"on":""}" data-swl="off">Alle Blenden</button></div>${lensNote?`<div class="small muted">${lensNote}</div>`:""}`:"";
+    ln.querySelectorAll("[data-swl]").forEach(b=>b.onclick=()=>{const s2=swState();if(b.dataset.swl==="off")s2.lensOn=false;else{s2.lensOn=true;s2.lensEnd=b.dataset.swl}S.set("sw",s2);swUpdate()});}
   ["a","j","i"].forEach(k=>{$("#sw_"+k).disabled=({a:"s",j:"a",i:"iso"})[k]===st.mode});
   Object.assign(st,{a,j,i});S.set("sw",st);
   const N=Math.pow(2,(a+3)/6), t=Math.pow(2,j/3-12), iso=100*Math.pow(2,i/3), dev=D()/3;
@@ -1732,12 +1808,14 @@ function viewGrund(id){
 }
 
 function viewRegeln(){
+  gearApply(false);
   const crop=cropNow();
   let h=`<div style="margin-top:12px">${sensorBar()}</div><p class="small muted" style="margin:6px 0 0">Brennweiten-Regeln und Rechner rechnen mit diesem Faktor.</p>
   <a class="item" href="#regeln/spielwiese" style="margin-top:14px;text-decoration:none;color:inherit"><span class="ic">${I.aperture}</span><span class="grow"><span class="t">Belichtungs-Spielwiese</span><br><span class="s">Blende, Zeit und ISO ausprobieren und sehen, was passiert</span></span><span class="chev">${I.chev}</span></a>
   <h2>Faustregeln</h2>`;
   h+=REGELN.map(r=>`<div class="rule" id="regel-${r.id}"><div class="t" style="display:flex;align-items:center;justify-content:space-between">${esc(r.title)}${favBtn("r:"+r.id)}</div><div class="r">${esc(r.rule)}</div><div class="small">${esc(r.text)}</div>${r.calc?`<div class="small" style="margin-top:6px"><a class="lk" href="#regeln/rechner-${r.calc}">Zum Rechner</a></div>`:""}</div>`).join("");
-  h+=`<h2>Rechner</h2><p class="small muted" style="margin-top:0">Gerechnet mit: ${crop.name} (Faktor ${num(crop.f)}).</p>
+  const gl=gearActive();
+  h+=`<h2>Rechner</h2><p class="small muted" style="margin-top:0">Gerechnet mit: ${crop.name} (Faktor ${num(crop.f)}).</p>${gearBar("calc")}${gl?`<p class="small muted" style="margin:4px 0 0">Vorbelegt: „Zeit aus der Hand“ mit ${gl.fmax} mm${gl.stab?" und "+gl.stab+" Stufe"+(gl.stab>1?"n":"")+" Stabilisator":""}, „Sterne“ und „Schärfentiefe“ mit ${gl.fmin} mm. Du kannst die Werte jederzeit ändern.</p>`:""}
   <div class="card calc" id="rechner-verwacklung"><b>Längste Zeit aus der Hand</b>
     <label>Brennweite (mm, wie auf dem Objektiv)</label><input id="cv_f" type="number" inputmode="numeric" value="${S.get("cv_f",300)}" min="1">
     <label>Stabilisator</label><select id="cv_s">${[["0","ohne"],["1","1 Stufe"],["2","2 Stufen"],["3","3 Stufen"],["4","4 Stufen"],["5","5 Stufen"]].map(o=>`<option value="${o[0]}" ${S.get("cv_s","0")===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>
@@ -1832,6 +1910,7 @@ function searchIndex(){
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
   GLOSSAR.forEach(([t,d])=>r.push({t:t,k:"Glossar",h:"#glossar/"+glSlug(t),txt:d}));
   [["verwacklung","Rechner: Längste Zeit aus der Hand","Verwacklung Kehrwert Brennweite Stabilisator Stufen"],["sterne","Rechner: Längste Zeit für Sterne","500er-Regel NPF Sterne Milchstraße Strichspuren"],["schaerfe","Rechner: Schärfentiefe","Schärfentiefe hyperfokale Distanz Abstand Blende"],["graufilter","Rechner: Belichtungszeit mit Graufilter","Graufilter ND Langzeitbelichtung"]].forEach(([id,t,txt])=>r.push({t,k:"Rechner",h:"#regeln/rechner-"+id,txt}));
+  r.push({t:"Meine Ausrüstung",k:"Optionen",h:"",act:"gear",txt:"Objektiv Objektive Ausrüstung Brennweite Blende Stabilisator eintragen"});
   r.push({t:"Belichtungs-Spielwiese",k:"Regeln",h:"#regeln/spielwiese",txt:"Blende Zeit ISO ausprobieren Belichtung Simulation Rauschen Bewegung Hintergrund Lichtwert"});
   r.push({t:"Sonnenzeiten",k:"Himmel",h:"#himmel/sonne",txt:"Sonnenaufgang Sonnenuntergang goldene Stunde blaue Stunde Dämmerung Mondaufgang Monduntergang Nacht Tageslänge Ort"});
   r.push({t:"Wetter",k:"Himmel",h:"#himmel/wetter",txt:"Wetter Wolken Bewölkung Regen Wind Nebel Sonnenuntergang Abendrot farbiger Himmel Vorhersage Open-Meteo"});
@@ -1842,7 +1921,7 @@ function viewSearch(q){
   const n=q.toLowerCase().trim();
   const res=searchIndex().map(x=>{const inT=x.t.toLowerCase().includes(n);const inX=x.txt.toLowerCase().includes(n);return {...x,score:inT?2:(inX?1:0)}}).filter(x=>x.score).sort((a,b)=>b.score-a.score);
   if(!res.length)return `<p class="muted" style="margin-top:20px">Nichts gefunden für „${esc(q)}“.</p>`;
-  return `<h2>Suchergebnisse</h2><div class="list">${res.map(x=>x.h?`<a class="item" href="${x.h}" style="text-decoration:none;color:inherit"><span class="grow"><span class="t">${esc(x.t)}</span><br><span class="s">${esc(x.k)}</span></span></a>`:`<div class="item soon"><span class="grow"><span class="t">${esc(x.t)}</span><br><span class="s">${esc(x.k)}</span></span></div>`).join("")}</div>`;
+  return `<h2>Suchergebnisse</h2><div class="list">${res.map(x=>x.act==="gear"?`<button class="item" data-gear style="width:100%;text-align:left"><span class="grow"><span class="t">${esc(x.t)}</span><br><span class="s">${esc(x.k)}</span></span></button>`:x.h?`<a class="item" href="${x.h}" style="text-decoration:none;color:inherit"><span class="grow"><span class="t">${esc(x.t)}</span><br><span class="s">${esc(x.k)}</span></span></a>`:`<div class="item soon"><span class="grow"><span class="t">${esc(x.t)}</span><br><span class="s">${esc(x.k)}</span></span></div>`).join("")}</div>`;
 }
 
 /* ---------- Optionen und Anleitung ---------- */
@@ -1858,6 +1937,7 @@ function openOptions(){
   <div class="opt">
     <div class="row"><span>Design</span><select id="o_theme" style="width:auto">${[["auto","Wie das Handy"],["light","Hell"],["dark","Dunkel"]].map(x=>`<option value="${x[0]}" ${theme===x[0]?"selected":""}>${x[1]}</option>`).join("")}</select></div>
     <div class="row"><span>Sensorgröße <button class="lk small" id="o_crop_help" style="background:none;border:0;padding:0">(Hilfe)</button></span><select id="o_crop" style="width:auto">${Object.entries(CROPS).map(([k,v])=>`<option value="${k}" ${cropKey()===k?"selected":""}>${v.name}</option>`).join("")}</select></div>
+    <div class="row"><span>Meine Ausrüstung<br><span class="small muted">${(()=>{const l=gearActive();return l?"Gerade: "+esc(l.name):"noch keine Objektive"})()}</span></span><button class="btn" id="o_gear">Bearbeiten</button></div>
     <div class="row"><span>Hinweise „So geht's bei Sony“</span><input type="checkbox" id="o_sony" ${sony?"checked":""} style="width:22px;height:22px"></div>
     <div class="row"><span>Merkliste und Notizen löschen</span><button class="btn danger" id="o_del">Löschen</button></div>
   </div>
@@ -1865,6 +1945,7 @@ function openOptions(){
   o.querySelector("#o_theme").onchange=e=>{S.set("theme",e.target.value);applyTheme()};
   o.querySelector("#o_crop").onchange=e=>{S.set("crop",e.target.value);render()};
   o.querySelector("#o_crop_help").onclick=()=>{o.close();openSensor(false)};
+  o.querySelector("#o_gear").onclick=()=>{o.close();openGear()};
   o.querySelector("#o_sony").onchange=e=>{S.set("sony",e.target.checked);render()};
   o.querySelector("#o_del").onclick=()=>{
     const b=o.querySelector("#o_del");
@@ -1925,6 +2006,8 @@ function bind(tab,sub){
     document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{S.set("var_"+sub,+b.dataset.v);const y=scrollY;render();scrollTo(0,y)});
     const n=$("#note");if(n)n.oninput=()=>S.set("note_"+sub,n.value);
   }
+  document.querySelectorAll("[data-gear]").forEach(b=>b.onclick=openGear);
+  ["calc","spiel"].forEach(w=>{const e=$("#gear_sel_"+w);if(e)e.onchange=()=>{gearPick(e.value);const y=scrollY;render();scrollTo(0,y)}});
   if(tab==="glossar"&&sub){const el=document.getElementById("gl-"+sub);if(el)setTimeout(()=>el.scrollIntoView({block:"center"}),40)}
   if(tab==="himmel"||tab==="mond"){
     document.querySelectorAll("[data-loc]").forEach(b=>b.onclick=openLoc);
@@ -1935,7 +2018,7 @@ function bind(tab,sub){
     if($("#wx_box"))wxLoad(skyDayDate(),skyLoc(),false);
     const di=$("#sk_date");if(di)di.onchange=()=>{if(!di.value)return;const [Y,M,D]=di.value.split("-").map(Number);const n=new Date();skyDay=Math.round((new Date(Y,M-1,D)-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/86400000);keep()};
   }
-  if(tab==="regeln"&&sub==="spielwiese"){
+  if(tab==="regeln"&&sub==="spielwiese"&&$("#sw_a")){
     ["#sw_sc","#sw_a","#sw_j","#sw_i"].forEach(s=>{const e=$(s);e.oninput=e.onchange=()=>swUpdate(s)});
     document.querySelectorAll("[data-swm]").forEach(b=>b.onclick=()=>{const st=swState();st.mode=b.dataset.swm;S.set("sw",st);document.querySelectorAll("[data-swm]").forEach(x=>x.classList.toggle("on",x===b));swUpdate()});
     swUpdate();
