@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.7.3 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.7.4 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.7.3";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.7.4";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1200,6 +1200,7 @@ function gearBar(where){
   if(!g.lenses.length)return `<div class="small muted" style="margin:8px 0 0">Tipp: Unter <button class="lk small" data-gear style="background:none;border:0;padding:0">Meine Ausrüstung</button> kannst du deine Objektive eintragen – dann ${where==="spiel"?"zeigt die Spielwiese nur die Blenden, die dein Objektiv schafft":"füllen sich die Rechner passend aus"}.</div>`;
   return `<div style="margin-top:8px"><label class="small" style="display:flex;justify-content:space-between"><span>Mein Objektiv</span><button class="lk small" data-gear style="background:none;border:0;padding:0">Bearbeiten</button></label>${gearSelect("gear_sel_"+where)}</div>`;
 }
+const LENS_AP=[0.95,1,1.2,1.4,1.7,1.8,2,2.2,2.5,2.8,3.2,3.5,4,4.5,5,5.6,6.3,6.7,7.1,8];
 function openGear(){
   const draw=()=>{const g=gear();
     o.querySelector("#g_list").innerHTML=g.lenses.length?g.lenses.map(l=>`<div class="item" style="cursor:default"><input type="radio" name="g_act" value="${l.id}" ${l.id===g.active?"checked":""} style="width:20px;height:20px" aria-label="Gerade benutzt"><span class="grow"><span class="t">${esc(l.name)}</span><br><span class="s">${lensLabel(l)}${l.stab?` · Stabilisator ${l.stab} Stufe${l.stab>1?"n":""}`:""}</span></span><button class="btn" data-g_ed="${l.id}">Ändern</button><button class="iconbtn" data-g_del="${l.id}" aria-label="Löschen">${I.x}</button></div>`).join(""):`<p class="small muted">Noch keine Objektive eingetragen.</p>`;
@@ -1207,14 +1208,15 @@ function openGear(){
     o.querySelectorAll("[data-g_del]").forEach(b=>b.onclick=()=>{if(b.dataset.sure){const g=gear();g.lenses=g.lenses.filter(l=>l.id!==b.dataset.g_del);if(g.active===b.dataset.g_del)g.active=g.lenses[0]?.id||null;S.set("gear",g);draw()}else{b.dataset.sure="1";b.innerHTML="<span class='small' style='color:#c0392b'>Löschen?</span>"}});
     o.querySelectorAll("[data-g_ed]").forEach(b=>b.onclick=()=>fill(gear().lenses.find(l=>l.id===b.dataset.g_ed)));
   };
+  const mm=(id,ph)=>`<div style="position:relative"><input id="${id}" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="${ph}" style="width:100%;min-width:0;padding:8px 40px 8px 8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit"><span class="muted" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none">mm</span></div>`;
   const inp=(id,ph,mode)=>`<input id="${id}" inputmode="${mode||"decimal"}" placeholder="${ph}" style="width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit">`;
   const o=openSheet(`<div class="sh"><h2>Meine Ausrüstung</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
   <p class="small">Trage deine Objektive ein und wähle aus, welches du gerade benutzt. Die Rechner und die Belichtungs-Spielwiese stellen sich dann darauf ein. Die Motivkarten bleiben allgemein.</p>
   <div class="list" id="g_list"></div>
   <div class="card calc" style="margin-top:12px"><b id="g_ftitle">Objektiv hinzufügen</b>
     <label>Name</label>${inp("g_name","z. B. Tele-Zoom","text")}
-    <div style="display:flex;gap:8px"><div style="flex:1"><label>Brennweite von (mm)</label>${inp("g_fmin","18","numeric")}</div><div style="flex:1"><label>bis (mm)</label>${inp("g_fmax","300 (leer = fest)","numeric")}</div></div>
-    <div style="display:flex;gap:8px"><div style="flex:1"><label>Größte Blende (kurz)</label>${inp("g_aw","3.5")}</div><div style="flex:1"><label>bei langer Brennweite</label>${inp("g_at","6.3 (bei Zoom)")}</div></div>
+    <div style="display:flex;gap:8px"><div style="flex:1"><label>Brennweite von</label>${mm("g_fmin","z. B. 18")}</div><div style="flex:1"><label>bis <span class="muted">(nur Zoom)</span></label>${mm("g_fmax","z. B. 300")}</div></div>
+    <div style="display:flex;gap:8px"><div style="flex:1"><label>Größte Blende</label><select id="g_aw"><option value="">bitte wählen</option>${LENS_AP.map(a=>`<option value="${a}">f/${num(a)}</option>`).join("")}</select></div><div style="flex:1"><label>bei langer Brennweite</label><select id="g_at"><option value="">gleich</option>${LENS_AP.map(a=>`<option value="${a}">f/${num(a)}</option>`).join("")}</select></div></div>
     <label>Stabilisator (Objektiv und Kamera zusammen)</label><select id="g_stab">${[0,1,2,3,4,5].map(n=>`<option value="${n}">${n?n+" Stufe"+(n>1?"n":""):"keiner"}</option>`).join("")}</select>
     <details class="box"><summary>Wo finde ich das? <span class="chev">${I.chev}</span></summary><div class="small">
       <p>Die Angaben stehen vorne auf dem Objektiv oder am Ring, z. B. „18-300mm 1:3.5-6.3“: Brennweite 18 bis 300 mm, größte Blende f/3.5 bei 18 mm und f/6.3 bei 300 mm. Bei einer Festbrennweite steht nur eine Zahl, z. B. „35mm 1:1.8“ – dann bleibt „bis“ leer.</p>
@@ -1222,19 +1224,22 @@ function openGear(){
       <p>Die Stufen stehen in den technischen Daten, z. B. „bis zu 4 Stufen (CIPA)“. Von jeder Herstellerangabe (auch vom gemeinsamen Wert für Kamera und Objektiv) am besten 1–2 Stufen abziehen – im Alltag schafft man meist weniger als im Labor.</p>
       <p><b>Steht keine Zahl dabei</b> (das ist häufig, auch bei Sony und Tamron), vorsichtig 2 Stufen eintragen – hier nichts mehr abziehen.</p>
       <p><b>Selbst testen:</b> Bei der längsten Brennweite mit der Zeit aus der Faustregel ohne Stabilisator beginnen (Rechner „Zeit aus der Hand“ mit „ohne“) und dann die Zeit schrittweise verdoppeln, z. B. 1/500, 1/250, 1/125, 1/60 s. Je Zeit mehrere Fotos machen. Die längste Zeit, bei der die meisten Bilder noch scharf sind, zeigt deine Stufen: Jede Verdopplung ist eine Stufe. Diesen Wert trägst du direkt ein, ohne Abzug.</p></div></details>
-    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn primary" id="g_save" style="flex:1">Speichern</button><button class="btn" id="g_new">Neu</button></div>
+    <div style="display:flex;gap:8px;margin-top:10px"><button class="btn primary" id="g_save" style="flex:1">Speichern</button><button class="btn" id="g_cancel" style="display:none">Abbrechen</button></div>
   </div>`);
   let edit=null;
   const v=id=>o.querySelector("#"+id);
-  const fill=l=>{edit=l?l.id:null;v("g_ftitle").textContent=l?"Objektiv ändern":"Objektiv hinzufügen";v("g_name").value=l?l.name:"";v("g_fmin").value=l?l.fmin:"";v("g_fmax").value=l&&isZoom(l)?l.fmax:"";v("g_aw").value=l?l.aw:"";v("g_at").value=l&&isZoom(l)&&l.at!==l.aw?l.at:"";v("g_stab").value=l?l.stab:0;if(l)v("g_name").scrollIntoView({block:"center"})};
-  v("g_new").onclick=()=>fill(null);
+  const fill=l=>{edit=l?l.id:null;v("g_ftitle").textContent=l?"Objektiv ändern":"Objektiv hinzufügen";v("g_name").value=l?l.name:"";v("g_fmin").value=l?l.fmin:"";v("g_fmax").value=l&&isZoom(l)?l.fmax:"";v("g_aw").value=l?String(l.aw):"";v("g_at").value=l&&isZoom(l)&&l.at!==l.aw?String(l.at):"";v("g_stab").value=l?l.stab:0;v("g_cancel").style.display=l?"":"none";if(l)v("g_name").scrollIntoView({block:"center"})};
+  v("g_cancel").onclick=()=>fill(null);
+  ["g_fmin","g_fmax"].forEach(id=>v(id).oninput=()=>{v(id).value=v(id).value.replace(/[^0-9]/g,"")});
   v("g_save").onclick=()=>{
     const pf=x=>parseFloat(String(x).replace(",","."));
     const name=v("g_name").value.trim(),fmin=Math.round(pf(v("g_fmin").value)),fmaxIn=pf(v("g_fmax").value),aw=pf(v("g_aw").value),atIn=pf(v("g_at").value);
     const fmax=isNaN(fmaxIn)?fmin:Math.round(fmaxIn),at=isNaN(atIn)?aw:atIn;
     if(!name){toast("Bitte einen Namen eingeben");return}
     if(!(fmin>0)||fmax<fmin){toast("Bitte die Brennweite prüfen");return}
-    if(!(aw>=0.95&&aw<=32)||!(at>=aw&&at<=32)){toast("Bitte die Blende prüfen (z. B. 3.5)");return}
+    if(!(aw>=0.95)){toast("Bitte die größte Blende auswählen");return}
+    if(at<aw){toast("Die Blende bei langer Brennweite kann nicht größer sein (kleinere Zahl) als bei kurzer");return}
+    if(fmax===fmin&&at!==aw){toast("Bei einer Festbrennweite bitte „gleich“ wählen");return}
     const g=gear(),l={id:edit||("l"+Date.now()),name,fmin,fmax,aw,at,stab:+v("g_stab").value};
     const k=g.lenses.findIndex(x=>x.id===l.id);if(k>=0)g.lenses[k]=l;else g.lenses.push(l);
     if(!g.active||!g.lenses.find(x=>x.id===g.active))g.active=l.id;
