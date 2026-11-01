@@ -1,4 +1,4 @@
-const CACHE = "blitzschnell-0.1.1";
+const CACHE = "blitzschnell-0.1.2";
 const FILES = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png", "logo.svg"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));
