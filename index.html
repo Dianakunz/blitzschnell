@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 0.3.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 0.4.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.3.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "0.4.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -915,11 +915,63 @@ const GRUND = [
          "Damit sind aus der Hand längere Zeiten möglich als der Kehrwert der Brennweite, oft 2–4 Stufen.",
          "Wichtig: Er hilft nur gegen deine Bewegung, nicht gegen die Bewegung des Motivs. Auf dem Stativ sollte man ihn meist ausschalten."],
    merk:"Hilft gegen Wackeln, nicht gegen Bewegung. Auf dem Stativ aus.",see:[["kamera","stabi","Stabilisator an der Kamera"]]},
-  {id:"licht",title:"Licht",short:"Kommt bald",soon:true},
-  {id:"gestaltung",title:"Bildgestaltung",short:"Kommt bald",soon:true},
-  {id:"farbe",title:"Farbe und Schwarzweiß",short:"Kommt bald",soon:true},
-  {id:"blitz",title:"Blitz",short:"Kommt bald",soon:true},
-  {id:"objektive",title:"Objektive und Zubehör",short:"Kommt bald",soon:true}
+  {id:"licht",title:"Licht",short:"Hart oder weich, Richtung und Tageszeit",
+   text:["Licht entscheidet oft mehr über ein Foto als jede Einstellung. Drei Dinge machen den Unterschied: wie hart das Licht ist, aus welcher Richtung es kommt und welche Farbe es hat.",
+         "Hartes Licht kommt von einer kleinen, direkten Lichtquelle, zum Beispiel der Sonne bei klarem Himmel. Es macht harte Schatten und starke Kontraste. Weiches Licht kommt von einer großen Fläche: bewölkter Himmel, Schatten, großes Fenster. Die Übergänge sind sanft – schmeichelhaft für Gesichter, Blüten und Tiere.",
+         "Frontlicht (von hinter der Kamera) wirkt flach. Seitenlicht zeigt Formen und Strukturen besonders gut. Gegenlicht macht Silhouetten und leuchtende Ränder um Haare, Fell und Blätter.",
+         "Die Tageszeit verändert alles: Mittags steht die Sonne hoch und das Licht ist hart. In der goldenen Stunde (Sonne knapp über dem Horizont) ist es warm, weich und macht lange Schatten. In der blauen Stunde (Sonne knapp unter dem Horizont) ist es kühl und gleichmäßig. Wie lange diese Phasen dauern, hängt von Jahreszeit und Ort ab – meist kürzer oder länger als genau eine Stunde."],
+   merk:"Weiches Licht schmeichelt, hartes Licht betont. Morgens und abends ist das Licht am schönsten.",
+   see:[["karte","gegenlicht","Gegenlicht und Silhouetten"],["karte","sonnenuntergang","Sonnenuntergang"],["grund","wb","Weißabgleich"]]},
+  {id:"gestaltung",title:"Bildgestaltung",short:"Hauptmotiv, Drittelregel, Linien und Perspektive",
+   text:["Erst entscheiden: Was ist mein Motiv? Alles, was davon ablenkt, möglichst weglassen – näher rangehen, Ausschnitt verkleinern, Standpunkt wechseln.",
+         "Drittelregel: Das Bild gedanklich mit je zwei Linien waagerecht und senkrecht dritteln. Wichtige Dinge (Auge, Horizont, Baum) auf die Linien oder Schnittpunkte setzen statt genau in die Mitte. Der Goldene Schnitt ist eine ähnliche, etwas mittigere Aufteilung.",
+         "Linien führen den Blick: Wege, Flüsse, Zäune oder Mauern, die ins Bild hineinlaufen, geben Tiefe und lenken zum Motiv. Ein deutlicher Vordergrund, Mittelgrund und Hintergrund machen ein Bild räumlich. Ein natürlicher Rahmen (Tor, Äste, Fenster) hält den Blick im Bild.",
+         "Perspektive: Auf Augenhöhe wirkt ein Motiv nahbar, von unten (Froschperspektive) groß und mächtig, von oben (Vogelperspektive) klein oder übersichtlich. Hochformat passt zu hohen Motiven und Porträts, Querformat zu Weite.",
+         "Symmetrie und Muster dürfen bewusst in die Mitte. Platz in Blick- oder Bewegungsrichtung lassen. Vor dem Auslösen Ränder und Hintergrund prüfen: Wächst ein Ast aus dem Kopf? Ist etwas halb angeschnitten?",
+         "Diese Regeln sind Orientierungshilfen, keine Gesetze – wer sie kennt, kann sie auch bewusst brechen."],
+   merk:"Was ist das Motiv? Alles, was nicht hilft, kommt raus.",
+   sony:["Gitterlinien als Hilfe für die Drittelregel: MENU → [Gitterlinie] → [3x3 Raster]."],
+   see:[["grund","licht","Licht"],["grund","schaerfe","Schärfentiefe"],["grund","brennweite","Brennweite"]]},
+  {id:"farbe",title:"Farbe und Schwarzweiß",short:"Farbwirkung, Kontraste und wann Schwarzweiß passt",
+   text:["Warme Farben (Rot, Orange, Gelb) wirken nah, lebendig und aktiv. Kalte Farben (Blau, Grün) wirken ruhig und distanziert.",
+         "Komplementärfarben liegen sich im Farbkreis gegenüber: Blau und Orange, Rot und Grün, Gelb und Violett. Zusammen ergeben sie einen starken, auffälligen Kontrast. Ähnliche, benachbarte Farben wirken dagegen harmonisch und ruhig.",
+         "Ein kleiner farbiger Punkt in einer ruhigen, eher farblosen Umgebung zieht den Blick sofort an (Farbakzent). Bilder mit nur einer Farbe in vielen Abstufungen (monochrom) wirken oft besonders stimmungsvoll.",
+         "Schwarzweiß lenkt den Blick auf Formen, Linien, Strukturen, Kontraste und Licht. Es passt gut, wenn Farben ablenken oder langweilig sind – zum Beispiel bei grauem Himmel, Gewitterwolken oder ausdrucksstarken Gesichtern.",
+         "Praktischer Trick: Mit RAW + JPEG und einem Schwarzweiß-Bildstil sieht man schon im Sucher in Schwarzweiß. Das JPEG ist schwarzweiß, das RAW bleibt farbig – man kann sich später noch umentscheiden."],
+   merk:"Gegensätzliche Farben knallen, ähnliche beruhigen. Schwarzweiß zeigt Form und Licht.",
+   sony:["Schwarzweiß-Bildstil: je nach Modell [Kreativmodus] oder [Kreativ-Look] → Schwarzweiß."],
+   see:[["grund","licht","Licht"],["grund","format","RAW oder JPEG"],["grund","gestaltung","Bildgestaltung"]]},
+  {id:"blitz",title:"Blitz",short:"Aufhellen, indirekt blitzen, Synchronzeit",
+   text:["Der eingebaute Blitz ist klein und blitzt frontal – das macht flaches Licht und harte Schatten. Er reicht nur wenige Meter. Ein Aufsteckblitz ist stärker und lässt sich meist schwenken.",
+         "Indirekt blitzen: Den Aufsteckblitz gegen eine helle Decke oder Wand richten. Das Licht kommt dann von einer großen Fläche und wird weich. Die Fläche sollte weiß sein, sonst färbt sie das Licht.",
+         "Aufhellblitz: Bei Gegenlicht oder harter Mittagssonne hellt ein schwacher Blitz die Schatten im Gesicht auf. Dafür die Blitzkorrektur auf etwa −1 bis −2 stellen, damit es natürlich bleibt.",
+         "Blitzsynchronzeit: Die kürzeste Verschlusszeit, bei der der Sensor im Moment des Blitzes ganz frei ist – meist etwa 1/160 bis 1/250 s. Bei kürzeren Zeiten wird ein Teil des Bildes schwarz. Manche Aufsteckblitze können mit Kurzzeitsynchronisation (HSS) auch kürzere Zeiten, dann aber mit weniger Leistung.",
+         "Blitz auf den 2. Verschlussvorhang: Normalerweise blitzt es am Anfang der Belichtung. Bei langen Zeiten und Bewegung wirken Lichtspuren natürlicher, wenn der Blitz erst am Ende kommt – die Spuren liegen dann hinter dem Motiv.",
+         "Langzeitsynchronisation: Blitz plus lange Belichtungszeit. Nachts wird so die Person vom Blitz hell und der Hintergrund mit seinen Lichtern trotzdem sichtbar (Stativ oder ruhige Hand).",
+         "Mischlicht: Blitzlicht ist neutral bis kühl, Glühlampen sind warm – im gleichen Bild gibt das Farbstiche. Entfesselt blitzen (Blitz von der Seite, per Funk ausgelöst) bringt mehr Form ins Licht."],
+   merk:"Als Aufheller dezent (−1 bis −2), drinnen lieber indirekt über die Decke.",
+   sony:["Blitzmodus und Blitzkorrektur im Fn-Menü oder unter MENU → [Blitzmodus] bzw. [Blitzkompens.].","Typische Blitzmodi: [Aufhellblitz], Langzeitsynchronisation und Synchronisation auf den 2. Vorhang (Namen je nach Modell leicht verschieden)."],
+   see:[["karte","aufhellblitz","Porträt im Gegenlicht mit Blitz"],["karte","gegenlicht","Gegenlicht und Silhouetten"],["grund","zeit","Belichtungszeit"]]},
+  {id:"objektive",title:"Objektive und Zubehör",short:"Welches Objektiv wofür – und was sonst noch hilft",
+   text:["Festbrennweite oder Zoom: Festbrennweiten haben eine feste Brennweite, sind oft lichtstärker, schärfer und leichter. Zooms decken einen Bereich ab und sind dadurch flexibel. Lichtstärke (die kleinste Blendenzahl, z. B. f/1.8) entscheidet, wie gut ein Objektiv bei wenig Licht und für unscharfe Hintergründe ist.",
+         "Brennweiten hier als Kleinbild-Angabe. An APS-C entspricht das etwa der Zahl auf dem Objektiv geteilt durch 1,5 (z. B. 50 mm Kleinbild ≈ 33 mm an APS-C)."],
+   list:["Ultraweitwinkel (unter ca. 24 mm): weite Landschaften, enge Räume, Architektur. Starke Perspektive, Nahes wirkt groß.",
+         "Weitwinkel (ca. 24–35 mm): Landschaft, Stadt, Reise, Gruppen. Viel Schärfentiefe.",
+         "Normalobjektiv (ca. 50 mm): natürlicher Blick wie das Auge, Alltag, Straße, Porträts mit Umgebung. Oft günstig und lichtstark.",
+         "Leichtes Tele (ca. 85–135 mm): klassische Porträtbrennweite, Details. Schmeichelhafte Perspektive, weicher Hintergrund.",
+         "Tele (ab ca. 200 mm): Tiere, Vögel, Sport, Mond. Holt Fernes heran, rückt Dinge optisch zusammen, wenig Schärfentiefe.",
+         "Reise- oder Superzoom (z. B. 18–200 oder 18–300 mm an APS-C): ein Objektiv für fast alles, ideal auf Reisen. Kompromiss bei Lichtstärke und Bildqualität.",
+         "Makroobjektiv (Maßstab 1:1): Insekten, Blüten, kleine Dinge. Längere Makros (ca. 90–100 mm) lassen mehr Abstand zum Motiv.",
+         "Lichtstarke Festbrennweite (f/1.4–2): Innenräume ohne Blitz, Abend, Porträts mit sehr unscharfem Hintergrund."],
+   list2:["Stativ: für lange Zeiten, Nacht, Wasser, Panorama. Dazu Fernauslöser, Handy-App oder Selbstauslöser.",
+         "Streulichtblende: bessere Kontraste im Gegenlicht, schützt die Frontlinse.",
+         "Polfilter: blauerer Himmel, weniger Spiegelungen auf Wasser und Blättern. Wirkt am stärksten im rechten Winkel zur Sonne; an Weitwinkeln kann der Himmel dadurch ungleichmäßig werden.",
+         "Graufilter (ND): verlängert die Belichtungszeit bei Tag, z. B. für weiches Wasser oder Mitzieher.",
+         "Grauverlaufsfilter: dunkelt nur den hellen Himmel ab, der Vordergrund bleibt hell.",
+         "Nahlinsen und Zwischenringe: günstiger Einstieg in Nahaufnahmen ohne Makroobjektiv.",
+         "Ersatzakku, zweite Speicherkarte, Mikrofasertuch und Blasebalg zum Reinigen."],
+   merk:"Weit für Weite, Tele für Ferne, lichtstark für wenig Licht.",
+   see:[["grund","brennweite","Brennweite und Crop-Faktor"],["karte","makro-tele","Makro mit dem Tele"],["rechner","graufilter","Rechner: Graufilter"]]}
 ];
 
 /* ---------- Faustregeln ---------- */
@@ -981,15 +1033,15 @@ const GLOSSAR = [
   ["Augen-AF","Autofokus, der gezielt auf Augen von Menschen oder Tieren scharfstellt.","kamera","augenaf"],
   ["Belichtungskorrektur","Macht das Foto gegenüber der Kameramessung heller (+) oder dunkler (−).","grund","korrektur"],
   ["Belichtungszeit","Wie lange der Verschluss offen ist, z. B. 1/250 s.","grund","zeit"],
-  ["Blaue Stunde","Die Zeit kurz nach Sonnenuntergang bzw. vor Sonnenaufgang mit tiefblauem Himmel."],
+  ["Blaue Stunde","Die Zeit kurz nach Sonnenuntergang bzw. vor Sonnenaufgang mit tiefblauem Himmel.","karte","blaue-stunde"],
   ["Blende","Verstellbare Öffnung im Objektiv, angegeben als Blendenzahl (f/…).","grund","blende"],
   ["Bokeh","Wie die unscharfen Bereiche eines Fotos aussehen."],
   ["Brennweite","Bestimmt den Bildausschnitt: kurz = Weitwinkel, lang = Tele.","grund","brennweite"],
   ["Crop-Faktor","Umrechnungsfaktor zwischen kleinerem Sensor und Vollformat (APS-C ca. 1,5).","grund","brennweite"],
-  ["Festbrennweite","Objektiv ohne Zoom, meist lichtstärker und schärfer."],
+  ["Festbrennweite","Objektiv ohne Zoom, meist lichtstärker und schärfer.","grund","objektive"],
   ["Fokus-Peaking","Farbige Markierung scharfer Kanten beim manuellen Fokussieren.","kamera","peaking"],
-  ["Goldene Stunde","Die Zeit kurz nach Sonnenaufgang bzw. vor Sonnenuntergang mit warmem, weichem Licht."],
-  ["Graufilter (ND)","Dunkler Filter vor dem Objektiv für lange Belichtungszeiten bei Tag."],
+  ["Goldene Stunde","Die Zeit kurz nach Sonnenaufgang bzw. vor Sonnenuntergang mit warmem, weichem Licht.","grund","licht"],
+  ["Graufilter (ND)","Dunkler Filter vor dem Objektiv für lange Belichtungszeiten bei Tag.","grund","objektive"],
   ["Histogramm","Diagramm der Helligkeitsverteilung eines Fotos.","grund","korrektur"],
   ["ISO","Verstärkung des Sensorsignals. Hoch = heller, aber mehr Rauschen.","grund","iso"],
   ["JPEG","Fertig bearbeitetes, komprimiertes Bildformat.","grund","format"],
@@ -1005,12 +1057,23 @@ const GLOSSAR = [
   ["VC","Bildstabilisator in Tamron-Objektiven.","grund","stabi"],
   ["Vollformat","Sensor in der Größe des klassischen Kleinbildfilms (36 × 24 mm).","grund","brennweite"],
   ["Weißabgleich","Gleicht die Lichtfarbe aus, damit Weiß weiß aussieht.","grund","wb"],
-  ["Zebra","Streifenmuster über zu hellen Bildbereichen.","kamera","zebra"]
+  ["Zebra","Streifenmuster über zu hellen Bildbereichen.","kamera","zebra"],
+  ["Abbildungsmaßstab","Verhältnis von Größe auf dem Sensor zu echter Größe; 1:1 = Lebensgröße (echtes Makro).","grund","objektive"],
+  ["Blitzsynchronzeit","Kürzeste Verschlusszeit, bei der normal geblitzt werden kann (meist 1/160–1/250 s).","grund","blitz"],
+  ["Drittelregel","Gestaltungshilfe: Wichtiges auf die Linien eines 3×3-Rasters setzen.","grund","gestaltung"],
+  ["Goldener Schnitt","Harmonische Bildaufteilung, ähnlich der Drittelregel.","grund","gestaltung"],
+  ["Grauverlaufsfilter","Filter, der oben dunkel und unten klar ist – dunkelt hellen Himmel ab.","grund","objektive"],
+  ["HSS","Kurzzeitsynchronisation: Blitzen mit kürzeren Zeiten als die Blitzsynchronzeit.","grund","blitz"],
+  ["Komplementärfarben","Farben, die sich im Farbkreis gegenüberliegen, z. B. Blau und Orange.","grund","farbe"],
+  ["Nahlinse","Vorsatzlinse, mit der ein Objektiv näher scharfstellen kann.","grund","objektive"],
+  ["Polfilter","Filter gegen Spiegelungen und für kräftigeren Himmel.","grund","objektive"],
+  ["Streulichtblende","Aufsatz vor dem Objektiv gegen seitliches Licht und Kontrastverlust.","grund","objektive"],
+  ["Zwischenring","Ring zwischen Kamera und Objektiv für kürzere Naheinstellgrenze.","grund","objektive"]
 ];
 
 /* ---------- Anleitung ---------- */
 const ANLEITUNG = [
-  ["Motive","Rezept-Karten für typische Situationen. Tippe auf ein Motiv, um die empfohlenen Einstellungen zu sehen. Bei manchen Karten kannst du oben zwischen Varianten wechseln (z. B. Vögel sitzend oder im Flug). Graue Einträge sind noch in Arbeit."],
+  ["Motive","Rezept-Karten für typische Situationen. Tippe auf ein Motiv, um die empfohlenen Einstellungen zu sehen. Bei manchen Karten kannst du oben zwischen Varianten wechseln (z. B. Vögel sitzend oder im Flug)."],
   ["Verknüpfungen","Gepunktet unterstrichene Begriffe führen zur passenden Erklärung, z. B. „Blende“ im Rezept zu den Grundlagen."],
   ["Merken","Mit dem Stern merkst du dir eine Karte. Unter Motive → „Gemerkt“ findest du alle gemerkten Karten."],
   ["Eigene Notizen","Unten auf jeder Karte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
@@ -1124,6 +1187,9 @@ function viewGrund(id){
   return `<button class="back" onclick="history.back()">${I.back} Zurück</button><div class="card">
   <div class="head"><span class="ic">${I.aperture}</span><div><div class="crumb">Grundlagen</div><div class="title">${esc(g.title)}</div></div></div>
   ${g.text.map(t=>`<p>${esc(t)}</p>`).join("")}
+  ${g.list?`<h3>Objektivarten und wofür sie passen</h3><ul>${g.list.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}
+  ${g.list2?`<h3>Nützliches Zubehör</h3><ul>${g.list2.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}
+  ${sonyBox(g.sony)}
   <div class="rule"><div class="t">Merksatz</div><div class="r" style="margin-bottom:0">${esc(g.merk)}</div></div>
   ${seeLinks(g.see)}</div>`;
 }
@@ -1195,7 +1261,7 @@ function searchIndex(){
   const r=[];
   CARDS.filter(c=>!c.soon).forEach(c=>r.push({t:c.title,k:"Motiv",h:"#motive/"+c.id,txt:[c.intro,...(c.tips||[]),...(c.errors||[]),...(c.variants||[]).flatMap(v=>[v.name,...(v.tips||[])])].join(" ")}));
   CARDS.filter(c=>c.soon).forEach(c=>r.push({t:c.title,k:"Motiv (in Arbeit)",h:"",txt:""}));
-  GRUND.filter(g=>!g.soon).forEach(g=>r.push({t:g.title,k:"Grundlagen",h:"#grundlagen/"+g.id,txt:g.short+" "+g.text.join(" ")}));
+  GRUND.filter(g=>!g.soon).forEach(g=>r.push({t:g.title,k:"Grundlagen",h:"#grundlagen/"+g.id,txt:g.short+" "+g.text.join(" ")+" "+(g.list||[]).join(" ")+" "+(g.list2||[]).join(" ")}));
   REGELN.forEach(x=>r.push({t:x.title,k:"Faustregel",h:"#regeln/"+x.id,txt:x.rule+" "+x.text}));
   KAMERA.forEach(x=>r.push({t:x.title,k:"Kamera",h:"#kamera/"+x.id,txt:x.text.join(" ")}));
   GLOSSAR.forEach(([t,d,type,id])=>r.push({t:t,k:"Glossar",h:type?href(type,id):"#glossar",txt:d}));
