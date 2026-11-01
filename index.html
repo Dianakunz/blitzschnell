@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 0.2.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 0.3.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.2.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "0.3.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -246,7 +246,7 @@ const CARDS = [
     errors:["Unscharfe Sterne: Der Unendlich-Anschlag am Objektiv ist oft nicht ganz exakt → mit der Fokuslupe an einem hellen Stern scharfstellen.","Sterne als kurze Striche: Belichtungszeit zu lang für die Brennweite.","Verwackelt durch Wind oder Antippen → Selbstauslöser nehmen, Stativ beschweren.","Beschlagene Frontlinse in feuchten Nächten."],
     sony:[
       "Fokuslupe: Fokusmodus auf MF stellen und am Fokusring drehen – die Kamera vergrößert automatisch, wenn [MF-Unterstützung] eingeschaltet ist.",
-      "[Langzeitbel.-RM] (Rauschminderung bei Langzeitbelichtung): Ist sie an, macht die Kamera nach jedem Foto ein gleich langes Dunkelbild. Das halbiert die Zahl der Fotos pro Stunde.",
+      "[Langzeit-RM] bzw. [Langzeitbel.-RM] (Rauschminderung bei Langzeitbelichtung, Name je nach Modell): Ist sie an, macht die Kamera nach jedem Foto ein gleich langes Dunkelbild. Das halbiert die Zahl der Fotos pro Stunde.",
       "Fernauslösen geht auch per Smartphone-App von Sony."
     ],
     tryit:"Die gleiche Szene mit 10 s, 20 s und 30 s fotografieren und am Rechner groß ansehen: Ab wann werden die Sterne zu Strichen?",
@@ -373,30 +373,475 @@ const CARDS = [
     tryit:"Wenn ein großer Vogel langsam vorbeigleitet: einmal 1/2000 s, einmal 1/250 s und dabei mitschwenken. Das zweite wird ein Mitzieher mit verwischtem Hintergrund.",
     see:[["karte","voegel","Vögel"],["karte","mitzieher","Mitzieher"],["kamera","taste","Einstellungen auf eine Taste legen"]]
   },
-  {id:"blueten",cat:"natur",title:"Blüten und Pflanzen",icon:"flower",soon:true},
-  {id:"insekten",cat:"natur",title:"Insekten",icon:"bug",soon:true},
-  {id:"makro-tele",cat:"natur",title:"Makro mit dem Tele",icon:"focus",soon:true},
-  {id:"heimstudio",cat:"natur",title:"Kleine Dinge zu Hause",icon:"home",soon:true},
-  {id:"landschaft",cat:"landschaft",title:"Landschaft",icon:"mountain",soon:true},
-  {id:"sonnenuntergang",cat:"landschaft",title:"Sonnenauf- und -untergang",icon:"sun",soon:true},
-  {id:"gegenlicht",cat:"landschaft",title:"Gegenlicht und Silhouetten",icon:"sun",soon:true},
-  {id:"wolken",cat:"landschaft",title:"Wolken und Gewitter",icon:"cloud",soon:true},
-  {id:"wasser",cat:"landschaft",title:"Wasser weich zeichnen",icon:"water",soon:true},
-  {id:"panorama",cat:"landschaft",title:"Panorama",icon:"mountain",soon:true},
-  {id:"nebel-schnee",cat:"landschaft",title:"Nebel und Schnee",icon:"cloud",soon:true},
-  {id:"blaue-stunde",cat:"nacht",title:"Blaue Stunde und Stadt bei Nacht",icon:"building",soon:true},
-  {id:"feuerwerk",cat:"nacht",title:"Feuerwerk",icon:"firework",soon:true},
-  {id:"lichtspuren",cat:"nacht",title:"Lichtspuren",icon:"stars",soon:true},
-  {id:"portraet",cat:"menschen",title:"Porträt",icon:"person",soon:true},
-  {id:"kinder",cat:"menschen",title:"Kinder",icon:"person",soon:true},
-  {id:"gruppen",cat:"menschen",title:"Paare und Gruppen",icon:"person",soon:true},
-  {id:"aufhellblitz",cat:"menschen",title:"Porträt im Gegenlicht mit Blitz",icon:"flash",soon:true},
-  {id:"sport",cat:"bewegung",title:"Sport und Action",icon:"run",soon:true},
-  {id:"mitzieher",cat:"bewegung",title:"Mitzieher",icon:"run",soon:true},
-  {id:"verwischen",cat:"bewegung",title:"Bewegung bewusst verwischen",icon:"run",soon:true},
-  {id:"architektur",cat:"architektur",title:"Gebäude",icon:"building",soon:true},
-  {id:"stadt",cat:"architektur",title:"Stadtansichten",icon:"building",soon:true},
-  {id:"innenraeume",cat:"architektur",title:"Innenräume ohne Blitz",icon:"building",soon:true}
+  {
+    id:"blueten",cat:"natur",title:"Blüten und Pflanzen",icon:"flower",
+    intro:"Nah ran an Blüten, Blätter und Tautropfen – mit weichem Hintergrund und genau gesetzter Schärfe.",
+    recipe:[
+      ["Modus","A (Blende) + ISO-Auto mit Mindestzeit"],
+      ["Belichtungszeit","Mindestzeit ca. 1/250 s"],
+      ["Blende","f/5.6–8 für weichen Hintergrund, f/8–11 für mehr Schärfe"],
+      ["ISO","Auto"],
+      ["Fokus","AF-S mit kleinem Fokuspunkt – oder manuell"],
+      ["Antrieb","Einzelbild"],
+      ["Brennweite","Tele mit kurzer Naheinstellgrenze oder Makro"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Weiches Licht ist am schönsten: bewölkter Himmel, Schatten oder früher Morgen. Pralle Sonne macht harte Schatten.","Mit Tele und etwas Abstand wird der Hintergrund ruhiger und unschärfer.","Den Hintergrund bewusst wählen: einen Schritt zur Seite gehen, bis hinter der Blüte etwas Ruhiges (Grün, Himmel) liegt.","Bei Wind kurze Zeiten wählen oder eine windstille Pause abwarten.","Mit einer Sprühflasche lassen sich Tautropfen nachhelfen."],
+    errors:["Schärfe auf dem falschen Blütenblatt – bei Nahaufnahmen ist der scharfe Bereich nur wenige Millimeter tief.","Unruhiger Hintergrund mit hellen Flecken lenkt ab.","Verwackelt durch Wind oder zu lange Zeit."],
+    sony:["Fokusfeld [Flexible Spot] S, um genau den Blütenstempel zu treffen.","Fokusmodus [DMF]: erst Autofokus, dann mit dem Fokusring fein nachstellen.","Fokuslupe und Kantenanhebung (Peaking) helfen beim manuellen Scharfstellen."],
+    tryit:"Eine Blüte mit f/5.6, f/8 und f/11 fotografieren und groß vergleichen: Wie viel der Blüte ist scharf, wie weich ist der Hintergrund?",
+    see:[["karte","makro-tele","Makro mit dem Tele"],["karte","insekten","Insekten"],["grund","schaerfe","Schärfentiefe"]]
+  },
+  {
+    id:"insekten",cat:"natur",title:"Insekten",icon:"bug",
+    intro:"Bienen, Schmetterlinge, Libellen: winzig, beweglich und schnell weg – Geduld und kurze Zeiten helfen.",
+    recipe:[
+      ["Modus","A (Blende) + ISO-Auto mit Mindestzeit"],
+      ["Belichtungszeit","Mindestzeit 1/250 s, bei Bewegung 1/500 s"],
+      ["Blende","f/8 (f/5.6–11)"],
+      ["ISO","Auto – höhere Werte zulassen"],
+      ["Fokus","AF-C mit kleinem Fokuspunkt aufs Auge – oder manuell"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","Tele mit kurzer Naheinstellgrenze oder Makro"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Früh am Morgen sind viele Insekten noch kühl und träge – dann halten sie still.","Langsam nähern, keine hektischen Bewegungen, keinen Schatten aufs Tier werfen.","Mit mehr Abstand (Tele) flüchten Insekten seltener als mit einem Objektiv, das sehr nah heran muss.","Aufs Auge scharfstellen und parallel zum Körper fotografieren, dann ist mehr vom Insekt scharf.","Beim manuellen Fokussieren die Schärfe einstellen und dann mit dem Oberkörper ganz leicht vor und zurück wippen, bis es scharf ist – dabei eine Serie auslösen."],
+    errors:["Zu offene Blende → nur ein Teil des Insekts ist scharf.","Zu lange Zeit → Bewegungs- oder Verwacklungsunschärfe.","Zu nah heran gestürmt → Insekt ist weg."],
+    sony:["ISO-Auto mit Mindestzeit: MENU → Kamera-Einstlg.1 → [ISO-Einstellung] → [ISO AUTO Min. VS] → z. B. 1/250 oder 1/500.","Fokusfeld [Flexible Spot] S; Tier-Erkennung funktioniert bei Insekten meist nicht (neuere Modelle erkennen teils auch Insekten)."],
+    tryit:"An einem Blumenbeet 10 Minuten stillstehen und warten, bis die Insekten dich nicht mehr beachten. Dann aus gleicher Position fotografieren.",
+    see:[["karte","blueten","Blüten und Pflanzen"],["karte","makro-tele","Makro mit dem Tele"],["grund","fokus","Fokus und Autofokus"]]
+  },
+  {
+    id:"makro-tele",cat:"natur",title:"Makro mit dem Tele",icon:"focus",
+    intro:"Ohne Makroobjektiv nah heran: Viele Zooms kommen erstaunlich nah – und es gibt günstiges Zubehör.",
+    recipe:[
+      ["Modus","A (Blende) + ISO-Auto mit Mindestzeit"],
+      ["Belichtungszeit","Mindestzeit ca. 1/250 s"],
+      ["Blende","f/8"],
+      ["ISO","Auto"],
+      ["Fokus","AF-S mit kleinem Fokuspunkt oder manuell"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","je nach Objektiv – siehe Tipps"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Wichtigste Zahl ist der Abbildungsmaßstab (z. B. 1:2 = halbe Lebensgröße auf dem Sensor). Echte Makroobjektive schaffen 1:1.","Nachschauen, bei welcher Brennweite dein Objektiv am nächsten herankommt. Manche Reisezooms erreichen ihren größten Maßstab am Weitwinkel-Ende – dann aber nur wenige Zentimeter vor dem Motiv. Am Tele-Ende ist der Maßstab oft kleiner, dafür bleibt mehr Abstand (gut für scheue Insekten).","Auf die Naheinstellgrenze gehen und dann mit dem Körper vor und zurück, statt am Fokusring zu drehen.","Günstige Alternativen zum Makroobjektiv: Nahlinsen (Vorsatzlinsen, werden aufs Objektiv geschraubt) oder Zwischenringe (zwischen Kamera und Objektiv). Beide verkürzen den Mindestabstand; Nahlinsen kosten oft etwas Bildqualität."],
+    errors:["Zu nah dran → der Autofokus findet nichts mehr. Etwas zurück, bis er wieder greift.","Bei sehr kurzem Abstand verdeckt das Objektiv das Licht → Schatten auf dem Motiv.","Zu offene Blende → kaum etwas scharf."],
+    sony:["Fokusmodus [DMF] oder MF mit Fokuslupe für die letzten Millimeter.","Kantenanhebung (Peaking) zeigt, welcher Bereich gerade scharf ist."],
+    tryit:"Dein Objektiv bei kürzester und längster Brennweite jeweils an die Naheinstellgrenze bringen und eine Münze fotografieren. Wo wird sie größer abgebildet?",
+    see:[["karte","insekten","Insekten"],["karte","blueten","Blüten und Pflanzen"],["grund","brennweite","Brennweite"]]
+  },
+  {
+    id:"heimstudio",cat:"natur",title:"Kleine Dinge zu Hause",icon:"home",
+    intro:"Am Fenster wird der Küchentisch zum Mini-Studio – ideal zum Üben an Regentagen.",
+    recipe:[
+      ["Modus","A (Blende)"],
+      ["Belichtungszeit","ergibt sich (Stativ)"],
+      ["Blende","f/8–11, für weichen Hintergrund offener"],
+      ["ISO","100–200"],
+      ["Fokus","AF-S mit kleinem Fokuspunkt oder manuell"],
+      ["Antrieb","Selbstauslöser (2 s)"],
+      ["Brennweite","Normal bis Tele"],
+      ["Format","RAW + JPEG"],
+      ["Stabilisator","auf dem Stativ aus"]
+    ],
+    tips:["Seitliches Fensterlicht ist das schönste Licht – direkte Sonne mit einer Gardine oder Backpapier weicher machen.","Auf der Schattenseite mit weißem Karton oder Alufolie aufhellen.","Ein Bogen Papier oder Karton, hinten hochgebogen, ergibt einen nahtlosen Hintergrund.","Mit Stativ geht es auch mit niedriger ISO und langer Zeit – das Motiv bewegt sich ja nicht.","Deckenlicht ausschalten, damit sich die Lichtfarben nicht mischen."],
+    errors:["Gemischtes Licht (Fenster + Lampe) → Farbstich.","Harte Schatten durch direkte Sonne.","Krümel, Staub und Fingerabdrücke – man sieht sie erst im großen Bild."],
+    sony:["Selbstauslöser: [Bildfolgemodus] → [Selbstauslöser] → 2 Sek.","Weißabgleich bei Mischlicht ggf. manuell (benutzerdefinierter Weißabgleich mit weißem Papier)."],
+    tryit:"Einen Apfel einmal mit Licht von vorn, einmal von der Seite und einmal von hinten fotografieren. Welches Licht zeigt die Form am besten?",
+    see:[["karte","blueten","Blüten und Pflanzen"],["grund","wb","Weißabgleich"],["grund","antrieb","Antrieb"]]
+  },
+  {
+    id:"landschaft",cat:"landschaft",title:"Landschaft",icon:"mountain",
+    intro:"Von vorne bis hinten scharf, mit Vordergrund und gutem Licht – Stativ und Geduld lohnen sich.",
+    recipe:[
+      ["Modus","A (Blende)"],
+      ["Belichtungszeit","ergibt sich – aus der Hand mind. Kehrwert der Brennweite"],
+      ["Blende","f/8–11"],
+      ["ISO","100–400"],
+      ["Fokus","AF-S, etwa ein Drittel ins Bild hinein"],
+      ["Antrieb","Einzelbild, auf dem Stativ Selbstauslöser"],
+      ["Brennweite","Weitwinkel für Weite, Tele für Ausschnitte"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["f/8–11 ist bei den meisten Objektiven der schärfste Bereich. Viel weiter abblenden (f/16, f/22) macht das Bild durch Beugung wieder weicher.","Auf einen Punkt etwa ein Drittel ins Bild hinein scharfstellen – so wird meist Vorder- und Hintergrund scharf.","Einen Vordergrund suchen (Steine, Blumen, Weg), das gibt Tiefe.","Das schönste Licht gibt es morgens und abends; die Mittagssonne wirkt flach.","Ein Polfilter macht den Himmel blauer und nimmt Spiegelungen."],
+    errors:["Schiefer Horizont → Gitterlinien oder Wasserwaage im Sucher einschalten.","Auf unendlich fokussiert → Vordergrund unscharf.","Leerer, langweiliger Vordergrund oder zu viel grauer Himmel."],
+    sony:["Gitterlinien: MENU → [Gitterlinie] → z. B. [3x3 Raster].","Digitale Wasserwaage: mit der DISP-Taste die Anzeige durchschalten."],
+    tryit:"Dieselbe Landschaft einmal mit und einmal ohne Vordergrund fotografieren. Welches Bild wirkt räumlicher?",
+    see:[["karte","sonnenuntergang","Sonnenauf- und -untergang"],["grund","schaerfe","Schärfentiefe"],["regel","blendewahl","Blende nach Motiv"]]
+  },
+  {
+    id:"sonnenuntergang",cat:"landschaft",title:"Sonnenauf- und -untergang",icon:"sun",
+    intro:"Warme Farben, dramatischer Himmel – aber die Kamera will die Stimmung gern „wegkorrigieren“.",
+    recipe:[
+      ["Modus","A mit Belichtungskorrektur, nach Sonnenuntergang M"],
+      ["Belichtungszeit","ergibt sich"],
+      ["Blende","f/8–11"],
+      ["ISO","100–400"],
+      ["Fokus","AF-S auf den Horizont oder Vordergrund"],
+      ["Antrieb","Einzelbild, Stativ bei wenig Licht"],
+      ["Brennweite","Weitwinkel für den Himmel, Tele für eine große Sonne"],
+      ["Format","RAW + JPEG"],
+      ["Weißabgleich","Tageslicht, für wärmere Farben Bewölkt oder Schatten"]
+    ],
+    tips:["Belichtungskorrektur −1/3 bis −1: Sonst hellt die Kamera auf und die Farben werden blass.","Den Weißabgleich fest einstellen. Der automatische Weißabgleich nimmt oft das Orange heraus.","Nicht nach Sonnenuntergang einpacken – die Farben am Himmel sind oft 10–20 Minuten später am stärksten.","Ein Vordergrund als Silhouette (Baum, Person, Boot) macht das Bild spannender.","Vorsicht: Nie mit dem Tele länger direkt in die Sonne schauen oder die Kamera lange auf die hohe Sonne richten – das schadet Augen und Sensor. Nur kurz, wenn die Sonne tief und gedämpft ist."],
+    errors:["Himmel ausgefressen weiß → minus korrigieren, Histogramm prüfen.","Farben blass durch automatischen Weißabgleich.","Horizont genau in der Mitte – lieber ins untere oder obere Drittel."],
+    sony:["Belichtungskorrektur über die Taste/das Rad für [Belichtungskorr.] oder im Fn-Menü.","Weißabgleich im Fn-Menü auf [Tageslicht] oder [Bewölkt]."],
+    tryit:"Den gleichen Sonnenuntergang mit Weißabgleich Auto, Tageslicht und Bewölkt fotografieren und vergleichen.",
+    see:[["karte","gegenlicht","Gegenlicht und Silhouetten"],["grund","wb","Weißabgleich"],["grund","korrektur","Belichtungskorrektur"]]
+  },
+  {
+    id:"gegenlicht",cat:"landschaft",title:"Gegenlicht und Silhouetten",icon:"sun",
+    intro:"Licht von hinten: entweder bewusst als schwarze Silhouette – oder mit aufgehelltem Motiv.",
+    recipe:[
+      ["Modus",""],["Belichtungszeit","ergibt sich"],["Blende",""],["ISO","100–400"],
+      ["Fokus","AF-S auf das Motiv"],["Antrieb","Einzelbild"],["Brennweite","beliebig"],["Format","RAW + JPEG"]
+    ],
+    variants:[
+      {name:"Silhouette",set:{"Modus":"A mit Belichtungskorrektur −1 bis −2, oder M","Blende":"f/8–11"},
+       tips:["Auf den hellen Himmel belichten – das Motiv davor wird schwarz.","Klare, erkennbare Umrisse wählen: Person im Profil, Baum, Tier. Personen nicht überlappen lassen.","Am besten bei tief stehender Sonne oder kurz nach Sonnenuntergang."],
+       tryit:"Eine Person vor dem Abendhimmel einmal mit 0 und einmal mit −2 fotografieren. Ab wann wird sie zur Silhouette?"},
+      {name:"Motiv aufhellen",set:{"Modus":"A mit Belichtungskorrektur +1 bis +2, oder Aufhellblitz","Blende":"offen bis f/5.6"},
+       tips:["Mit Plus-Korrektur wird das Motiv hell, der Himmel dafür sehr hell – das kann luftig und weich wirken.","Besser: Aufhellblitz oder ein Reflektor (weiße Fläche), dann bleiben Motiv und Himmel gut belichtet.","Haare und Fell bekommen im Gegenlicht einen schönen Lichtsaum."],
+       tryit:"Ein Porträt im Gegenlicht einmal ohne, einmal mit eingebautem Blitz (Blitzkorrektur −1) fotografieren."}
+    ],
+    tips:["Streulichtblende aufsetzen oder die Sonne halb hinter einem Ast verstecken – das reduziert helle Flecken und Schleier.","Mit kleiner Blende (f/16) und der Sonne an einer Kante entsteht ein Sonnenstern."],
+    errors:["Grauer Schleier und helle Flecken (Lens Flare) durch direktes Licht ins Objektiv.","Motiv weder richtig hell noch richtig schwarz – lieber eine klare Entscheidung treffen."],
+    sony:["Spotmessung ([Messmodus] → [Spot]) misst genau dort, wo das Motiv ist – praktisch bei Gegenlicht.","Blitzkorrektur im Fn-Menü oder über [Blitzkompens.]."],
+    see:[["karte","sonnenuntergang","Sonnenauf- und -untergang"],["karte","aufhellblitz","Porträt im Gegenlicht mit Blitz"],["grund","korrektur","Belichtungskorrektur"]]
+  },
+  {
+    id:"wolken",cat:"landschaft",title:"Wolken und Gewitter",icon:"cloud",
+    intro:"Dramatische Wolken machen jedes Landschaftsbild spannender. Bei Gewitter gilt: Sicherheit zuerst!",
+    recipe:[
+      ["Modus",""],["Belichtungszeit",""],["Blende",""],["ISO","100"],
+      ["Fokus",""],["Antrieb",""],["Brennweite","Weitwinkel"],["Format","RAW + JPEG"]
+    ],
+    variants:[
+      {name:"Wolken",set:{"Modus":"A mit Belichtungskorrektur −1/3 bis −2/3","Belichtungszeit":"ergibt sich","Blende":"f/8–11","Fokus":"AF-S","Antrieb":"Einzelbild"},
+       tips:["Leicht unterbelichten, damit die Wolken Zeichnung behalten.","Ein Polfilter verstärkt den Kontrast zwischen blauem Himmel und weißen Wolken.","Wolken wirken in Schwarzweiß oft besonders dramatisch.","Eine Gewitterfront oder Regenwand vor sonnigem Vordergrund ist ein tolles Motiv – aus sicherer Entfernung."],
+       tryit:"Den gleichen Himmel mit 0 und −2/3 fotografieren. Wo sieht man mehr Struktur in den Wolken?"},
+      {name:"Blitze (nachts)",set:{"Modus":"M","Belichtungszeit":"5–30 s","Blende":"f/5.6–8","Fokus":"manuell auf unendlich (vorher prüfen)","Antrieb":"Serienbild oder Fernauslöser, Stativ"},
+       tips:["Sicherheit: Nur aus großer Entfernung oder geschützt (Haus, Auto) fotografieren – nie auf freiem Feld, Hügeln oder unter Bäumen. Zieht das Gewitter heran, abbrechen.","Mit langer Zeit fängt man Blitze, die während der Belichtung zucken. Eine Belichtung nach der anderen auslösen.","Sind die Blitze zu hell, Blende schließen oder ISO senken; sind sie zu schwach, öffnen."],
+       tryit:"Von einem geschützten Fenster aus eine Serie von 15-Sekunden-Belichtungen in Richtung eines fernen Gewitters machen."}
+    ],
+    tips:["Eine Wetter-App mit Regenradar hilft bei der Planung."],
+    errors:["Weißer, strukturloser Himmel → minus korrigieren.","Bei Blitzen: Autofokus sucht im Dunkeln → vorher manuell fokussieren."],
+    sony:["Längere Zeiten als 30 s gibt es im M-Modus über [BULB] (Zeit über 30\" hinaus drehen)."],
+    see:[["karte","landschaft","Landschaft"],["grund","korrektur","Belichtungskorrektur"]]
+  },
+  {
+    id:"wasser",cat:"landschaft",title:"Wasser weich zeichnen",icon:"water",
+    intro:"Mit langer Belichtungszeit wird fließendes Wasser zu seidigen Schleiern – Stativ ist Pflicht.",
+    recipe:[
+      ["Modus","S (Zeit) oder M"],
+      ["Belichtungszeit","1/2–2 s (je nach Fließgeschwindigkeit)"],
+      ["Blende","f/8–16"],
+      ["ISO","100 (niedrigster Wert)"],
+      ["Fokus","AF-S, dann ggf. auf MF umschalten"],
+      ["Antrieb","Selbstauslöser (2 s) oder Fernauslöser"],
+      ["Brennweite","beliebig"],
+      ["Format","RAW + JPEG"],
+      ["Stabilisator","auf dem Stativ aus"]
+    ],
+    tips:["Schnelles Wasser wird schon bei 1/4–1/2 s weich, ruhige Bäche brauchen länger.","Kürzere Zeiten (1/8–1/4 s) lassen noch Struktur im Wasser erkennen – oft schöner als reine „Milch“.","Bei Tageslicht reicht das Licht für lange Zeiten selten: Ein Graufilter (ND) hilft – ND8 = 3 Stufen, ND64 = 6 Stufen länger.","Am besten an bewölkten Tagen oder im Schatten fotografieren.","Ein Polfilter nimmt Spiegelungen auf Wasser und nassen Steinen."],
+    errors:["Bild zu hell, obwohl Blende schon zu ist → Graufilter nötig.","Verwackelt → Stativ, Selbstauslöser, Stabilisator aus.","Zu stark abgeblendet (f/22) → Bild wird durch Beugung weich."],
+    sony:["[Langzeit-RM] (je nach Modell auch [Langzeitbel.-RM]) verdoppelt bei langen Zeiten die Wartezeit – bei Zeiten unter 1 s spielt es meist keine Rolle."],
+    tryit:"Den gleichen Bach mit 1/250 s, 1/4 s und 2 s fotografieren. Welche Wirkung gefällt dir am besten?",
+    see:[["rechner","graufilter","Rechner: Graufilter"],["karte","lichtspuren","Lichtspuren"],["grund","zeit","Belichtungszeit"]]
+  },
+  {
+    id:"panorama",cat:"landschaft",title:"Panorama",icon:"mountain",
+    intro:"Mehrere Fotos nebeneinander, später am Computer zusammengesetzt – für Aussichten, die nicht in ein Bild passen.",
+    recipe:[
+      ["Modus","M (alle Bilder gleich belichtet)"],
+      ["Belichtungszeit","fest, aus der Hand mind. 1/125 s"],
+      ["Blende","f/8"],
+      ["ISO","fest (nicht Auto)"],
+      ["Fokus","einmal scharfstellen, dann MF"],
+      ["Antrieb","Einzelbild"],
+      ["Brennweite","Normal bis leichtes Tele (weniger Verzerrung)"],
+      ["Format","RAW + JPEG"],
+      ["Weißabgleich","fest (nicht Auto)"]
+    ],
+    tips:["Alles fest einstellen: Belichtung, Fokus und Weißabgleich. Sonst gibt es sichtbare Helligkeits- oder Farbsprünge.","Die Kamera hochkant halten – so bleibt oben und unten mehr Platz zum Zuschneiden.","Jedes Bild etwa 30–50 % mit dem vorherigen überlappen lassen. Merke dir einen Punkt am Bildrand, der im nächsten Bild etwa ein Drittel weit drin sein soll.","Aus der Hüfte drehen, nicht nur die Arme schwenken.","Ein Foto deiner Hand vor und nach der Serie zeigt später, welche Bilder zusammengehören."],
+    errors:["Belichtung springt zwischen den Bildern → M-Modus.","Zu wenig Überlappung → die Software kann die Bilder nicht zusammensetzen.","Nahe Gegenstände im Vordergrund → passen beim Zusammensetzen schlecht."],
+    sony:["Viele Sony-Kameras haben einen Modus [Schwenk-Panorama]: Kamera einfach gleichmäßig schwenken, die Kamera setzt das Bild selbst zusammen (nur JPEG)."],
+    tryit:"Eine Aussicht mit 5 Hochkant-Fotos aufnehmen und am Computer zusammensetzen (z. B. mit Lightroom oder einer kostenlosen Panorama-Software).",
+    see:[["karte","landschaft","Landschaft"],["grund","modus","Belichtungsprogramme"]]
+  },
+  {
+    id:"nebel-schnee",cat:"landschaft",title:"Nebel und Schnee",icon:"cloud",
+    intro:"Weiß und Grau täuschen die Belichtungsmessung – mit Plus-Korrektur wird Schnee wieder weiß.",
+    recipe:[
+      ["Modus","A mit Belichtungskorrektur"],["Belichtungszeit","ergibt sich"],["Blende","f/8"],["ISO","100–400"],
+      ["Fokus","AF-S auf kontrastreiches Motiv"],["Antrieb","Einzelbild"],["Brennweite","beliebig"],["Format","RAW + JPEG"]
+    ],
+    variants:[
+      {name:"Schnee",set:{},
+       tips:["Belichtungskorrektur +1 bis +2: Die Kamera will Schnee sonst grau machen. Bei bedecktem Himmel reicht oft +1, bei Sonne eher +1,5 bis +2.","Im Histogramm prüfen, dass der Schnee nicht ganz am rechten Rand klebt – sonst ist er strukturlos weiß.","Seitliches Licht am Morgen oder Abend zeigt die Struktur im Schnee.","Fallende Flocken: mit 1/250 s als Punkte, mit 1/30 s als Striche."],
+       tryit:"Eine Schneelandschaft mit 0, +1 und +2 fotografieren. Bei welcher Korrektur ist der Schnee weiß, aber noch mit Struktur?"},
+      {name:"Nebel",set:{},
+       tips:["Auch Nebel wird von der Kamera zu dunkel und grau gemacht → +1 bis +2.","Ein dunkles Motiv im Vordergrund (Baum, Zaun) gibt Halt, der Hintergrund verschwindet im Dunst.","Nebel hält oft nur kurz nach Sonnenaufgang – früh da sein.","Der Autofokus hat bei Nebel wenig Kontrast → auf ein nahes, deutliches Motiv scharfstellen."],
+       tryit:"Eine Baumreihe im Nebel mit Weitwinkel und mit Tele fotografieren. Wie verändert sich die Tiefenwirkung?"}
+    ],
+    tips:["Kälte leert den Akku schnell: Ersatzakku in der Jackentasche warm halten.","Beim Reinkommen die Kamera in der geschlossenen Tasche langsam warm werden lassen – sonst beschlägt sie innen und außen."],
+    errors:["Grauer statt weißer Schnee → zu wenig Plus-Korrektur.","Beschlagenes Objektiv nach dem Wechsel von kalt nach warm."],
+    sony:["Belichtungskorrektur über die Taste/das Rad für [Belichtungskorr.] oder im Fn-Menü.","Zebra ab 100+ zeigt, wo der Schnee ausfrisst."],
+    see:[["karte","landschaft","Landschaft"],["grund","korrektur","Belichtungskorrektur"],["kamera","zebra","Zebra"]]
+  },
+  {
+    id:"blaue-stunde",cat:"nacht",title:"Blaue Stunde und Stadt bei Nacht",icon:"building",
+    intro:"Kurz nach Sonnenuntergang leuchtet der Himmel tiefblau und die Lichter der Stadt gehen an – das perfekte Gleichgewicht.",
+    recipe:[
+      ["Modus","M oder A"],
+      ["Belichtungszeit","1–30 s (Stativ)"],
+      ["Blende","f/8–11"],
+      ["ISO","100–400"],
+      ["Fokus","AF-S auf ein beleuchtetes Gebäude, dann MF"],
+      ["Antrieb","Selbstauslöser (2 s) oder Fernauslöser"],
+      ["Brennweite","beliebig"],
+      ["Format","RAW + JPEG"],
+      ["Weißabgleich","fest, z. B. Tageslicht – oder Auto und in RAW korrigieren"],
+      ["Stabilisator","auf dem Stativ aus"]
+    ],
+    tips:["Die blaue Stunde beginnt kurz nach Sonnenuntergang und dauert je nach Jahreszeit etwa 20–40 Minuten. Rechtzeitig da sein und Standort vorher suchen.","Das Licht ändert sich schnell: Anfangs reichen wenige Sekunden, später werden es 10–30 Sekunden. Regelmäßig nachjustieren.","Mit f/11–16 werden Straßenlaternen zu Sternen.","Wasser davor (Fluss, Pfütze) verdoppelt die Lichter als Spiegelung."],
+    errors:["Zu spät gekommen → Himmel schon schwarz.","Lichter ausgefressen → Histogramm prüfen, etwas kürzer belichten.","Verwackelt → Stativ, Selbstauslöser, Stabilisator aus."],
+    sony:["Längere Zeiten als 30 s im M-Modus über [BULB].","[Langzeit-RM] (je nach Modell auch [Langzeitbel.-RM]) verdoppelt die Wartezeit nach jedem Bild – bei Zeitdruck ausschalten und das Rauschen später korrigieren."],
+    tryit:"Vom gleichen Standpunkt alle 5 Minuten ein Foto machen, vom Sonnenuntergang bis zur Dunkelheit. Welches gefällt dir am besten?",
+    see:[["karte","lichtspuren","Lichtspuren"],["karte","stadt","Stadtansichten"],["grund","zeit","Belichtungszeit"]]
+  },
+  {
+    id:"feuerwerk",cat:"nacht",title:"Feuerwerk",icon:"firework",
+    intro:"Leuchtende Spuren am Nachthimmel: Stativ, manueller Fokus und ein paar Sekunden Belichtung.",
+    recipe:[
+      ["Modus","M (oder BULB)"],
+      ["Belichtungszeit","2–6 s, beim Finale kürzer"],
+      ["Blende","f/8–11"],
+      ["ISO","100–200"],
+      ["Fokus","manuell, auf die erste Rakete oder ein Gebäude in gleicher Entfernung"],
+      ["Antrieb","Fernauslöser bzw. Handy-App, sonst Einzelbild"],
+      ["Brennweite","Weitwinkel bis Normal"],
+      ["Format","RAW + JPEG"],
+      ["Stabilisator","auf dem Stativ aus"]
+    ],
+    tips:["Ein Feuerwerk ist hell genug für niedrige ISO und kleine Blende. Werden die Spuren weiß statt farbig, Blende weiter schließen.","Beim Start einer Rakete auslösen und offen lassen, bis sie verglüht (2–4 s).","Beim großen Finale, wenn viel gleichzeitig explodiert, kürzer belichten oder f/16 nehmen.","Einen Vordergrund mit einplanen (Silhouette von Gebäuden, Wasser) und den Platz früh sichern – mit dem Wind im Rücken, damit der Rauch nicht vor das Feuerwerk zieht.","Blitz aus – er reicht nicht bis zum Himmel."],
+    errors:["Unscharf, weil der Autofokus im Dunkeln sucht → vorher manuell fokussieren und nicht mehr anfassen.","Überbelichtet beim Finale → kürzer oder Blende zu.","Zu eng gewählter Ausschnitt → Spuren abgeschnitten."],
+    sony:["[BULB]: im M-Modus die Zeit über 30\" hinaus drehen – die Kamera belichtet, solange der Auslöser gedrückt ist (am besten mit Fernauslöser).","[Langzeit-RM] (je nach Modell auch [Langzeitbel.-RM]) ausschalten, sonst wartet die Kamera nach jedem Bild."],
+    tryit:"Abwechselnd mit 2 s und 6 s belichten. Welche Zeit zeigt die Spuren am schönsten?",
+    see:[["karte","lichtspuren","Lichtspuren"],["karte","blaue-stunde","Blaue Stunde"],["grund","fokus","Fokus und Autofokus"]]
+  },
+  {
+    id:"lichtspuren",cat:"nacht",title:"Lichtspuren",icon:"stars",
+    intro:"Autos werden zu leuchtenden Bändern: lange Belichtung von einem festen Standpunkt.",
+    recipe:[
+      ["Modus","M"],
+      ["Belichtungszeit","10–30 s"],
+      ["Blende","f/8–11"],
+      ["ISO","100–200"],
+      ["Fokus","AF-S auf die Straße, dann MF"],
+      ["Antrieb","Selbstauslöser (2 s) oder Fernauslöser"],
+      ["Brennweite","Weitwinkel bis Normal"],
+      ["Format","RAW + JPEG"],
+      ["Stabilisator","auf dem Stativ aus"]
+    ],
+    tips:["Gute Standorte: Brücken über Straßen, Kurven, Kreisverkehre.","Während der blauen Stunde ist auch der Himmel noch schön – später wird er schwarz.","Ist es noch zu hell für 10 s und mehr, Blende weiter schließen (f/13–16) oder einen Graufilter nutzen.","Scheinwerfer (weiß) und Rücklichter (rot) wirken unterschiedlich – beides ausprobieren.","Busse und Lastwagen ziehen hohe Spuren, das sieht besonders schön aus."],
+    errors:["Zu kurze Zeit → nur kurze Striche statt durchgehender Spuren.","Stativ auf einer Brücke wackelt durch den Verkehr → Belichtung wiederholen, Zeitpunkt abwarten.","Lichter ausgefressen → Blende schließen."],
+    sony:["Längere Zeiten als 30 s im M-Modus über [BULB].","Fernauslösen ist auch per Smartphone-App von Sony möglich."],
+    tryit:"Die gleiche Straße mit 5 s, 15 s und 30 s fotografieren. Wie verändern sich die Spuren?",
+    see:[["karte","blaue-stunde","Blaue Stunde"],["karte","feuerwerk","Feuerwerk"],["karte","wasser","Wasser weich zeichnen"]]
+  },
+  {
+    id:"portraet",cat:"menschen",title:"Porträt",icon:"person",
+    intro:"Ein Gesicht vor weichem, unscharfem Hintergrund – mit scharfen Augen und schmeichelndem Licht.",
+    recipe:[
+      ["Modus","A (Blende)"],
+      ["Belichtungszeit","mind. 1/125–1/250 s"],
+      ["Blende","f/1.8–2.8 (Einzelperson)"],
+      ["ISO","100–400, drinnen höher"],
+      ["Fokus","AF-C mit Augen-AF"],
+      ["Antrieb","Einzelbild oder langsame Serie"],
+      ["Brennweite","Kleinbild ca. 85–135 mm (an APS-C ca. 50–85 mm)"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Immer auf das Auge scharfstellen, das der Kamera am nächsten ist.","Leichtes Tele wirkt schmeichelhaft; mit Weitwinkel nah am Gesicht werden Nase und Wangen verzerrt.","Weiches Licht: Schatten, bewölkter Himmel, Fensterlicht. Pralle Mittagssonne macht harte Schatten und zusammengekniffene Augen.","Abstand zwischen Person und Hintergrund vergrößern – dann wird der Hintergrund unschärfer.","Auf Augenhöhe fotografieren und mit der Person reden – entspannte Gesichter wirken natürlicher."],
+    errors:["Fokus auf Nase oder Wimpern statt aufs Auge (bei offener Blende sofort sichtbar).","Störende Dinge im Hintergrund, z. B. ein Ast, der „aus dem Kopf wächst“.","Abgeschnittene Gelenke (Knie, Ellbogen) am Bildrand."],
+    sony:["Augen-AF: MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Ges/AugPrio. bei AF] → [Ein], [Motiverkennung] → [Mensch]."],
+    tryit:"Ein Porträt mit 35 mm aus der Nähe und mit etwa 85 mm aus größerem Abstand im gleichen Ausschnitt machen. Wie wirkt das Gesicht?",
+    see:[["karte","kinder","Kinder"],["karte","aufhellblitz","Porträt im Gegenlicht mit Blitz"],["kamera","augenaf","Augen-AF"]]
+  },
+  {
+    id:"kinder",cat:"menschen",title:"Kinder",icon:"person",
+    intro:"Kinder halten selten still: Augenhöhe, kurze Zeiten und viele Bilder.",
+    recipe:[
+      ["Modus","A + ISO-Auto mit Mindestzeit, oder S"],
+      ["Belichtungszeit","mind. 1/250 s, beim Toben 1/500–1/1000 s"],
+      ["Blende","f/2.8–4"],
+      ["ISO","Auto"],
+      ["Fokus","AF-C mit Augen-AF"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","Normal bis leichtes Tele"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Auf Augenhöhe der Kinder gehen – hinknien, hinsetzen, hinlegen.","Beim Spielen fotografieren statt zu stellen: So entstehen natürliche Gesichter.","Etwas mehr Schärfentiefe (f/2.8–4) gibt Spielraum, wenn sich das Kind bewegt.","Ein leichtes Tele hält Abstand, die Kinder vergessen die Kamera schneller.","Fremde Kinder nur mit Erlaubnis der Eltern fotografieren und veröffentlichen."],
+    errors:["Von oben herab fotografiert → Kind wirkt klein.","Zu lange Zeit → Hände und Gesicht verwischt.","Verpasster Moment durch Einzelbild."],
+    sony:["Augen-AF mit [Motiverkennung] → [Mensch].","ISO-Auto mit Mindestzeit: MENU → Kamera-Einstlg.1 → [ISO-Einstellung] → [ISO AUTO Min. VS]."],
+    tryit:"Ein Kind beim Spielen 5 Minuten lang aus Augenhöhe begleiten und nur fotografieren, ohne Anweisungen zu geben.",
+    see:[["karte","portraet","Porträt"],["karte","sport","Sport und Action"],["regel","bewegung","Bewegung einfrieren"]]
+  },
+  {
+    id:"gruppen",cat:"menschen",title:"Paare und Gruppen",icon:"person",
+    intro:"Mehrere Gesichter scharf und alle Augen offen – dafür braucht es mehr Schärfentiefe und mehrere Versuche.",
+    recipe:[
+      ["Modus","A (Blende)"],
+      ["Belichtungszeit","mind. 1/125 s"],
+      ["Blende","2 Personen: f/4 · Gruppen: f/5.6–8"],
+      ["ISO","100–400, drinnen höher"],
+      ["Fokus","AF-S/AF-C mit Augen-AF auf eine Person in der Mitte"],
+      ["Antrieb","Serienbild oder Selbstauslöser mit Serie"],
+      ["Brennweite","Normal"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Je mehr Personen und je mehr Reihen, desto weiter abblenden.","Alle möglichst auf eine Ebene stellen (gleicher Abstand zur Kamera).","Immer mehrere Bilder machen – irgendwer blinzelt immer.","Gleichmäßiges Licht suchen: kein halber Schatten über der Gruppe.","Wer selbst mit aufs Bild will: Stativ und Selbstauslöser mit mehreren Bildern."],
+    errors:["Offene Blende → Personen in der hinteren Reihe unscharf.","Geschlossene Augen → mehr Bilder machen.","Weitwinkel → Personen am Rand wirken verzerrt."],
+    sony:["Selbstauslöser mit Serie: [Bildfolgemodus] → [Selbstaus(Serie)] – z. B. 10 Sek., 3 Bilder."],
+    tryit:"Eine Gruppe in zwei Reihen einmal mit f/2.8 und einmal mit f/8 fotografieren. Ist die hintere Reihe jeweils scharf?",
+    see:[["karte","portraet","Porträt"],["grund","schaerfe","Schärfentiefe"],["regel","blendewahl","Blende nach Motiv"]]
+  },
+  {
+    id:"aufhellblitz",cat:"menschen",title:"Porträt im Gegenlicht mit Blitz",icon:"flash",
+    intro:"Die Sonne von hinten, das Gesicht trotzdem hell: Der Blitz füllt die Schatten auf – dezent, nicht als Hauptlicht.",
+    recipe:[
+      ["Modus","A oder P"],
+      ["Belichtungszeit","ergibt sich (begrenzt durch Blitzsynchronzeit)"],
+      ["Blende","f/4–8"],
+      ["ISO","100–200"],
+      ["Fokus","AF-C mit Augen-AF"],
+      ["Antrieb","Einzelbild"],
+      ["Brennweite","Normal bis leichtes Tele"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Blitzmodus „Aufhellblitz“ wählen, damit der Blitz auch bei hellem Licht auslöst.","Blitzkorrektur −1 bis −2: Der Blitz soll nur aufhellen, nicht dominieren. Danach je nach Ergebnis anpassen.","Der Hintergrund wird über die normale Belichtung (Belichtungskorrektur) gesteuert, das Gesicht über die Blitzkorrektur.","Der eingebaute Blitz reicht nur wenige Meter – nah genug herangehen.","Alternative ohne Blitz: eine weiße Fläche oder ein Reflektor als Aufheller."],
+    errors:["Blitz zu stark → Gesicht wirkt flach und „angeblitzt“.","Zu weit weg → Blitz hat keine Wirkung mehr.","Bei sehr hellem Licht wird die Zeit durch die Blitzsynchronzeit begrenzt → Bild zu hell. Dann Blende schließen."],
+    sony:["Blitzmodus: Fn-Menü oder MENU → [Blitzmodus] → [Aufhellblitz].","Blitzkorrektur: Fn-Menü oder MENU → [Blitzkompens.]."],
+    tryit:"Ein Porträt im Gegenlicht ohne Blitz, mit Blitzkorrektur 0 und mit −1,5 fotografieren und vergleichen.",
+    see:[["karte","gegenlicht","Gegenlicht und Silhouetten"],["karte","portraet","Porträt"]]
+  },
+  {
+    id:"sport",cat:"bewegung",title:"Sport und Action",icon:"run",
+    intro:"Schnelle Bewegungen gestochen scharf: kurze Zeit, Nachführ-Autofokus und Serienbild.",
+    recipe:[
+      ["Modus","S oder M + ISO-Auto"],
+      ["Belichtungszeit","1/1000 s oder kürzer"],
+      ["Blende","offen bis f/5.6"],
+      ["ISO","Auto"],
+      ["Fokus","AF-C, Tracking (mit Personen-Erkennung) oder Zone"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","Tele"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Die Zeit hat Vorrang: lieber höhere ISO als Bewegungsunschärfe.","Den Ablauf kennen und vorausahnen: Wo passiert gleich etwas? Auf diese Stelle vorfokussieren.","Schon vor dem Höhepunkt auslösen und die Serie durchlaufen lassen.","Gesichter und Ball oder Gerät im Bild machen Sportfotos spannend.","Bei Hallensport reicht das Licht oft nicht: offene Blende, hohe ISO – oder bewusst einen Mitzieher versuchen."],
+    errors:["Zu lange Zeit → Arme und Beine verwischt.","Fokus auf dem Hintergrund → kleineres Fokusfeld oder Tracking.","Zu spät ausgelöst → Moment verpasst."],
+    sony:["Fokusfeld [Tracking] mit Gesichts-/Augen-Erkennung für Menschen.","Mit [BenutzAufnEinst reg.] lässt sich ein „Sport-Paket“ auf eine Taste legen."],
+    tryit:"Bei einem Fußballspiel nur in einem Bereich (z. B. vor dem Tor) vorfokussieren und warten, bis dort etwas passiert.",
+    see:[["karte","mitzieher","Mitzieher"],["regel","bewegung","Bewegung einfrieren"],["kamera","tracking","Fokusfelder und Tracking"]]
+  },
+  {
+    id:"mitzieher",cat:"bewegung",title:"Mitzieher",icon:"run",
+    intro:"Die Kamera folgt dem Motiv: Es bleibt scharf, der Hintergrund verwischt zu Streifen – so sieht man Tempo.",
+    recipe:[
+      ["Modus","S (Zeit)"],
+      ["Belichtungszeit","Autos 1/60–1/125 s · Radfahrer 1/30–1/60 s · Fußgänger 1/15–1/30 s"],
+      ["Blende","ergibt sich (meist f/8–16)"],
+      ["ISO","100"],
+      ["Fokus","AF-C, Zone oder Tracking"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","Normal bis Tele"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Seitlich zur Bewegungsrichtung stellen: Das Motiv soll quer durchs Bild fahren.","Das Motiv früh aufnehmen, gleichmäßig mitschwenken, während der Serie weiter mitdrehen – auch nach dem Auslösen.","Aus der Hüfte drehen, Füße fest, Ellbogen am Körper.","Mit 1/60 s anfangen und dann langsamer werden; je langsamer, desto stärker der Effekt, aber desto mehr Ausschuss.","Bei sehr hellem Licht wird es für lange Zeiten zu hell → Graufilter (ND8)."],
+    errors:["Motiv unscharf → Schwenk war nicht gleichmäßig oder Zeit zu lang.","Hintergrund kaum verwischt → Zeit zu kurz.","Motiv fährt auf die Kamera zu statt quer → kein Streifeneffekt."],
+    sony:["Den Bildstabilisator anlassen – viele Objektive erkennen das Mitziehen und stabilisieren nur noch senkrecht."],
+    tryit:"An einer Straße 20 Mitzieher von Radfahrern machen: 5 mit 1/125, 5 mit 1/60, 5 mit 1/30 und 5 mit 1/15 s. Wie viele sind jeweils gelungen?",
+    see:[["karte","sport","Sport und Action"],["karte","verwischen","Bewegung bewusst verwischen"],["grund","zeit","Belichtungszeit"]]
+  },
+  {
+    id:"verwischen",cat:"bewegung",title:"Bewegung bewusst verwischen",icon:"run",
+    intro:"Unschärfe als Gestaltung: Menschenmengen werden zu Schleiern, Bäume zu Pinselstrichen.",
+    recipe:[
+      ["Modus","S (Zeit) oder M"],["Belichtungszeit",""],["Blende","f/11–16"],["ISO","100"],
+      ["Fokus","AF-S, dann ggf. MF"],["Antrieb",""],["Brennweite","beliebig"],["Format","RAW + JPEG"]
+    ],
+    variants:[
+      {name:"Stativ: Bewegtes verwischt",set:{"Belichtungszeit":"1/4–2 s","Antrieb":"Selbstauslöser (2 s), Stativ"},
+       tips:["Alles Feste bleibt scharf, nur das Bewegte verwischt: Menschen in einer Einkaufsstraße, Karussell, Bäume im Wind.","Wer still steht, bleibt scharf – eine Person ruhig hinstellen, während die Menge vorbeiströmt.","Bei Tag reicht das Licht selten → Graufilter."],
+       tryit:"Eine belebte Straße von oben mit 1/250 s und mit 1 s fotografieren."},
+      {name:"Kamera bewegen",set:{"Belichtungszeit":"1/4–1 s","Antrieb":"Serienbild, aus der Hand"},
+       tips:["Während der Belichtung die Kamera gezielt bewegen (auf und ab, drehen, zoomen). Das nennt sich ICM (intentional camera movement).","Gut geeignet: hohe Baumstämme (senkrecht ziehen), Meer und Horizont (waagerecht ziehen), Lichter in der Stadt.","Viele Versuche machen – jedes Bild wird anders."],
+       tryit:"Im Wald die Kamera bei 1/2 s während der Aufnahme von unten nach oben ziehen."}
+    ],
+    tips:["Das Ergebnis ist schwer vorherzusagen – ausprobieren macht hier den Reiz aus."],
+    errors:["Alles verwischt, nichts erkennbar → kürzere Zeit oder etwas Festes ins Bild nehmen.","Bild zu hell → Blende schließen, ISO 100, Graufilter."],
+    sony:["Längere Zeiten bei Tag: Graufilter einschrauben und den Rechner unter Regeln nutzen."],
+    see:[["karte","mitzieher","Mitzieher"],["karte","wasser","Wasser weich zeichnen"],["rechner","graufilter","Rechner: Graufilter"]]
+  },
+  {
+    id:"architektur",cat:"architektur",title:"Gebäude",icon:"building",
+    intro:"Gerade Linien, klare Formen, durchgehende Schärfe – und Wände, die nicht nach hinten kippen.",
+    recipe:[
+      ["Modus","A (Blende)"],
+      ["Belichtungszeit","ergibt sich"],
+      ["Blende","f/8–11"],
+      ["ISO","100–400"],
+      ["Fokus","AF-S"],
+      ["Antrieb","Einzelbild, bei wenig Licht Stativ + Selbstauslöser"],
+      ["Brennweite","Weitwinkel für ganze Gebäude, Tele für Details"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Stürzende Linien vermeiden: Kippt man die Kamera nach oben, scheinen die Wände nach hinten zu fallen. Besser Kamera gerade halten und weiter weggehen – oder etwas erhöht stehen.","Kleine stürzende Linien lassen sich später am Computer gerade rücken (dabei geht etwas Bildrand verloren).","Bewusst steil nach oben fotografieren kann auch gut wirken – dann aber deutlich, nicht halb.","Seitliches Licht zeigt Strukturen und Fassaden am besten.","Details suchen: Türen, Fenster, Muster, Treppen, Spiegelungen."],
+    errors:["Leicht schräger Horizont oder schiefe Senkrechte → Gitterlinien einschalten.","Störende Autos, Schilder oder Mülltonnen im Bild.","Gebäude angeschnitten, ohne dass es gewollt aussieht."],
+    sony:["Gitterlinien: MENU → [Gitterlinie] → [3x3 Raster] oder [Quadratraster] – hilft, Senkrechte gerade zu halten."],
+    tryit:"Ein hohes Gebäude einmal von nah mit nach oben gekippter Kamera und einmal von weiter weg mit gerader Kamera fotografieren.",
+    see:[["karte","stadt","Stadtansichten"],["karte","innenraeume","Innenräume ohne Blitz"],["karte","blaue-stunde","Blaue Stunde"]]
+  },
+  {
+    id:"stadt",cat:"architektur",title:"Stadtansichten",icon:"building",
+    intro:"Skyline, Straßenzüge, Plätze: Überblick von oben oder verdichtete Ausschnitte mit dem Tele.",
+    recipe:[
+      ["Modus","A (Blende)"],
+      ["Belichtungszeit","ergibt sich"],
+      ["Blende","f/8–11"],
+      ["ISO","100–400"],
+      ["Fokus","AF-S"],
+      ["Antrieb","Einzelbild"],
+      ["Brennweite","Weitwinkel für Weite, Tele zum Verdichten"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Erhöhte Standpunkte suchen: Aussichtstürme, Kirchtürme, Parkhäuser, Hügel.","Mit dem Tele rücken Gebäude optisch zusammen – Häuserreihen wirken dichter.","Früh morgens sind Straßen leer und das Licht ist weich.","Menschen als Größenvergleich oder Belebung bewusst einplanen.","Abends in der blauen Stunde wirken Städte besonders stimmungsvoll."],
+    errors:["Himmel ausgefressen → leicht minus korrigieren.","Zu viel Durcheinander im Bild → engeren Ausschnitt wählen.","Durch eine Scheibe fotografiert → Objektiv direkt an die Scheibe halten."],
+    sony:["Belichtungskorrektur über die Taste/das Rad für [Belichtungskorr.] oder im Fn-Menü."],
+    tryit:"Vom gleichen Aussichtspunkt die Stadt einmal mit kürzester und einmal mit längster Brennweite fotografieren.",
+    see:[["karte","architektur","Gebäude"],["karte","blaue-stunde","Blaue Stunde"],["grund","brennweite","Brennweite"]]
+  },
+  {
+    id:"innenraeume",cat:"architektur",title:"Innenräume ohne Blitz",icon:"building",
+    intro:"Kirchen, Museen, Hallen: wenig Licht, oft Blitzverbot – mit Stativ oder hoher ISO trotzdem scharf.",
+    recipe:[
+      ["Modus",""],["Belichtungszeit",""],["Blende",""],["ISO",""],
+      ["Fokus","AF-S"],["Antrieb",""],["Brennweite","Weitwinkel"],["Format","RAW + JPEG"]
+    ],
+    variants:[
+      {name:"Mit Stativ",set:{"Modus":"A (Blende)","Belichtungszeit":"ergibt sich (oft 1/15 s bis mehrere Sekunden)","Blende":"f/8","ISO":"100–400","Antrieb":"Selbstauslöser (2 s)"},
+       tips:["So bleibt der ganze Raum von vorne bis hinten scharf, bei bester Bildqualität.","Stabilisator auf dem Stativ ausschalten.","Vorher fragen: In vielen Kirchen und Museen sind Stative nicht erlaubt."],
+       tryit:"Einen Raum mit Stativ bei ISO 100 und einmal aus der Hand bei ISO 3200 fotografieren und die Qualität vergleichen."},
+      {name:"Aus der Hand",set:{"Modus":"A + ISO-Auto mit Mindestzeit","Belichtungszeit":"mind. Kehrwert der Brennweite (mit Stabilisator etwas länger)","Blende":"offen bis f/4","ISO":"Auto, auch 3200–6400","Antrieb":"Serienbild (eines ist meist schärfer)"},
+       tips:["Lichtstarke Festbrennweite nutzen, Stabilisator einschalten.","Kamera an eine Säule oder Bank lehnen, Ellbogen an den Körper.","Eine kurze Serie aufnehmen – bei langen Zeiten ist oft das zweite oder dritte Bild am schärfsten."],
+       tryit:"Mit dem Rechner unter Regeln deine längste Zeit aus der Hand berechnen und ausprobieren, ob es klappt."}
+    ],
+    tips:["Kamera gerade halten, damit Säulen und Wände senkrecht bleiben.","Bei hellen Fenstern und dunklem Raum: Belichtungsreihe machen und später kombinieren, oder auf den Raum belichten und die Fenster hell lassen."],
+    errors:["Verwackelt → Zeit zu lang für die Brennweite.","Gelber Farbstich durch Lampen → Weißabgleich anpassen oder in RAW korrigieren.","Stürzende Linien durch schräg gehaltene Kamera."],
+    sony:["Belichtungsreihe: [Bildfolgemodus] → [Serienreihe] (z. B. 3 Bilder, je 1 Stufe Unterschied)."],
+    see:[["karte","architektur","Gebäude"],["regel","kehrwert","Kehrwert der Brennweite"],["grund","iso","ISO"]]
+  },
 ];
 
 /* ---------- Grundlagen ---------- */
