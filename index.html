@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.7.4 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.7.5 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>Blitzschnell</title>
 <meta name="theme-color" content="#1d2230">
 <link rel="manifest" href="manifest.json">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.7.4";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.7.5";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1208,8 +1208,8 @@ function openGear(){
     o.querySelectorAll("[data-g_del]").forEach(b=>b.onclick=()=>{if(b.dataset.sure){const g=gear();g.lenses=g.lenses.filter(l=>l.id!==b.dataset.g_del);if(g.active===b.dataset.g_del)g.active=g.lenses[0]?.id||null;S.set("gear",g);draw()}else{b.dataset.sure="1";b.innerHTML="<span class='small' style='color:#c0392b'>Löschen?</span>"}});
     o.querySelectorAll("[data-g_ed]").forEach(b=>b.onclick=()=>fill(gear().lenses.find(l=>l.id===b.dataset.g_ed)));
   };
-  const mm=(id,ph)=>`<div style="position:relative"><input id="${id}" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="${ph}" style="width:100%;min-width:0;padding:8px 40px 8px 8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit"><span class="muted" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none">mm</span></div>`;
-  const inp=(id,ph,mode)=>`<input id="${id}" inputmode="${mode||"decimal"}" placeholder="${ph}" style="width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit">`;
+  const mm=(id,ph)=>`<div style="position:relative"><input id="${id}" type="text" inputmode="numeric" enterkeyhint="${id==="g_fmax"?"done":"next"}"${id==="g_fmax"?" data-last":""} pattern="[0-9]*" maxlength="4" placeholder="${ph}" style="width:100%;min-width:0;padding:8px 40px 8px 8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit"><span class="muted" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none">mm</span></div>`;
+  const inp=(id,ph,mode)=>`<input id="${id}" inputmode="${mode||"decimal"}" enterkeyhint="next" placeholder="${ph}" style="width:100%;min-width:0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text);font:inherit">`;
   const o=openSheet(`<div class="sh"><h2>Meine Ausrüstung</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
   <p class="small">Trage deine Objektive ein und wähle aus, welches du gerade benutzt. Die Rechner und die Belichtungs-Spielwiese stellen sich dann darauf ein. Die Motivkarten bleiben allgemein.</p>
   <div class="list" id="g_list"></div>
@@ -1243,7 +1243,7 @@ function openGear(){
     const g=gear(),l={id:edit||("l"+Date.now()),name,fmin,fmax,aw,at,stab:+v("g_stab").value};
     const k=g.lenses.findIndex(x=>x.id===l.id);if(k>=0)g.lenses[k]=l;else g.lenses.push(l);
     if(!g.active||!g.lenses.find(x=>x.id===g.active))g.active=l.id;
-    S.set("gear",g);toast(k>=0?"Geändert":"Hinzugefügt");fill(null);draw();
+    S.set("gear",g);document.activeElement&&document.activeElement.blur();toast(k>=0?"Geändert":"Hinzugefügt");fill(null);draw();
   };
   const oc=o.close;o.close=()=>{oc();gearApply(true);render()};
   draw();
@@ -1935,8 +1935,16 @@ function viewSearch(q){
 /* ---------- Optionen und Anleitung ---------- */
 function openSheet(html){
   const o=document.createElement("div");o.className="overlay";o.innerHTML=`<div class="sheet">${html}</div>`;
-  o.close=()=>{o.remove();if(!document.querySelector(".overlay"))document.body.classList.remove("noscroll")};
+  /* Bildschirmtastatur: Fenster an den sichtbaren Bereich anpassen, damit man bis nach unten scrollen kann */
+  const vv=window.visualViewport;
+  const fit=()=>{if(!vv)return;o.style.top=vv.offsetTop+"px";o.style.height=vv.height+"px";o.style.bottom="auto";const sh=o.querySelector(".sheet");if(sh)sh.style.maxHeight=Math.round(vv.height*(innerWidth>=700?0.92:0.95))+"px";const a=document.activeElement;if(a&&o.contains(a)&&/INPUT|SELECT|TEXTAREA/.test(a.tagName))setTimeout(()=>a.scrollIntoView({block:"center"}),50)};
+  if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit)}
+  o.close=()=>{if(vv){vv.removeEventListener("resize",fit);vv.removeEventListener("scroll",fit)}o.remove();if(!document.querySelector(".overlay"))document.body.classList.remove("noscroll")};
   o.addEventListener("click",e=>{if(e.target===o||e.target.closest("[data-close]"))o.close()});
+  /* Tipp neben ein Eingabefeld schließt die Tastatur */
+  o.addEventListener("pointerdown",e=>{const a=document.activeElement;if(a&&/INPUT|TEXTAREA/.test(a.tagName)&&!e.target.closest("input,textarea,select,label"))a.blur()});
+  /* Enter/Weiter springt zum nächsten Feld, im letzten schließt es die Tastatur */
+  o.addEventListener("keydown",e=>{if(e.key!=="Enter"||e.target.tagName!=="INPUT"||e.target.type==="search")return;const f=[...o.querySelectorAll("input:not([type=radio]):not([type=checkbox]):not([type=search])")].filter(x=>x.offsetParent);const i=f.indexOf(e.target);e.preventDefault();if(i>=0&&i<f.length-1&&e.target.dataset.last===undefined)f[i+1].focus();else e.target.blur()});
   document.body.classList.add("noscroll");document.body.appendChild(o);return o;
 }
 function openOptions(){
