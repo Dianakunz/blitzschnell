@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 0.1.4 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 0.2.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.1.4";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "0.2.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -225,7 +225,7 @@ const CARDS = [
       "Schnell umschalten: Mit [BenutzAufnEinst reg.] ein komplettes „Flug-Paket“ (z. B. 1/2000 s, AF-C, Feld, Serienbild) unter [Abruf Ben. Halten 1] speichern und auf eine Taste legen. Solange du die Taste hältst, gelten diese Einstellungen.",
       "a6400: kein Stabilisator im Gehäuse – den Stabilisator im Objektiv eingeschaltet lassen."
     ],
-    see:[["regel","bewegung","Bewegung einfrieren"],["grund","fokus","Fokus und Autofokus"],["kamera","taste","Einstellungen auf eine Taste legen"]]
+    see:[["karte","flugshow","Flugshow"],["karte","wildtiere","Wildtiere"],["regel","bewegung","Bewegung einfrieren"],["kamera","taste","Einstellungen auf eine Taste legen"]]
   },
   {
     id:"sterne",cat:"nacht",title:"Sterne",icon:"stars",
@@ -277,11 +277,102 @@ const CARDS = [
     ],
     see:[["karte","sterne","Sterne"],["regel","looney","Looney 11"],["kamera","zebra","Zebra"],["grund","korrektur","Belichtungskorrektur"]]
   },
-  {id:"wildtiere",cat:"tiere",title:"Wildtiere",icon:"paw",soon:true},
-  {id:"tiere-bewegung",cat:"tiere",title:"Tiere in Bewegung",icon:"run",soon:true},
-  {id:"haustiere",cat:"tiere",title:"Haustiere",icon:"paw",soon:true},
-  {id:"zoo",cat:"tiere",title:"Zoo: Gitter und Glas",icon:"paw",soon:true},
-  {id:"flugshow",cat:"tiere",title:"Flugshow",icon:"feather",soon:true},
+  {
+    id:"wildtiere",cat:"tiere",title:"Wildtiere",icon:"paw",
+    intro:"Reh, Fuchs, Eichhörnchen & Co.: Geduld, Tarnung und ein langes Tele sind wichtiger als die perfekte Einstellung.",
+    recipe:[
+      ["Modus","S (einfacher) oder M + ISO-Auto"],
+      ["Belichtungszeit","1/500 s, bewegt sich das Tier: 1/1000 s"],
+      ["Blende","offen bis f/8"],
+      ["ISO","Auto – auch hohe Werte zulassen"],
+      ["Fokus","AF-C, kleiner Fokuspunkt (Spot) aufs Auge"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","so lang wie möglich"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Viele Tiere sind in der Morgen- und Abenddämmerung aktiv. Dann ist das Licht schön, aber knapp – eine hohe ISO ist besser als ein verwackeltes Foto.","Mit dem Wind im Gesicht anschleichen, damit das Tier dich nicht riecht.","Gedeckte Kleidung tragen, leise sein, langsam bewegen.","Auf Augenhöhe des Tieres gehen, notfalls hinknien oder hinlegen.","Abstand halten und das Tier nicht stören – flieht es, war man zu nah."],
+    errors:["Der Fokus sitzt auf Gras oder Zweigen vor dem Tier → kleinen Fokuspunkt wählen oder kurz manuell nachstellen.","Zu lange Zeit im dunklen Wald → Bewegungsunschärfe. Lieber ISO hochlassen.","Tier zu klein im Bild, viel leerer Raum drumherum."],
+    sony:["Tier-Augen-AF: MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Motiverkennung] → [Tier]. Nicht jede Tierart wird erkannt.","Obergrenze für ISO-Auto: ISO auf [ISO AUTO] stellen, rechts drücken und [ISO AUTO maximal] einstellen, z. B. 6400.","Fokusfeld: [Flexible Spot] S oder M für Tiere zwischen Zweigen."],
+    tryit:"Im Park Eichhörnchen fotografieren: einmal im Stehen, einmal auf Augenhöhe am Boden. Welche Fotos wirken lebendiger?",
+    see:[["karte","tiere-bewegung","Tiere in Bewegung"],["karte","voegel","Vögel"],["grund","iso","ISO"]]
+  },
+  {
+    id:"tiere-bewegung",cat:"tiere",title:"Tiere in Bewegung",icon:"run",
+    intro:"Laufende, springende oder spielende Tiere: Hier entscheidet die Belichtungszeit über scharf oder verwischt.",
+    recipe:[
+      ["Modus","S (einfacher) oder M + ISO-Auto"],
+      ["Belichtungszeit","1/1000–1/2000 s"],
+      ["Blende","f/5.6–8"],
+      ["ISO","Auto"],
+      ["Fokus","AF-C, Fokusfeld Zone oder Breit"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","mittleres bis langes Tele"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Eine etwas geschlossenere Blende (f/5.6–8) gibt mehr Schärfentiefe – so bleibt das Tier scharf, auch wenn der Fokus nicht ganz exakt sitzt.","Das Tier schon vor der Bewegung anvisieren und mitschwenken.","Klappt der Autofokus nicht, auf einen Punkt der Laufbahn vorfokussieren und auslösen, wenn das Tier dort ist.","Was quer durchs Bild läuft, braucht kürzere Zeiten als etwas, das auf dich zukommt.","Platz in Laufrichtung lassen."],
+    errors:["Zeit zu lang → Beine und Kopf verwischt.","Fokus springt auf den Hintergrund → kleineres Fokusfeld wählen.","Nur ein einzelnes Foto statt einer Serie – der beste Moment ist dann oft verpasst."],
+    sony:["Ist [Motiverkennung] auf [Tier] gestellt, lässt sich [Tracking] nicht wählen. Entweder Tier-Augen-AF mit [Feld]/[Breit] – oder ohne Tier-Erkennung mit [Tracking].","Mit [BenutzAufnEinst reg.] lässt sich ein „Action-Paket“ auf eine Taste legen (siehe Kamera → Einstellungen auf eine Taste legen).","a6400: kürzeste Verschlusszeit 1/4000 s."],
+    tryit:"Einen Hund einmal quer vorbeilaufen und einmal auf dich zulaufen lassen, jeweils mit 1/500 s und 1/1500 s. Wo braucht es die kürzere Zeit?",
+    see:[["karte","mitzieher","Mitzieher"],["regel","bewegung","Bewegung einfrieren"],["kamera","tracking","Fokusfelder und Tracking"]]
+  },
+  {
+    id:"haustiere",cat:"tiere",title:"Haustiere",icon:"paw",
+    intro:"Hund, Katze, Kaninchen: Auf Augenhöhe, mit scharfem Blick in die Kamera – und viel Geduld.",
+    recipe:[
+      ["Modus",""],["Belichtungszeit",""],["Blende",""],["ISO","Auto"],
+      ["Fokus",""],["Antrieb","Serienbild"],["Brennweite","Normal bis leichtes Tele"],["Format","RAW + JPEG"]
+    ],
+    variants:[
+      {name:"Porträt",set:{"Modus":"A oder M + ISO-Auto","Belichtungszeit":"mind. 1/250 s","Blende":"offen","Fokus":"AF-C mit Tier-Augen-AF"},
+       tips:["Eine lichtstarke Festbrennweite (z. B. 35 mm oder 50 mm mit f/1.8) macht den Hintergrund schön weich und schafft auch drinnen genug Licht.","Im A-Modus mit ISO-Auto eine Mindestzeit von 1/250 s einstellen, damit die Zeit nicht zu lang wird."],
+       tryit:"Dein Tier am Fenster mit offener Blende und einmal mit f/8 fotografieren. Wie verändert sich der Hintergrund?"},
+      {name:"Action",set:{"Modus":"S oder M + ISO-Auto","Belichtungszeit":"1/1000 s oder kürzer","Blende":"f/5.6–8","Fokus":"AF-C, Fokusfeld Zone oder Breit"},
+       tips:["Draußen bei gutem Licht fotografieren – drinnen reicht das Licht für so kurze Zeiten selten.","Spielzeug werfen lassen und vorher auf die Stelle fokussieren, wo das Tier ankommt."],
+       tryit:"Beim Ballspielen eine Serie aufnehmen und die Fotos danach durchsehen: Bei welchem Bild ist der Ausdruck am schönsten?"}
+    ],
+    tips:["Runter auf Augenhöhe des Tieres – das wirkt viel persönlicher.","Für den Blick in die Kamera ein Leckerli oder Geräusch direkt neben dem Objektiv nutzen.","Weiches Licht ist am schönsten: Fensterlicht drinnen, Schatten oder bewölkter Himmel draußen.","Keinen direkten Blitz: Er erschreckt viele Tiere, und die Augen leuchten im Foto."],
+    errors:["Von oben herab fotografiert → das Tier wirkt klein.","Fokus auf der Nase statt auf den Augen – bei offener Blende sieht man das sofort.","Unruhiger Hintergrund (Möbel, Spielzeug) lenkt ab."],
+    sony:["Tier-Augen-AF: MENU → Kamera-Einstlg.1 → [Ges./AugenAF-Einst.] → [Motiverkennung] → [Tier]. Bei Hunden und Katzen klappt die Erkennung meist gut.","ISO-Auto mit Mindestzeit (für den A-Modus): MENU → Kamera-Einstlg.1 → [ISO-Einstellung] → [ISO AUTO Min. VS] → z. B. 1/250."],
+    see:[["karte","tiere-bewegung","Tiere in Bewegung"],["grund","schaerfe","Schärfentiefe"],["kamera","augenaf","Augen-AF"]]
+  },
+  {
+    id:"zoo",cat:"tiere",title:"Zoo: Gitter und Glas",icon:"paw",
+    intro:"Mit ein paar Tricks verschwinden Zäune und Spiegelungen fast ganz aus dem Bild.",
+    recipe:[
+      ["Modus","S (einfacher) oder M + ISO-Auto"],
+      ["Belichtungszeit","1/250–1/500 s, bei Bewegung kürzer"],
+      ["Blende","offen"],
+      ["ISO","Auto"],
+      ["Fokus","AF-C oder AF-S, kleiner Fokuspunkt (Spot)"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","lang"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Gitter: Mit dem Objektiv möglichst nah ans Gitter gehen und durch eine Lücke fotografieren. Mit offener Blende und langer Brennweite verschwindet es fast ganz – am besten, wenn das Tier weit vom Gitter entfernt ist.","Glas: Das Objektiv direkt an die Scheibe halten. Das verhindert Spiegelungen und dass der Autofokus auf Kratzer oder Flecken scharfstellt.","Seitliches Licht mit der Hand, einer Gummi-Streulichtblende oder dunkler Kleidung abschirmen.","Kein Blitz durch Glas – er spiegelt sich und stört die Tiere.","Früh am Morgen oder zu Fütterungszeiten sind viele Tiere aktiver."],
+    errors:["Der Autofokus stellt aufs Gitter oder die Scheibe scharf → kleinen Fokuspunkt aufs Tier setzen oder manuell fokussieren.","Spiegelungen von Lampen oder Menschen in der Scheibe.","Grünlicher oder bläulicher Farbstich durch dickes Glas oder Wasser → später bei der Bearbeitung korrigieren."],
+    sony:["Fokusfeld [Flexible Spot] S, damit die Kamera zwischen den Gitterstäben aufs Tier fokussiert.","Klappt das nicht: Fokusmodus [DMF] – Autofokus, danach mit dem Fokusring nachstellen."],
+    tryit:"Am gleichen Gehege einmal mit dem Objektiv direkt am Gitter und einmal einen Meter entfernt fotografieren. Wie stark ist das Gitter jeweils zu sehen?",
+    see:[["karte","wildtiere","Wildtiere"],["grund","schaerfe","Schärfentiefe"],["grund","fokus","Fokus und Autofokus"]]
+  },
+  {
+    id:"flugshow",cat:"tiere",title:"Flugshow",icon:"feather",
+    intro:"Greifvögel im Flug aus der Nähe – eine tolle Übung für Flugaufnahmen, weil die Vögel immer wieder die gleichen Wege fliegen.",
+    recipe:[
+      ["Modus","S (einfacher) oder M + ISO-Auto"],
+      ["Belichtungszeit","1/1600–1/2500 s"],
+      ["Blende","offen bis f/8"],
+      ["ISO","Auto"],
+      ["Fokus","AF-C, Fokusfeld Zone oder Breit"],
+      ["Antrieb","Serienbild"],
+      ["Brennweite","Tele, aber nicht ganz ausgezoomt"],
+      ["Format","RAW + JPEG"]
+    ],
+    tips:["Einen Platz mit der Sonne im Rücken suchen.","Nicht ganz auszoomen: Die Vögel fliegen oft dicht vorbei, und mit etwas weniger Brennweite findet man sie leichter im Sucher.","Den Vogel schon auf dem Handschuh oder der Stange anvisieren und beim Abflug mitschwenken.","Die Flugbahnen wiederholen sich – beim ersten Durchgang beobachten, dann gezielt fotografieren.","Vor hellem Himmel wird der Vogel zu dunkel → Belichtungskorrektur +1, oder im M-Modus die Belichtung für den Vogel festlegen."],
+    errors:["Vogel vor hellem Himmel als dunkle Silhouette.","Zeit zu lang → Flügelspitzen verwischt.","Autofokus findet den Vogel vor dem Himmel nicht → vorher scharfstellen, Vogel im Fokusfeld halten."],
+    sony:["Flug-Einstellungen mit [BenutzAufnEinst reg.] auf eine Taste legen, um schnell zwischen sitzendem und fliegendem Vogel zu wechseln.","Fokusfeld [Feld] oder [Breit]; [Tracking] geht nur ohne Tier-Erkennung."],
+    tryit:"Wenn ein großer Vogel langsam vorbeigleitet: einmal 1/2000 s, einmal 1/250 s und dabei mitschwenken. Das zweite wird ein Mitzieher mit verwischtem Hintergrund.",
+    see:[["karte","voegel","Vögel"],["karte","mitzieher","Mitzieher"],["kamera","taste","Einstellungen auf eine Taste legen"]]
+  },
   {id:"blueten",cat:"natur",title:"Blüten und Pflanzen",icon:"flower",soon:true},
   {id:"insekten",cat:"natur",title:"Insekten",icon:"bug",soon:true},
   {id:"makro-tele",cat:"natur",title:"Makro mit dem Tele",icon:"focus",soon:true},
@@ -500,7 +591,9 @@ function toast(t){const d=document.createElement("div");d.className="toast";d.te
 function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/"}[type]+id}
 function seeLinks(arr){
   if(!arr||!arr.length)return"";
-  return `<div class="sec"><h3>${I.link}Siehe auch</h3><div class="small">${arr.map(s=>`<a class="lk" href="${href(s[0],s[1])}">${esc(s[2])}</a>`).join(" · ")}</div></div>`;
+  const one=s=>{const soon=s[0]==="karte"&&(CARDS.find(c=>c.id===s[1])||{}).soon;
+    return soon?`<span class="muted">${esc(s[2])} (in Arbeit)</span>`:`<a class="lk" href="${href(s[0],s[1])}">${esc(s[2])}</a>`};
+  return `<div class="sec"><h3>${I.link}Siehe auch</h3><div class="small">${arr.map(one).join(" · ")}</div></div>`;
 }
 function sonyBox(lines){
   if(!lines||!lines.length||!S.get("sony",true))return"";
@@ -545,7 +638,7 @@ function itemCard(c){
 
 function viewCard(id){
   const c=CARDS.find(x=>x.id===id&&!x.soon);
-  if(!c)return `<p>Karte nicht gefunden.</p>`;
+  if(!c)return `<button class="back" onclick="history.back()">${I.back} Zurück</button><p class="muted">Diese Karte ist noch in Arbeit.</p>`;
   const cat=CATS.find(x=>x.id===c.cat);
   const fav=S.get("fav",[]).includes(c.id);
   const vi=Math.min(S.get("var_"+c.id,0),(c.variants||[1]).length-1);
