@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.5.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.6.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -33,6 +33,7 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 14px 8p
 .topbar h1{font-size:20px;margin:0;flex:1;font-weight:600}
 .iconbtn{background:none;border:0;padding:6px;border-radius:8px;cursor:pointer;display:flex}
 .iconbtn svg{width:24px;height:24px}
+.favcount{position:absolute;top:0;right:0;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--accent);color:#1b1f2a;font-size:10.5px;font-weight:700;line-height:16px;text-align:center}
 .search{margin-top:8px;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 10px}
 .search input{flex:1;border:0;background:none;color:var(--text);font:inherit;padding:10px 0;outline:none}
 .search svg{width:18px;height:18px;color:var(--muted)}
@@ -152,6 +153,7 @@ body.noscroll{overflow:hidden}
   <div class="topbar">
     <span id="logoTop" class="logo"></span>
     <h1>Blitzschnell</h1>
+    <button class="iconbtn" id="favTop" aria-label="Gemerkt" style="position:relative"></button>
     <button class="iconbtn" id="helpBtn" aria-label="Anleitung"></button>
     <button class="iconbtn" id="optBtn" aria-label="Optionen"></button>
   </div>
@@ -164,7 +166,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.5.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.6.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1138,7 +1140,7 @@ const ANLEITUNG = [
   ["Bedienung",null],
   ["Suche","Das Suchfeld oben durchsucht Motive, Grundlagen, Faustregeln, Rechner, Kamera-Funktionen, Glossar sowie Spielwiese, Sonnenzeiten, Mond und Wetter."],
   ["Verknüpfungen","Gepunktet unterstrichene Begriffe führen zur passenden Erklärung, z. B. „Blende“ im Rezept zu den Grundlagen. Unter „Siehe auch“ findest du verwandte Themen."],
-  ["Merken","Mit dem Stern merkst du dir Motive, Grundlagen, Faustregeln und Kamera-Funktionen. Unter Motive → „Gemerkt“ findest du alles Gemerkte."],
+  ["Merken","Mit dem Stern merkst du dir Motive, Grundlagen, Faustregeln und Kamera-Funktionen. Alles Gemerkte findest du über den Stern oben rechts neben dem Fragezeichen, nach Bereichen sortiert; die Zahl daran zeigt, wie viele Einträge es sind."],
   ["Eigene Notizen","Unten auf jeder Motivkarte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
@@ -1652,24 +1654,26 @@ function favBtn(key){const on=S.get("fav",[]).includes(key);return `<button clas
 function sensorBar(){const c=cropNow();return `<div class="warnbox" style="display:flex;align-items:center;gap:10px;justify-content:space-between"><span>Deine Sensorgröße: <b>${c.name}</b> (Faktor ${num(c.f)})</span><button class="btn" data-sensor style="padding:6px 10px">Ändern</button></div>`;}
 
 function viewMotive(){
-  const fav=S.get("fav",[]);
-  let h=`<div class="chips"><button class="chip ${motivFilter==="alle"?"on":""}" data-f="alle">Alle</button><button class="chip ${motivFilter==="fav"?"on":""}" data-f="fav">${"Gemerkt"}${fav.length?" ("+fav.length+")":""}</button></div>`;
-  if(motivFilter==="fav"){
-    const cards=CARDS.filter(c=>fav.includes(c.id));
-    const gs=GRUND.filter(g=>fav.includes("g:"+g.id)),rs=REGELN.filter(r=>fav.includes("r:"+r.id)),ks=KAMERA.filter(k=>fav.includes("k:"+k.id));
-    const link=(hr,t,sub,ic)=>`<a class="item" href="${hr}" style="text-decoration:none;color:inherit"><span class="ic">${I[ic]}</span><span class="grow"><span class="t">${esc(t)}</span><br><span class="s">${esc(sub)}</span></span></a>`;
-    if(!cards.length&&!gs.length&&!rs.length&&!ks.length) h+=`<p class="muted">Noch nichts gemerkt. Tippe bei Motiven, Grundlagen, Faustregeln oder Kamera-Funktionen auf den Stern.</p>`;
-    if(cards.length)h+=`<h2>Motive</h2><div class="list">${cards.map(itemCard).join("")}</div>`;
-    if(gs.length)h+=`<h2>Grundlagen</h2><div class="list">${gs.map(g=>link("#grundlagen/"+g.id,g.title,g.short,"aperture")).join("")}</div>`;
-    if(rs.length)h+=`<h2>Faustregeln</h2><div class="list">${rs.map(r=>link("#regeln/"+r.id,r.title,r.rule,"rule")).join("")}</div>`;
-    if(ks.length)h+=`<h2>Kamera</h2><div class="list">${ks.map(k=>link("#kamera/"+k.id,k.title,"Kamera-Funktion",k.icon)).join("")}</div>`;
-  } else {
-    for(const cat of CATS){
-      const list=CARDS.filter(c=>c.cat===cat.id);
-      h+=`<h2>${esc(cat.name)}</h2><div class="list">${list.map(itemCard).join("")}</div>`;
-    }
+  let h="";
+  for(const cat of CATS){
+    const list=CARDS.filter(c=>c.cat===cat.id);
+    h+=`<h2>${esc(cat.name)}</h2><div class="list">${list.map(itemCard).join("")}</div>`;
   }
   return h;
+}
+function updFavBadge(){const b=$("#favTop");if(!b)return;const n=S.get("fav",[]).length;b.innerHTML=I.star+(n?`<span class="favcount">${n}</span>`:"");b.setAttribute("aria-label","Gemerkt"+(n?" ("+n+")":""))}
+function openFavs(){
+  const fav=S.get("fav",[]);
+  const cards=CARDS.filter(c=>fav.includes(c.id)&&!c.soon),gs=GRUND.filter(g=>fav.includes("g:"+g.id)),rs=REGELN.filter(r=>fav.includes("r:"+r.id)),ks=KAMERA.filter(k=>fav.includes("k:"+k.id));
+  const link=(hr,t,sub,ic)=>`<a class="item" href="${hr}" data-close style="text-decoration:none;color:inherit"><span class="ic">${I[ic]||I.star}</span><span class="grow"><span class="t">${esc(t)}</span>${sub?`<br><span class="s">${esc(sub)}</span>`:""}</span></a>`;
+  const catName=id=>(CATS.find(c=>c.id===id)||{}).name||"";
+  let h="";
+  if(!cards.length&&!gs.length&&!rs.length&&!ks.length)h=`<p class="muted">Noch nichts gemerkt. Tippe bei Motiven, Grundlagen, Faustregeln oder Kamera-Funktionen auf den Stern – dann erscheinen sie hier.</p>`;
+  if(cards.length)h+=`<h3>Motive</h3><div class="list">${cards.map(c=>link("#motive/"+c.id,c.title,catName(c.cat),c.icon)).join("")}</div>`;
+  if(gs.length)h+=`<h3>Grundlagen</h3><div class="list">${gs.map(g=>link("#grundlagen/"+g.id,g.title,g.short,"aperture")).join("")}</div>`;
+  if(rs.length)h+=`<h3>Faustregeln</h3><div class="list">${rs.map(r=>link("#regeln/"+r.id,r.title,r.rule,"rule")).join("")}</div>`;
+  if(ks.length)h+=`<h3>Kamera</h3><div class="list">${ks.map(k=>link("#kamera/"+k.id,k.title,"",k.icon)).join("")}</div>`;
+  openSheet(`<div class="sh"><h2>Gemerkt</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>${h}<p class="small muted" style="margin-top:14px">Zum Entfernen auf der jeweiligen Seite noch einmal auf den Stern tippen.</p>`);
 }
 function itemCard(c){
   if(c.soon)return `<div class="item soon"><span class="ic">${I[c.icon]}</span><span class="grow"><span class="t">${esc(c.title)}</span></span><span class="badge">in Arbeit</span></div>`;
@@ -1907,11 +1911,12 @@ function render(){
   else h=viewMotive();
   $("#main").innerHTML=h;
   bind(tab,sub);
+  updFavBadge();
 }
 let lastHash="";
 function bind(tab,sub){
   document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{motivFilter=b.dataset.f;render()});
-  document.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{const k=b.dataset.fav;let f=S.get("fav",[]);if(f.includes(k)){f=f.filter(x=>x!==k);toast("Nicht mehr gemerkt")}else{f.push(k);toast("Gemerkt")}S.set("fav",f);b.classList.toggle("on")});
+  document.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{const k=b.dataset.fav;let f=S.get("fav",[]);if(f.includes(k)){f=f.filter(x=>x!==k);toast("Nicht mehr gemerkt")}else{f.push(k);toast("Gemerkt")}S.set("fav",f);b.classList.toggle("on");updFavBadge()});
   document.querySelectorAll("[data-sensor]").forEach(b=>b.onclick=()=>openSensor(false));
   if(tab==="motive"&&sub){
     document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{S.set("var_"+sub,+b.dataset.v);const y=scrollY;render();scrollTo(0,y)});
@@ -1943,7 +1948,7 @@ function bind(tab,sub){
 /* ---------- Start ---------- */
 function init(){
   applyTheme();
-  $("#logoTop").innerHTML=LOGO;$("#helpBtn").innerHTML=I.help;$("#helpBtn").onclick=openHelp;$("#optBtn").innerHTML=I.gear;$("#optBtn").onclick=openOptions;
+  $("#logoTop").innerHTML=LOGO;$("#favTop").onclick=openFavs;updFavBadge();$("#helpBtn").innerHTML=I.help;$("#helpBtn").onclick=openHelp;$("#optBtn").innerHTML=I.gear;$("#optBtn").onclick=openOptions;
   $("#searchIcon").innerHTML=I.search;
   $("#nav").innerHTML=TABS.map(t=>`<button data-tab="${t.id}">${I[t.icon]}<span>${t.name}</span></button>`).join("");
   document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{$("#q").value="";location.hash=b.dataset.tab;render()});
