@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 0.4.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 0.5.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -141,7 +141,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "0.4.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "0.5.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -888,12 +888,12 @@ const GRUND = [
    text:["Scharf ist immer nur eine Ebene. Davor und dahinter gibt es einen Bereich, der noch scharf wirkt – die Schärfentiefe.",
          "Wenig Schärfentiefe (unscharfer Hintergrund) bekommst du mit: offener Blende, langer Brennweite, geringem Abstand zum Motiv und viel Abstand zwischen Motiv und Hintergrund.",
          "Viel Schärfentiefe (alles scharf, z. B. Landschaft) bekommst du mit: geschlossener Blende (f/8–11), kurzer Brennweite und größerem Abstand."],
-   merk:"Hintergrund unscharf: Blende auf, nah ran, Hintergrund weit weg.",see:[["grund","blende","Blende"]]},
+   merk:"Hintergrund unscharf: Blende auf, nah ran, Hintergrund weit weg.",see:[["grund","blende","Blende"],["rechner","schaerfe","Rechner: Schärfentiefe"]]},
   {id:"brennweite",title:"Brennweite und Crop-Faktor",short:"Wie groß das Motiv abgebildet wird",
    text:["Die Brennweite in Millimetern bestimmt den Bildausschnitt: Kurze Brennweiten (Weitwinkel) zeigen viel, lange Brennweiten (Tele) holen Entferntes heran.",
-         "Der Sensor einer APS-C-Kamera (z. B. Sony a6000er-Reihe) ist kleiner als Kleinbild/Vollformat. Dadurch wirkt der Bildausschnitt enger, ungefähr wie die 1,5-fache Brennweite: 300 mm an APS-C wirken wie 450 mm an Vollformat. Bei Micro-Four-Thirds ist der Faktor 2.",
+         "Der Sensor einer APS-C-Kamera ist kleiner als Kleinbild/Vollformat. Dadurch wirkt der Bildausschnitt enger, ungefähr wie die 1,5-fache Brennweite (bei Canon APS-C 1,6-fach): 300 mm an APS-C wirken wie 450 mm an Vollformat. Bei Micro Four Thirds ist der Faktor 2.",
          "Für Faustregeln wie den Kehrwert der Brennweite rechnet man mit der umgerechneten Brennweite. Die Sensorgröße kannst du in den Optionen einstellen."],
-   merk:"APS-C: Brennweite × 1,5. MFT: × 2.",see:[["regel","kehrwert","Kehrwert der Brennweite"]]},
+   merk:"APS-C: Brennweite × 1,5 (Canon × 1,6). MFT: × 2.",see:[["regel","kehrwert","Kehrwert der Brennweite"]]},
   {id:"wb",title:"Weißabgleich",short:"Damit Weiß auch weiß aussieht",
    text:["Licht hat je nach Quelle eine andere Farbe: Glühlampe und Sonnenuntergang sind warm-orange, Schatten und bedeckter Himmel eher bläulich. Der Weißabgleich gleicht das aus.",
          "Der automatische Weißabgleich (AWB) ist meistens gut. Bei Stimmungen wie Sonnenuntergang, Nacht oder Sternen ist ein fester Wert (z. B. Tageslicht) besser, weil die Automatik die Stimmung sonst „wegkorrigiert“ und Serien unterschiedlich aussehen.",
@@ -912,7 +912,7 @@ const GRUND = [
    merk:"Bewegung → Serie. Stativ → Selbstauslöser.",see:[]},
   {id:"stabi",title:"Bildstabilisator",short:"Gegen Verwacklung aus der Hand",
    text:["Ein Stabilisator gleicht kleine Bewegungen der Hand aus. Er sitzt im Objektiv (bei Sony „OSS“, bei Tamron „VC“) und/oder in der Kamera (Sensor-Stabilisierung).",
-         "Damit sind aus der Hand längere Zeiten möglich als der Kehrwert der Brennweite, oft 2–4 Stufen.",
+         "Damit sind aus der Hand längere Zeiten möglich als der Kehrwert der Brennweite. Angegeben wird das in Stufen: Jede Stufe verdoppelt die mögliche Zeit (2 Stufen = 4-mal, 4 Stufen = 16-mal so lang). Die Herstellerangabe steht in den technischen Daten; in der Praxis schafft man oft 1–2 Stufen weniger.",
          "Wichtig: Er hilft nur gegen deine Bewegung, nicht gegen die Bewegung des Motivs. Auf dem Stativ sollte man ihn meist ausschalten."],
    merk:"Hilft gegen Wackeln, nicht gegen Bewegung. Auf dem Stativ aus.",see:[["kamera","stabi","Stabilisator an der Kamera"]]},
   {id:"licht",title:"Licht",short:"Hart oder weich, Richtung und Tageszeit",
@@ -989,7 +989,7 @@ const REGELN = [
   {id:"looney",title:"Looney 11",rule:"Vollmond: Blende f/11 und Zeit = 1/ISO",
    text:"Also z. B. ISO 200, f/11, 1/200 s. Guter Startwert für den Mond – danach am Display bzw. Histogramm feinjustieren."},
   {id:"r500",title:"500er-Regel für Sterne",rule:"Längste Zeit in Sekunden ≈ 500 / (Brennweite × Crop-Faktor)",
-   text:"Bei 16 mm an APS-C also etwa 20 s. Ist die Zeit länger, werden Sterne durch die Erddrehung zu kurzen Strichen. Für sehr große Ansichten ist die Regel etwas zu großzügig – dann lieber etwas kürzer.",calc:"sterne"},
+   text:"Bei 16 mm an APS-C also etwa 20 s. Ist die Zeit länger, werden Sterne durch die Erddrehung zu kurzen Strichen. Für große Ansichten und hochauflösende Kameras ist die Regel zu großzügig – genauer ist die NPF-Regel, die auch Blende und Pixelgröße berücksichtigt (im Rechner).",calc:"sterne"},
   {id:"korr",title:"Korrigieren bei Hell und Dunkel",rule:"Schnee, heller Himmel: +1 · dunkle Motive, Mond: deutlich minus",
    text:"Die Belichtungsmessung will alles mittelgrau machen. Helle Motive werden deshalb zu dunkel, dunkle zu hell."}
 ];
@@ -1019,6 +1019,26 @@ const KAMERA = [
    text:["Beim manuellen Fokussieren helfen zwei Dinge: Die Fokuslupe vergrößert einen Bildausschnitt, Fokus-Peaking färbt scharfe Kanten farbig ein.",
          "Ideal für Sterne, Mond, Makro und alles, wo der Autofokus nicht zuverlässig greift."],
    sony:["Fokus-Peaking: MENU → Kamera-Einstlg.1 → [Kantenanheb.-Einst.] (Anzeige, Stufe, Farbe).","Lupe automatisch beim Drehen am Fokusring: [MF-Unterstützung] einschalten."]},
+  {id:"fn",title:"Fn-Menü und eigene Tasten",icon:"camera",
+   text:["Die Fn-Taste öffnet ein Schnellmenü mit den wichtigsten Einstellungen – viel schneller als das große Menü. Welche Einstellungen dort erscheinen, kann man meist selbst festlegen.",
+         "Zusätzlich lassen sich viele Tasten mit eigenen Funktionen belegen, z. B. Augen-AF, Fokusfeld, Fokuslupe oder ISO.",
+         "Tipp: Die Funktionen auf Tasten legen, die du bei deinen Lieblingsmotiven am häufigsten brauchst – dann musst du draußen nicht suchen."],
+   sony:["Fn-Menü: Fn-Taste drücken; welche Punkte dort stehen, lässt sich im Menü bei den Einstellungen für das Funktionsmenü ändern.","Tasten belegen: MENU → Kamera-Einstlg.2 → [BenutzerKey] → Taste wählen → Funktion wählen."]},
+  {id:"mr",title:"Speicherplätze (MR)",icon:"camera",
+   text:["Viele Kameras können ganze Einstellungspakete speichern: Modus, Zeit, Blende, ISO, Fokus, Weißabgleich und mehr. Abgerufen werden sie über eine eigene Position am Moduswahlrad.",
+         "Unterschied zu „Einstellungen auf eine Taste legen“: Ein Speicherplatz bleibt aktiv, bis du das Rad wieder drehst. Die Taste gilt nur, solange du sie gedrückt hältst.",
+         "Ideen für Speicherplätze: „Sterne“ (M, offene Blende, ISO 3200, 20 s, manueller Fokus), „Vögel im Flug“, „Landschaft mit Stativ“."],
+   sony:["Speichern: Kamera wie gewünscht einstellen, dann MENU → Kamera-Einstlg.1 → [Speicher] → Speicherplatz wählen.","Abrufen: Moduswahlknopf auf [MR] (Speicherabruf) stellen und die Nummer wählen. Zusätzliche Plätze (M1–M4) gibt es je nach Modell auf der Speicherkarte."]},
+  {id:"serie",title:"Serienbild",icon:"camera",
+   text:["Bei Serienbild macht die Kamera mehrere Fotos pro Sekunde, solange der Auslöser gedrückt ist. Meist gibt es mehrere Stufen (z. B. langsam, mittel, schnell).",
+         "Die Fotos landen zuerst in einem Zwischenspeicher. Ist er voll, wird die Kamera langsamer, bis die Bilder auf die Karte geschrieben sind. RAW-Dateien füllen ihn schneller als JPEGs; eine schnelle Speicherkarte hilft.",
+         "Bei der schnellsten Stufe ist das Sucherbild bei manchen Kameras weniger flüssig. Zum Mitschwenken kann eine etwas langsamere Stufe angenehmer sein."],
+   sony:["MENU → Kamera-Einstlg.1 → [Bildfolgemodus] → [Serienaufnahme] → Stufe wählen (z. B. Lo, Mid, Hi, Hi+) – oder über die Bildfolgemodus-Taste am Einstellrad."]},
+  {id:"fern",title:"Fernauslösen",icon:"camera",
+   text:["Fernauslösen verhindert Verwacklung durch den Fingerdruck auf dem Stativ – und erlaubt Fotos aus der Entfernung, z. B. von scheuen Tieren oder Gruppenfotos mit dir selbst.",
+         "Möglichkeiten: Selbstauslöser (2 oder 10 s), Kabel- oder Funkfernauslöser, oder eine Handy-App über WLAN/Bluetooth. Mit der App siehst du oft das Livebild auf dem Handy und kannst Zeit und Blende einstellen.",
+         "Für Belichtungen über 30 Sekunden (BULB) ist ein Fernauslöser oder die App fast unverzichtbar."],
+   sony:["Handy-App von Sony: je nach Modell „Imaging Edge Mobile“ oder „Creators' App“.","Viele Modelle unterstützen auch eine Bluetooth-Fernbedienung von Sony."]},
   {id:"stabi",title:"Stabilisator an der Kamera",icon:"camera",
    text:["Ob deine Kamera einen Stabilisator im Gehäuse hat, steht in den technischen Daten. Wenn nicht, hängt alles vom Objektiv ab.",
          "Auf dem Stativ den Stabilisator meist ausschalten – manche Systeme „suchen“ sonst Bewegung und verursachen leichte Unschärfe."],
@@ -1068,19 +1088,23 @@ const GLOSSAR = [
   ["Nahlinse","Vorsatzlinse, mit der ein Objektiv näher scharfstellen kann.","grund","objektive"],
   ["Polfilter","Filter gegen Spiegelungen und für kräftigeren Himmel.","grund","objektive"],
   ["Streulichtblende","Aufsatz vor dem Objektiv gegen seitliches Licht und Kontrastverlust.","grund","objektive"],
-  ["Zwischenring","Ring zwischen Kamera und Objektiv für kürzere Naheinstellgrenze.","grund","objektive"]
+  ["Zwischenring","Ring zwischen Kamera und Objektiv für kürzere Naheinstellgrenze.","grund","objektive"],
+  ["Hyperfokale Distanz","Fokusentfernung, bei der alles von der halben Entfernung bis unendlich scharf ist.","rechner","schaerfe"],
+  ["NPF-Regel","Genauere Regel für die längste Zeit bei Sternfotos; berücksichtigt Blende und Pixelgröße.","rechner","sterne"],
+  ["Stufe (EV)","Maß für Licht: eine Stufe = doppelt oder halb so viel Licht.","regel","stufen"],
+  ["Speicherabruf (MR)","Gespeicherte Einstellungspakete am Moduswahlrad abrufen.","kamera","mr"]
 ];
 
 /* ---------- Anleitung ---------- */
 const ANLEITUNG = [
   ["Motive","Rezept-Karten für typische Situationen. Tippe auf ein Motiv, um die empfohlenen Einstellungen zu sehen. Bei manchen Karten kannst du oben zwischen Varianten wechseln (z. B. Vögel sitzend oder im Flug)."],
   ["Verknüpfungen","Gepunktet unterstrichene Begriffe führen zur passenden Erklärung, z. B. „Blende“ im Rezept zu den Grundlagen."],
-  ["Merken","Mit dem Stern merkst du dir eine Karte. Unter Motive → „Gemerkt“ findest du alle gemerkten Karten."],
+  ["Merken","Mit dem Stern merkst du dir Motive, Grundlagen, Faustregeln und Kamera-Funktionen. Unter Motive → „Gemerkt“ findest du alles Gemerkte."],
   ["Eigene Notizen","Unten auf jeder Karte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
   ["Suche","Das Suchfeld oben durchsucht Motive, Grundlagen, Faustregeln, Kamera-Funktionen und Glossar."],
-  ["Regeln","Faustregeln zum schnellen Nachschlagen und kleine Rechner, z. B. für die längste Zeit aus der Hand."],
+  ["Regeln","Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
-  ["Sensorgröße","In den Optionen stellst du die Sensorgröße deiner Kamera ein. Die Rechner nutzen den passenden Crop-Faktor."],
+  ["Sensorgröße","Beim ersten Start wählst du die Sensorgröße deiner Kamera. Davon hängen Crop-Faktor, Faustregeln zur Brennweite und alle Rechner ab. Ändern kannst du sie oben im Reiter Regeln oder in den Optionen."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Sony-Hinweise und Löschen von Merkliste und Notizen."],
   ["Offline","Nach dem ersten Öffnen funktioniert die App auch ohne Internet. Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
 ];
@@ -1090,12 +1114,20 @@ const S = {
   get(k,d){try{const v=localStorage.getItem("bs_"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
   set(k,v){try{localStorage.setItem("bs_"+k,JSON.stringify(v))}catch(e){}}
 };
-const CROPS = {apsc:{name:"APS-C",f:1.5},ff:{name:"Vollformat",f:1},mft:{name:"Micro Four Thirds",f:2}};
+const CROPS = {
+  apsc:{name:"APS-C",hint:"z. B. Sony a6000er-Reihe, Nikon Z50, Fujifilm X",f:1.5,coc:0.02,w:23.5,ar:1.5},
+  apscc:{name:"APS-C (Canon)",hint:"z. B. Canon EOS R50, R10, R7",f:1.6,coc:0.019,w:22.3,ar:1.5},
+  ff:{name:"Vollformat",hint:"z. B. Sony Alpha 7, Canon EOS R6, Nikon Z6",f:1,coc:0.03,w:36,ar:1.5},
+  mft:{name:"Micro Four Thirds",hint:"z. B. OM System, Olympus, Panasonic Lumix G",f:2,coc:0.015,w:17.3,ar:4/3}
+};
+const cropKey=()=>CROPS[S.get("crop",null)]?S.get("crop",null):"apsc";
+const cropNow=()=>CROPS[cropKey()];
+const num=x=>String(Math.round(x*10)/10).replace(".",",");
 
 /* ---------- Hilfsfunktionen ---------- */
 const $ = s=>document.querySelector(s);
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
+function toast(t){document.querySelectorAll(".toast").forEach(x=>x.remove());const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
 function href(type,id){return {karte:"#motive/",grund:"#grundlagen/",regel:"#regeln/",rechner:"#regeln/rechner-",kamera:"#kamera/"}[type]+id}
 function seeLinks(arr){
   if(!arr||!arr.length)return"";
@@ -1124,13 +1156,21 @@ const TABS = [
   {id:"glossar",name:"Glossar",icon:"book"}
 ];
 let motivFilter="alle";
+function favBtn(key){const on=S.get("fav",[]).includes(key);return `<button class="star ${on?"on":""}" data-fav="${key}" aria-label="Merken">${I.star}</button>`;}
+function sensorBar(){const c=cropNow();return `<div class="warnbox" style="display:flex;align-items:center;gap:10px;justify-content:space-between"><span>Deine Sensorgröße: <b>${c.name}</b> (Faktor ${num(c.f)})</span><button class="btn" data-sensor style="padding:6px 10px">Ändern</button></div>`;}
 
 function viewMotive(){
   const fav=S.get("fav",[]);
   let h=`<div class="chips"><button class="chip ${motivFilter==="alle"?"on":""}" data-f="alle">Alle</button><button class="chip ${motivFilter==="fav"?"on":""}" data-f="fav">${"Gemerkt"}${fav.length?" ("+fav.length+")":""}</button></div>`;
   if(motivFilter==="fav"){
-    const list=CARDS.filter(c=>fav.includes(c.id));
-    h+= list.length? `<div class="list" style="margin-top:12px">${list.map(itemCard).join("")}</div>` : `<p class="muted">Noch nichts gemerkt. Tippe auf einer Karte auf den Stern.</p>`;
+    const cards=CARDS.filter(c=>fav.includes(c.id));
+    const gs=GRUND.filter(g=>fav.includes("g:"+g.id)),rs=REGELN.filter(r=>fav.includes("r:"+r.id)),ks=KAMERA.filter(k=>fav.includes("k:"+k.id));
+    const link=(hr,t,sub,ic)=>`<a class="item" href="${hr}" style="text-decoration:none;color:inherit"><span class="ic">${I[ic]}</span><span class="grow"><span class="t">${esc(t)}</span><br><span class="s">${esc(sub)}</span></span></a>`;
+    if(!cards.length&&!gs.length&&!rs.length&&!ks.length) h+=`<p class="muted">Noch nichts gemerkt. Tippe bei Motiven, Grundlagen, Faustregeln oder Kamera-Funktionen auf den Stern.</p>`;
+    if(cards.length)h+=`<h2>Motive</h2><div class="list">${cards.map(itemCard).join("")}</div>`;
+    if(gs.length)h+=`<h2>Grundlagen</h2><div class="list">${gs.map(g=>link("#grundlagen/"+g.id,g.title,g.short,"aperture")).join("")}</div>`;
+    if(rs.length)h+=`<h2>Faustregeln</h2><div class="list">${rs.map(r=>link("#regeln/"+r.id,r.title,r.rule,"rule")).join("")}</div>`;
+    if(ks.length)h+=`<h2>Kamera</h2><div class="list">${ks.map(k=>link("#kamera/"+k.id,k.title,"Kamera-Funktion",k.icon)).join("")}</div>`;
   } else {
     for(const cat of CATS){
       const list=CARDS.filter(c=>c.cat===cat.id);
@@ -1148,7 +1188,6 @@ function viewCard(id){
   const c=CARDS.find(x=>x.id===id&&!x.soon);
   if(!c)return `<button class="back" onclick="history.back()">${I.back} Zurück</button><p class="muted">Diese Karte ist noch in Arbeit.</p>`;
   const cat=CATS.find(x=>x.id===c.cat);
-  const fav=S.get("fav",[]).includes(c.id);
   const vi=Math.min(S.get("var_"+c.id,0),(c.variants||[1]).length-1);
   const v=c.variants?c.variants[vi]:null;
   const rec=c.recipe.map(([l,val])=>{
@@ -1163,7 +1202,7 @@ function viewCard(id){
   return `<button class="back" onclick="history.back()">${I.back} Zurück</button>
   <div class="card">
     <div class="head"><span class="ic">${I[c.icon]}</span><div style="flex:1"><div class="crumb">Motive · ${esc(cat.name)}</div><div class="title">${esc(c.title)}</div></div>
-    <button class="star ${fav?"on":""}" id="favBtn" aria-label="Merken">${I.star}</button></div>
+    ${favBtn(c.id)}</div>
     <p class="intro">${esc(c.intro)}</p>
     ${c.variants?`<div class="seg">${c.variants.map((x,i)=>`<button class="${i===vi?"on":""}" data-v="${i}">${esc(x.name)}</button>`).join("")}</div>`:""}
     <div class="sec"><h3>${I.list}Rezept</h3><div class="grid">${rec}</div>
@@ -1185,7 +1224,8 @@ function viewGrundlagen(){
 function viewGrund(id){
   const g=GRUND.find(x=>x.id===id&&!x.soon);if(!g)return"<p>Nicht gefunden.</p>";
   return `<button class="back" onclick="history.back()">${I.back} Zurück</button><div class="card">
-  <div class="head"><span class="ic">${I.aperture}</span><div><div class="crumb">Grundlagen</div><div class="title">${esc(g.title)}</div></div></div>
+  <div class="head"><span class="ic">${I.aperture}</span><div style="flex:1"><div class="crumb">Grundlagen</div><div class="title">${esc(g.title)}</div></div>${favBtn("g:"+g.id)}</div>
+  ${g.id==="brennweite"?`<div style="margin-top:10px">${sensorBar()}</div>`:""}
   ${g.text.map(t=>`<p>${esc(t)}</p>`).join("")}
   ${g.list?`<h3>Objektivarten und wofür sie passen</h3><ul>${g.list.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}
   ${g.list2?`<h3>Nützliches Zubehör</h3><ul>${g.list2.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}
@@ -1195,17 +1235,28 @@ function viewGrund(id){
 }
 
 function viewRegeln(){
-  const crop=CROPS[S.get("crop","apsc")];
-  let h=`<h2>Faustregeln</h2>`;
-  h+=REGELN.map(r=>`<div class="rule" id="regel-${r.id}"><div class="t">${esc(r.title)}</div><div class="r">${esc(r.rule)}</div><div class="small">${esc(r.text)}</div>${r.calc?`<div class="small" style="margin-top:6px"><a class="lk" href="#regeln/rechner-${r.calc}">Zum Rechner</a></div>`:""}</div>`).join("");
-  h+=`<h2>Rechner</h2><p class="small muted" style="margin-top:0">Sensorgröße: ${crop.name} (Faktor ${String(crop.f).replace(".",",")}) – änderbar in den Optionen.</p>
+  const crop=cropNow();
+  let h=`<div style="margin-top:12px">${sensorBar()}</div><p class="small muted" style="margin:6px 0 0">Brennweiten-Regeln und Rechner rechnen mit diesem Faktor.</p><h2>Faustregeln</h2>`;
+  h+=REGELN.map(r=>`<div class="rule" id="regel-${r.id}"><div class="t" style="display:flex;align-items:center;justify-content:space-between">${esc(r.title)}${favBtn("r:"+r.id)}</div><div class="r">${esc(r.rule)}</div><div class="small">${esc(r.text)}</div>${r.calc?`<div class="small" style="margin-top:6px"><a class="lk" href="#regeln/rechner-${r.calc}">Zum Rechner</a></div>`:""}</div>`).join("");
+  h+=`<h2>Rechner</h2><p class="small muted" style="margin-top:0">Gerechnet mit: ${crop.name} (Faktor ${num(crop.f)}).</p>
   <div class="card calc" id="rechner-verwacklung"><b>Längste Zeit aus der Hand</b>
     <label>Brennweite (mm, wie auf dem Objektiv)</label><input id="cv_f" type="number" inputmode="numeric" value="${S.get("cv_f",300)}" min="1">
-    <label>Stabilisator</label><select id="cv_s">${[["0","ohne"],["2","ca. 2 Stufen"],["3","ca. 3 Stufen"],["4","ca. 4 Stufen"]].map(o=>`<option value="${o[0]}" ${S.get("cv_s","0")===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>
+    <label>Stabilisator</label><select id="cv_s">${[["0","ohne"],["1","1 Stufe"],["2","2 Stufen"],["3","3 Stufen"],["4","4 Stufen"],["5","5 Stufen"]].map(o=>`<option value="${o[0]}" ${S.get("cv_s","0")===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>
+    <details class="box"><summary>Was bedeuten die Stufen? <span class="chev">${I.chev}</span></summary><div class="small">
+      <p>Ein Bildstabilisator wird in Stufen angegeben (auch Blendenstufen oder EV). Jede Stufe verdoppelt die Zeit, die man ruhig aus der Hand halten kann: 1 Stufe = 2-mal so lang, 2 Stufen = 4-mal, 3 Stufen = 8-mal, 4 Stufen = 16-mal.</p>
+      <p>Wie viele Stufen dein Objektiv oder deine Kamera schafft, steht in den technischen Daten, meist auf der Seite des Herstellers – z. B. „bis zu 4 Stufen“ oder „4,5 EV“. Hat dein Objektiv und deine Kamera keinen Stabilisator, wähle „ohne“.</p>
+      <p>Die Angaben werden im Labor nach einer Norm (CIPA) gemessen. In der Praxis schafft man oft weniger. Am besten 1–2 Stufen weniger einstellen als angegeben.</p></div></details>
     <div class="result" id="cv_r"></div><div class="small muted" id="cv_n"></div></div>
-  <div class="card calc" id="rechner-sterne"><b>Längste Zeit für Sterne (500er-Regel)</b>
+  <div class="card calc" id="rechner-sterne"><b>Längste Zeit für Sterne</b>
     <label>Brennweite (mm, wie auf dem Objektiv)</label><input id="cs_f" type="number" inputmode="numeric" value="${S.get("cs_f",16)}" min="1">
-    <div class="result" id="cs_r"></div><div class="small muted" id="cs_n"></div></div>
+    <label>Blende</label><select id="cs_n_">${["1.4","1.8","2","2.8","3.5","4","5.6"].map(v=>`<option value="${v}" ${S.get("cs_n_","3.5")===v?"selected":""}>f/${v}</option>`).join("")}</select>
+    <label>Megapixel der Kamera</label><input id="cs_mp" type="number" inputmode="decimal" value="${S.get("cs_mp",24)}" min="1">
+    <div class="result" id="cs_r"></div><div class="small" id="cs_r2"></div><div class="small muted" id="cs_n"></div></div>
+  <div class="card calc" id="rechner-schaerfe"><b>Schärfentiefe</b>
+    <label>Brennweite (mm, wie auf dem Objektiv)</label><input id="cd_f" type="number" inputmode="numeric" value="${S.get("cd_f",35)}" min="1">
+    <label>Blende</label><select id="cd_n">${["1.4","1.8","2","2.8","4","5.6","8","11","16","22"].map(v=>`<option value="${v}" ${S.get("cd_n","8")===v?"selected":""}>f/${v}</option>`).join("")}</select>
+    <label>Abstand zum Motiv (m)</label><input id="cd_s" type="number" inputmode="decimal" step="0.1" value="${S.get("cd_s",3)}" min="0.1">
+    <div class="result" id="cd_r"></div><div class="small" id="cd_r2"></div><div class="small muted" id="cd_x"></div></div>
   <div class="card calc" id="rechner-graufilter"><b>Belichtungszeit mit Graufilter</b>
     <label>Zeit ohne Filter</label><select id="cg_t">${["1/1000","1/500","1/250","1/125","1/60","1/30","1/15","1/8","1/4","1/2","1"].map(t=>`<option ${S.get("cg_t","1/125")===t?"selected":""}>${t}</option>`).join("")}</select>
     <label>Filter</label><select id="cg_n">${[["3","ND8 (3 Stufen)"],["6","ND64 (6 Stufen)"],["10","ND1000 (10 Stufen)"]].map(o=>`<option value="${o[0]}" ${S.get("cg_n","6")===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>
@@ -1213,20 +1264,34 @@ function viewRegeln(){
   return h;
 }
 function calcAll(){
-  const crop=CROPS[S.get("crop","apsc")].f;
+  const crop=cropNow().f;
   const f=parseFloat($("#cv_f")?.value);
   if($("#cv_r")){
     if(f>0){const s=+$("#cv_s").value;const t=Math.pow(2,s)/(f*crop);
       $("#cv_r").textContent="≈ "+fmtTime(t);
-      $("#cv_n").textContent=`Entspricht ${Math.round(f*crop)} mm an Vollformat. Gilt nur gegen Verwackeln, nicht gegen Bewegung des Motivs.`;
+      $("#cv_n").textContent=`Entspricht ${Math.round(f*crop)} mm an Vollformat (Faktor ${num(crop)}). ${s?`Mit ${s} Stufe${s>1?"n":""} Stabilisator ${Math.pow(2,s)}-mal länger als ohne. `:""}Gilt nur gegen Verwackeln, nicht gegen Bewegung des Motivs.`;
       S.set("cv_f",f);S.set("cv_s",$("#cv_s").value);}
     else {$("#cv_r").textContent="";$("#cv_n").textContent="Bitte eine Brennweite eingeben.";}
   }
   const fs=parseFloat($("#cs_f")?.value);
   if($("#cs_r")){
-    if(fs>0){const t=500/(fs*crop);$("#cs_r").textContent="≈ "+Math.floor(t)+" s";
-      $("#cs_n").textContent="Für große Ansichten lieber etwas kürzer belichten.";S.set("cs_f",fs);}
-    else {$("#cs_r").textContent="";$("#cs_n").textContent="Bitte eine Brennweite eingeben.";}
+    const c=cropNow(),N=parseFloat($("#cs_n_").value),mp=parseFloat($("#cs_mp").value);
+    if(fs>0&&mp>0){const t5=500/(fs*crop);const px=Math.sqrt(mp*1e6*c.ar);const pitch=c.w/px*1000;const tn=(35*N+30*pitch)/fs;
+      $("#cs_r").textContent="NPF-Regel: ≈ "+Math.floor(tn)+" s";
+      $("#cs_r2").textContent="500er-Regel: ≈ "+Math.floor(t5)+" s";
+      $("#cs_n").textContent="Die NPF-Regel ist strenger und berücksichtigt auch Blende und Pixelgröße (hier ca. "+num(pitch)+" µm) – damit bleiben Sterne auch in großer Ansicht punktförmig. Die 500er-Regel reicht für kleinere Ansichten.";
+      S.set("cs_f",fs);S.set("cs_n_",$("#cs_n_").value);S.set("cs_mp",mp);}
+    else {$("#cs_r").textContent="";$("#cs_r2").textContent="";$("#cs_n").textContent="Bitte Brennweite und Megapixel eingeben.";}
+  }
+  if($("#cd_r")){
+    const c=cropNow(),f=parseFloat($("#cd_f").value),N=parseFloat($("#cd_n").value),sm=parseFloat(String($("#cd_s").value).replace(",","."));
+    const fm=v=>v>=1000?num(v/1000)+" m":Math.round(v/10)+" cm";
+    if(f>0&&sm>0){const sd=sm*1000;const H=f*f/(N*c.coc)+f;const near=sd*(H-f)/(H+sd-2*f);const far=sd>=H?Infinity:sd*(H-f)/(H-sd);
+      $("#cd_r").textContent=far===Infinity?`scharf ab ${fm(near)} bis unendlich`:`scharf von ${fm(near)} bis ${fm(far)}`;
+      $("#cd_r2").textContent=(far===Infinity?"":`Schärfentiefe gesamt: ${fm(far-near)} · `)+`Hyperfokale Distanz: ${fm(H)}`;
+      $("#cd_x").textContent=`Stellst du auf die hyperfokale Distanz scharf, ist alles von etwa ${fm(H/2)} bis unendlich scharf. Richtwerte für normale Betrachtung (Zerstreuungskreis ${String(c.coc).replace(".",",")} mm).`;
+      S.set("cd_f",f);S.set("cd_n",$("#cd_n").value);S.set("cd_s",sm);}
+    else {$("#cd_r").textContent="";$("#cd_r2").textContent="";$("#cd_x").textContent="Bitte Brennweite und Abstand eingeben.";}
   }
   if($("#cg_r")){
     const tv=$("#cg_t").value;const base=tv.includes("/")?1/parseFloat(tv.split("/")[1]):parseFloat(tv);
@@ -1243,7 +1308,7 @@ function viewKamera(){
 function viewKam(id){
   const k=KAMERA.find(x=>x.id===id);if(!k)return"<p>Nicht gefunden.</p>";
   return `<button class="back" onclick="history.back()">${I.back} Zurück</button><div class="card">
-  <div class="head"><span class="ic">${I[k.icon]}</span><div><div class="crumb">Kamera</div><div class="title">${esc(k.title)}</div></div></div>
+  <div class="head"><span class="ic">${I[k.icon]}</span><div style="flex:1"><div class="crumb">Kamera</div><div class="title">${esc(k.title)}</div></div>${favBtn("k:"+k.id)}</div>
   ${k.text.map(t=>`<p>${esc(t)}</p>`).join("")}${sonyBox(k.sony)}</div>`;
 }
 
@@ -1286,19 +1351,32 @@ function openOptions(){
   const o=openSheet(`<div class="sh"><h2>Optionen</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
   <div class="opt">
     <div class="row"><span>Design</span><select id="o_theme" style="width:auto">${[["auto","Wie das Handy"],["light","Hell"],["dark","Dunkel"]].map(x=>`<option value="${x[0]}" ${theme===x[0]?"selected":""}>${x[1]}</option>`).join("")}</select></div>
-    <div class="row"><span>Sensorgröße</span><select id="o_crop" style="width:auto">${Object.entries(CROPS).map(([k,v])=>`<option value="${k}" ${crop===k?"selected":""}>${v.name}</option>`).join("")}</select></div>
+    <div class="row"><span>Sensorgröße <button class="lk small" id="o_crop_help" style="background:none;border:0;padding:0">(Hilfe)</button></span><select id="o_crop" style="width:auto">${Object.entries(CROPS).map(([k,v])=>`<option value="${k}" ${cropKey()===k?"selected":""}>${v.name}</option>`).join("")}</select></div>
     <div class="row"><span>Hinweise „So geht's bei Sony“</span><input type="checkbox" id="o_sony" ${sony?"checked":""} style="width:22px;height:22px"></div>
     <div class="row"><span>Merkliste und Notizen löschen</span><button class="btn danger" id="o_del">Löschen</button></div>
   </div>
   <p class="small muted" style="margin-top:18px">Blitzschnell · Version ${VERSION}<br>Alle Angaben sind Richtwerte zum Nachschlagen, ohne Gewähr. Deine Merkliste und Notizen bleiben nur auf diesem Gerät.</p>`);
   o.querySelector("#o_theme").onchange=e=>{S.set("theme",e.target.value);applyTheme()};
   o.querySelector("#o_crop").onchange=e=>{S.set("crop",e.target.value);render()};
+  o.querySelector("#o_crop_help").onclick=()=>{o.close();openSensor(false)};
   o.querySelector("#o_sony").onchange=e=>{S.set("sony",e.target.checked);render()};
   o.querySelector("#o_del").onclick=()=>{
     const b=o.querySelector("#o_del");
     if(b.dataset.sure){Object.keys(localStorage).filter(k=>k.startsWith("bs_fav")||k.startsWith("bs_note_")).forEach(k=>localStorage.removeItem(k));b.textContent="Gelöscht";b.disabled=true;delete b.dataset.sure;render();}
     else{b.dataset.sure="1";b.textContent="Wirklich löschen?";}
   };
+}
+function openSensor(first){
+  const cur=S.get("crop",null);
+  const o=openSheet(`<div class="sh"><h2>${first?"Welche Kamera hast du?":"Sensorgröße"}</h2>${first?"":`<button class="iconbtn" data-close aria-label="Schließen">${I.x}</button>`}</div>
+  <p>Einige Angaben in Blitzschnell hängen von der Größe des Kamerasensors ab: An kleineren Sensoren wirkt jede Brennweite länger (Crop-Faktor). Das betrifft z. B. den Kehrwert der Brennweite, die Sterne-Regeln und die Schärfentiefe.</p>
+  <div class="list">${Object.entries(CROPS).map(([k,v])=>`<button class="item" data-crop="${k}" style="${cur===k?"border-color:var(--accent);background:var(--accentBg)":""}"><span class="grow"><span class="t">${esc(v.name)}</span><br><span class="s">${esc(v.hint)} · Faktor ${num(v.f)}</span></span></button>`).join("")}</div>
+  <details class="box"><summary>Wo finde ich das? <span class="chev">${I.chev}</span></summary><div class="small">
+    <p>In den technischen Daten deiner Kamera (Anleitung oder Seite des Herstellers) unter „Sensor“ oder „Bildsensor“ – oder im Internet nach „Kameramodell Sensorgröße“ suchen.</p>
+    <ul><li>„APS-C“ oder ca. 23,5 × 15,6 mm → APS-C (Canon: ca. 22,3 × 14,9 mm, Faktor 1,6)</li><li>„Vollformat“, „Kleinbild“ oder 36 × 24 mm → Vollformat</li><li>„Four Thirds“ oder 17,3 × 13 mm → Micro Four Thirds</li></ul>
+    <p>Unsicher? APS-C ist bei Einsteiger-Systemkameras am häufigsten. Du kannst die Auswahl jederzeit im Reiter Regeln oder in den Optionen ändern.</p></div></details>`);
+  o.querySelectorAll("[data-crop]").forEach(b=>b.onclick=()=>{S.set("crop",b.dataset.crop);o.close();render();toast("Sensorgröße: "+CROPS[b.dataset.crop].name)});
+  if(first){o.addEventListener("click",e=>{if(e.target===o)e.stopImmediatePropagation()},true);}
 }
 function openHelp(){
   openSheet(`<div class="sh"><h2>Anleitung</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
@@ -1333,14 +1411,14 @@ function render(){
 let lastHash="";
 function bind(tab,sub){
   document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{motivFilter=b.dataset.f;render()});
+  document.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{const k=b.dataset.fav;let f=S.get("fav",[]);if(f.includes(k)){f=f.filter(x=>x!==k);toast("Nicht mehr gemerkt")}else{f.push(k);toast("Gemerkt")}S.set("fav",f);b.classList.toggle("on")});
+  document.querySelectorAll("[data-sensor]").forEach(b=>b.onclick=()=>openSensor(false));
   if(tab==="motive"&&sub){
-    const fb=$("#favBtn");
-    if(fb)fb.onclick=()=>{let f=S.get("fav",[]);if(f.includes(sub)){f=f.filter(x=>x!==sub);toast("Nicht mehr gemerkt")}else{f.push(sub);toast("Gemerkt")}S.set("fav",f);fb.classList.toggle("on")};
     document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{S.set("var_"+sub,+b.dataset.v);const y=scrollY;render();scrollTo(0,y)});
     const n=$("#note");if(n)n.oninput=()=>S.set("note_"+sub,n.value);
   }
   if(tab==="regeln"){
-    ["#cv_f","#cv_s","#cs_f","#cg_t","#cg_n"].forEach(s=>{const e=$(s);if(e)e.oninput=e.onchange=calcAll});
+    ["#cv_f","#cv_s","#cs_f","#cs_n_","#cs_mp","#cd_f","#cd_n","#cd_s","#cg_t","#cg_n"].forEach(s=>{const e=$(s);if(e)e.oninput=e.onchange=calcAll});
     calcAll();
     if(sub){const el=document.getElementById(sub.startsWith("rechner-")?sub:"regel-"+sub);if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),30)}
   }
@@ -1362,9 +1440,9 @@ function init(){
   if(!S.get("welcomed",false)){
     const w=document.createElement("div");w.className="welcome";
     w.innerHTML=`<span class="logo">${LOGO}</span><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><button class="btn primary">Los geht's</button>`;
-    w.querySelector("button").onclick=()=>{S.set("welcomed",true);w.remove()};
+    w.querySelector("button").onclick=()=>{S.set("welcomed",true);w.remove();if(S.get("crop",null)===null)openSensor(true)};
     document.body.appendChild(w);
-  }
+  } else if(S.get("crop",null)===null){openSensor(true)}
   if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
 init();
