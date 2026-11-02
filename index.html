@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.10.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.11.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -142,9 +142,9 @@ body.noscroll{overflow:hidden}
 .sheet .sh h2{flex:1;margin:0}
 .welcome{position:fixed;inset:0;background:#1d2230;color:#f2f2f2;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
 .welcome .logo{width:132px;height:132px;display:block}
-.welcome h1{font-size:34px;margin:20px 0 6px}
-.welcome p{margin:2px 0;color:#c9cdd8;font-size:17px}
-.welcome p.wl-note{font-size:13.5px;color:#9aa0b0;max-width:340px;margin-top:22px;line-height:1.45}
+.welcome h1{font-size:44px;margin:22px 0 8px;letter-spacing:-.01em}
+.welcome p{margin:2px 0;color:#e3e6ee;font-size:22px;line-height:1.3}
+.welcome p.wl-note{font-size:16px;color:#a9afbf;max-width:340px;margin-top:26px;line-height:1.45}
 .welcome .btn{margin-top:26px;font-size:17px;padding:12px 28px}
 .toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:10px;z-index:40;font-size:14.5px}
 .mark{background:var(--accentBg);color:var(--accentText);border-radius:3px}
@@ -168,7 +168,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.10.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.11.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1138,7 +1138,7 @@ const ANLEITUNG = [
   ["Regeln","Ganz oben die Belichtungs-Spielwiese, darunter Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Belichtungs-Spielwiese","Zu finden ganz oben im Reiter Regeln, außerdem verlinkt bei den Grundlagen zu Zeit, Blende, ISO und Belichtungsprogrammen. Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
   ["Kamera","Ganz oben die Grundeinstellung: was man einmal einstellt und dann so lässt (z. B. Gitterlinien, Zebra, Signaltöne aus) und was man sich vorher überlegen sollte (Dateiformat, Fokusmodus, Augen-AF, ISO-Auto oder feste ISO). Daneben „So heißt es bei anderen Herstellern“: Du wählst deine Marke (Sony, Canon, Nikon, Fujifilm, OM System, Panasonic) und siehst, wie die Funktionen dort heißen, z. B. Av statt A bei Canon oder Filmsimulation statt Bildstil bei Fujifilm. Darunter Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
-  ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. „Wetter“ zeigt die Vorhersage für die nächsten 16 Tage: Wetterlage, Temperatur, Regen und Wind, die Bewölkung in drei Höhen zu Sonnenauf- und -untergang mit einer groben Einschätzung, ob sich der Himmel färbt, Wolken in der Nacht für Sterne und Nebel am Morgen. Sonne und Mond werden auf deinem Gerät berechnet; Wetter und Ortssuche brauchen Internet."],
+  ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät, angezeigt werden Ortsname und Koordinaten) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. „Wetter“ zeigt die Vorhersage für die nächsten 16 Tage: Wetterlage, Temperatur, Regen und Wind, die Bewölkung in drei Höhen zu Sonnenauf- und -untergang mit einer groben Einschätzung, ob sich der Himmel färbt, Wolken in der Nacht für Sterne und Nebel am Morgen. Sonne und Mond werden auf deinem Gerät berechnet; Wetter und Ortssuche brauchen Internet."],
   ["Glossar","Fachbegriffe von A bis Z, kurz erklärt. Viele Einträge führen per Tipp zur ausführlichen Erklärung."],
   ["Meine Ausrüstung","Über das Zahnrad → Meine Ausrüstung trägst du deine Objektive ein (Name, Brennweite, größte Blende, Stabilisator) und wählst aus, welches du gerade benutzt – auch direkt im Reiter Regeln und in der Spielwiese. Die Rechner werden damit vorbelegt (Zeit aus der Hand mit der längsten Brennweite, Sterne und Schärfentiefe mit der kürzesten), und die Spielwiese zeigt nur die Blenden, die dein Objektiv schafft. Die Motivkarten bleiben allgemein."],
   ["Bedienung",null],
@@ -1148,7 +1148,7 @@ const ANLEITUNG = [
   ["Eigene Notizen","Unten auf jeder Motivkarte kannst du eigene Erfahrungen notieren. Sie werden nur auf diesem Gerät gespeichert."],
   ["Sony-Hinweise","Die Kästen „So geht's bei Sony“ zeigen Funktionsnamen und Menüpfade für Sony-Kameras. Die Menüpfade gelten für Modelle mit dem älteren Menü (z. B. a6400); neuere Modelle haben ein neu sortiertes Menü, die Funktionsnamen sind aber meist ähnlich. Du kannst die Kästen in den Optionen ausblenden."],
   ["Anleitung und Optionen","Das Fragezeichen oben rechts öffnet diese Anleitung. Über das Zahnrad daneben erreichst du die Optionen: Design (hell, dunkel oder wie das Gerät), Sensorgröße, Meine Ausrüstung, Sony-Hinweise und Löschen von Merkliste und Notizen."],
-  ["Offline und Startbildschirm","Nach dem ersten Öffnen funktioniert die App auch ohne Internet – außer Ortssuche und Wetter (ohne Verbindung wird der zuletzt geladene Stand gezeigt). Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
+  ["Offline und Startbildschirm","Nach dem ersten Öffnen funktioniert die App auch ohne Internet – außer Ortssuche, Ortsname zum Standort und Wetter (ohne Verbindung wird der zuletzt geladene Stand gezeigt). Über das Browser-Menü kannst du sie zum Startbildschirm hinzufügen."]
 ];
 
 /* ---------- Speicher ---------- */
@@ -1470,14 +1470,14 @@ function viewHimmel(sub){
   const dayLbl=["Heute","Morgen","Übermorgen"];
   const iso=`${day.getFullYear()}-${String(day.getMonth()+1).padStart(2,"0")}-${String(day.getDate()).padStart(2,"0")}`;
   const head=`<h2>Himmel</h2>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">${loc?`<span class="small" style="flex:1"><span class="ic-in">${I.pin}</span> ${esc(loc.name)}</span><button class="btn" data-loc>Ändern</button>`:`<span class="small muted" style="flex:1"><span class="ic-in">${I.pin}</span> Noch kein Ort festgelegt</span><button class="btn primary" data-loc>Ort festlegen</button>`}</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">${loc?`<span class="small" style="flex:1"><span class="ic-in">${I.pin}</span> ${locLabel(loc)}</span><button class="btn" data-loc>Ändern</button>`:`<span class="small muted" style="flex:1"><span class="ic-in">${I.pin}</span> Noch kein Ort festgelegt</span><button class="btn primary" data-loc>Ort festlegen</button>`}</div>
   <div class="chips" style="margin-top:0;align-items:center">${[0,1,2].map(k=>`<button class="chip ${skyDay===k?"on":""}" data-skd="${k}">${dayLbl[k]}</button>`).join("")}</div>
   <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
     <button class="btn" id="sk_prev" aria-label="Einen Tag zurück">‹</button>
     <input type="date" id="sk_date" value="${iso}" style="flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--card);color:var(--text);font:inherit">
     <button class="btn" id="sk_next" aria-label="Einen Tag vor">›</button></div>
   <div class="seg">${[["sonne","Sonne und Licht"],["mond","Mond"],["wetter","Wetter"]].map(([k,n])=>`<button class="${tab===k?"on":""}" data-skt="${k}">${n}</button>`).join("")}</div>`;
-  return head+(tab==="mond"?skyMoon(day,loc):tab==="wetter"?skyWx(day,loc):skySun(day,loc));
+  return head+(tab==="mond"?skyMoon(day,loc):tab==="wetter"?skyWx(day,loc):skySun(day,loc))+(loc&&loc.osm?`<p class="small muted" style="margin-top:14px">Ortsname: © <a class="lk" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende</p>`:"");
 }
 /* ---------- Wetter (Open-Meteo, CC BY 4.0) ---------- */
 const WX_CODES={0:"Klar",1:"Überwiegend klar",2:"Teilweise bewölkt",3:"Bedeckt",45:"Nebel",48:"Nebel mit Reif",51:"Leichter Nieselregen",53:"Nieselregen",55:"Starker Nieselregen",56:"Gefrierender Nieselregen",57:"Gefrierender Nieselregen",61:"Leichter Regen",63:"Regen",65:"Starker Regen",66:"Gefrierender Regen",67:"Gefrierender Regen",71:"Leichter Schneefall",73:"Schneefall",75:"Starker Schneefall",77:"Schneegriesel",80:"Leichte Regenschauer",81:"Regenschauer",82:"Starke Regenschauer",85:"Schneeschauer",86:"Starke Schneeschauer",95:"Gewitter",96:"Gewitter mit Hagel",99:"Gewitter mit Hagel"};
@@ -1605,6 +1605,19 @@ function skySun(day,loc){
     <p>Berechnet auf deinem Gerät nach den Formeln der US-Wetterbehörde NOAA bzw. von Jean Meeus, ohne Internet. Abweichung meist unter einer Minute beim Sonnenstand und wenige Minuten beim Mond. Berge, Gebäude und Wetter sind nicht berücksichtigt – hinter einem Hügel verschwindet die Sonne früher. Die Uhrzeiten gelten in der Zeitzone deines Geräts.</p></div></details>
   ${seeLinks([["karte","blaue-stunde","Blaue Stunde"],["grund","licht","Licht"],["karte","sterne","Sterne fotografieren"]])}`;
 }
+/* Ortsname zu Koordinaten über OpenStreetMap (Nominatim) – einmal pro Ort, Ergebnis wird gespeichert */
+const locDeg=l=>`${Math.abs(l.lat).toFixed(2).replace(".",",")}° ${l.lat>=0?"N":"S"}, ${Math.abs(l.lon).toFixed(2).replace(".",",")}° ${l.lon>=0?"O":"W"}`;
+let locBusy=false;
+async function locCity(){
+  const l=skyLoc();if(!l||l.city||l.cityTried||locBusy)return;locBusy=true;
+  try{const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=10&accept-language=de&lat=${l.lat}&lon=${l.lon}`);
+    const j=await r.json(),a=j.address||{};
+    const c=a.city||a.town||a.village||a.municipality||a.county||a.state||"";
+    const cur=skyLoc();if(cur&&cur.lat===l.lat&&cur.lon===l.lon){S.set("loc",Object.assign(cur,{city:c||null,osm:!!c,cityTried:true}));if((location.hash||"").startsWith("#himmel")){const y=scrollY;render();scrollTo(0,y)}}
+  }catch(e){/* offline: es bleiben die Koordinaten; beim nächsten Öffnen erneut versuchen */}
+  locBusy=false;
+}
+function locLabel(l){return `${l.city?esc(l.city)+" · ":(l.name&&!/^Mein Standort|^\d/.test(l.name)?esc(l.name)+" · ":"")}${locDeg(l)}`}
 function openLoc(){
   const loc=skyLoc();
   const o=openSheet(`<div class="sh"><h2>Ort festlegen</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
@@ -1618,8 +1631,8 @@ function openLoc(){
     <p>Breite und Länge in Grad, z. B. aus einer Karten-App (Norden und Osten positiv).</p>
     <div style="display:flex;gap:8px"><input id="lc_lat" inputmode="decimal" placeholder="Breite, z. B. 52.52" value="${loc?loc.lat:""}" style="flex:1;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text)"><input id="lc_lon" inputmode="decimal" placeholder="Länge, z. B. 13.40" value="${loc?loc.lon:""}" style="flex:1;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--card2);color:var(--text)"></div>
     <button class="btn" id="lc_man" style="margin-top:8px">Übernehmen</button></div></details>
-  <p class="small muted">Für die Ortssuche wird nur der eingegebene Ortsname an den kostenlosen Dienst Open-Meteo geschickt. Der aktuelle Standort verlässt dein Gerät nicht.</p>`);
-  const save=(lat,lon,name)=>{lat=Math.round(lat*100)/100;lon=Math.round(lon*100)/100;S.set("loc",{lat,lon,name});o.close();toast("Ort gespeichert");render()};
+  <p class="small muted">Der Ort wird nur auf deinem Gerät gespeichert. Für die Ortssuche wird der eingegebene Name an Open-Meteo geschickt. Beim aktuellen Standort und bei Koordinaten wird der auf etwa 1 km gerundete Ort einmal an OpenStreetMap geschickt, um den Ortsnamen anzuzeigen.</p>`);
+  const save=(lat,lon,name,city)=>{lat=Math.round(lat*100)/100;lon=Math.round(lon*100)/100;S.set("loc",{lat,lon,name,city:city||null});o.close();toast("Ort gespeichert");render();if(!city)locCity()};
   const deg=(lat,lon)=>`${num(Math.abs(lat))}° ${lat>=0?"N":"S"}, ${num(Math.abs(lon))}° ${lon>=0?"O":"W"}`;
   o.querySelector("#lc_gps").onclick=()=>{const m=o.querySelector("#lc_gps_msg");
     if(!navigator.geolocation){m.textContent="Dein Gerät bzw. Browser bietet keine Standortabfrage an.";return}
@@ -1632,7 +1645,7 @@ function openLoc(){
       const j=await res.json();const l=j.results||[];
       if(!l.length){r.innerHTML=`<div class="small muted">Nichts gefunden. Anders schreiben oder einen größeren Ort in der Nähe versuchen.</div>`;return}
       r.innerHTML=l.map((x,k)=>`<button class="item" data-k="${k}"><span class="grow"><span class="t">${esc(x.name)}</span><br><span class="s">${esc([x.admin1,x.country].filter(Boolean).join(", "))}</span></span></button>`).join("");
-      r.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const x=l[+b.dataset.k];save(x.latitude,x.longitude,x.name+(x.admin1?", "+x.admin1:""))});
+      r.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const x=l[+b.dataset.k];save(x.latitude,x.longitude,x.name+(x.admin1?", "+x.admin1:""),x.name+(x.admin1?", "+x.admin1:""))});
     }catch(e){r.innerHTML=`<div class="small muted">Keine Verbindung zum Internet. Ohne Internet geht der aktuelle Standort oder die Eingabe von Koordinaten.</div>`}};
   o.querySelector("#lc_go").onclick=go;o.querySelector("#lc_q").onkeydown=e=>{if(e.key==="Enter")go()};
   o.querySelector("#lc_man").onclick=()=>{const la=parseFloat(o.querySelector("#lc_lat").value.replace(",",".")),lo=parseFloat(o.querySelector("#lc_lon").value.replace(",","."));
@@ -1684,7 +1697,6 @@ const GRUNDEIN=[ /* [Gruppe, Titel, Text, Links, Sony] – fest = einmal einstel
   ["fest","Gitterlinien einblenden","Hilft bei geradem Horizont und beim Bildaufbau nach der Drittelregel.",[["grund","gestaltung","Bildgestaltung"]],"[Gitterlinie] → [3x3 Raster]"],
   ["fest","Zebra einschalten","Streifen zeigen schon vor dem Auslösen, wo das Bild zu hell wird.",[["kamera","zebra","Zebra"]],""],
   ["fest","Wichtiges ins Schnellmenü und auf Tasten","Fokusmodus, Fokusfeld, ISO, Bildfolge – ohne Suchen im Menü.",[["kamera","fn","Fn-Menü und eigene Tasten"],["kamera","taste","Einstellungen auf eine Taste legen"]],""],
-  ["fest","ISO-Auto vorbereiten","Mindestzeit und Obergrenze (z. B. ISO 6400) einmal festlegen – dann ist ISO-Auto sofort richtig eingestellt, wenn du es brauchst.",[["kamera","isoauto","ISO-Auto mit Mindestzeit"]],""],
   ["fest","Signaltöne aus","Leiser fotografieren – wichtig bei Tieren und in ruhiger Umgebung.",[],"[Signaltöne] → [Aus]"],
   ["fest","Stabilisator an","Am Objektiv-Schalter bzw. – bei Kameras mit eingebautem Stabilisator – im Menü. Nur auf dem Stativ ggf. ausschalten.",[["grund","stabi","Bildstabilisator"]],""],
   ["fest","Datum und Uhrzeit richtig","Wichtig fürs Sortieren und wenn du Fotos mit Sonnen- und Mondzeiten vergleichst. Sommer-/Winterzeit nicht vergessen.",[],""],
@@ -1692,7 +1704,7 @@ const GRUNDEIN=[ /* [Gruppe, Titel, Text, Links, Sony] – fest = einmal einstel
   ["wahl","Dateiformat: JPEG, RAW oder beides?","JPEG ist sofort fertig und klein. RAW braucht Bearbeitung am Rechner, lässt aber Belichtung und Weißabgleich nachträglich retten. RAW + JPEG gibt beides, braucht aber den meisten Platz. Überleg dir, ob du die Bilder bearbeiten willst – bei Sternen und schwierigem Licht lohnt sich RAW fast immer.",[["grund","format","RAW oder JPEG"]],"[Dateiformat] → [JPEG], [RAW] oder [RAW & JPEG]"],
   ["wahl","Fokusmodus: AF-S oder AF-C?","AF-S stellt einmal scharf – gut für Stillstehendes wie Landschaft, Gebäude, Blüten. AF-C führt die Schärfe nach – für Menschen, Tiere und alles, was sich bewegt.",[["grund","fokus","Fokus und Autofokus"]],""],
   ["wahl","Augen- bzw. Gesichtserkennung nutzen?","Bei Menschen und Tieren sehr hilfreich, bei Landschaft, Makro oder Gebäuden unnötig – dort lieber ein Fokusfeld selbst setzen.",[["kamera","augenaf","Augen-AF"],["kamera","tracking","Fokusfelder und Tracking"]],""],
-  ["wahl","ISO-Auto oder feste ISO?","ISO-Auto passt sich wechselndem Licht an und hält mit der Mindestzeit Bewegung scharf – gut aus der Hand. Auf dem Stativ (Landschaft, Nacht) lieber die niedrigste feste ISO für wenig Rauschen.",[["grund","iso","ISO"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]],""]
+  ["wahl","ISO-Auto oder feste ISO?","ISO-Auto passt sich wechselndem Licht an und hält mit der Mindestzeit Bewegung scharf – gut aus der Hand. Auf dem Stativ (Landschaft, Nacht) lieber die niedrigste feste ISO für wenig Rauschen. Wenn du ISO-Auto nutzt: einmal Mindestzeit und Obergrenze (z. B. ISO 6400) festlegen – das bleibt dann gespeichert.",[["grund","iso","ISO"],["kamera","isoauto","ISO-Auto mit Mindestzeit"]],""]
 ];
 function viewGrundein(){
   const item=([g,t,why,links],k)=>`<div class="item" style="cursor:default;align-items:flex-start">${g==="fest"?`<span class="badge" style="flex:0 0 auto">${k+1}</span>`:`<span class="ic" style="flex:0 0 auto;width:28px;height:28px">${I.help}</span>`}<span class="grow"><span class="t">${esc(t)}</span><br><span class="s">${esc(why)}</span>${links.length?`<br><span class="small">${links.map(l=>`<a class="lk" href="${href(l[0],l[1])}">${esc(l[2])}</a>`).join(" · ")}</span>`:""}</span></div>`;
@@ -2193,6 +2205,7 @@ function bind(tab,sub){
     const pv=$("#sk_prev"),nx=$("#sk_next");if(pv)pv.onclick=()=>{skyDay--;keep()};if(nx)nx.onclick=()=>{skyDay++;keep()};
     document.querySelectorAll("[data-skt]").forEach(b=>b.onclick=()=>{S.set("skytab",b.dataset.skt);const y=scrollY;history.replaceState(null,"","#himmel/"+b.dataset.skt);lastHash=location.hash;render();scrollTo(0,y)});
     if($("#wx_box"))wxLoad(skyDayDate(),skyLoc(),false);
+    locCity();
     const di=$("#sk_date");if(di)di.onchange=()=>{if(!di.value)return;const [Y,M,D]=di.value.split("-").map(Number);const n=new Date();skyDay=Math.round((new Date(Y,M-1,D)-new Date(n.getFullYear(),n.getMonth(),n.getDate()))/86400000);keep()};
   }
   if(tab==="regeln"&&sub==="spielwiese"&&$("#sw_a")){
@@ -2222,7 +2235,7 @@ function init(){
   render();
   if(!S.get("welcomed",false)){
     const w=document.createElement("div");w.className="welcome";
-    w.innerHTML=`<span class="logo">${LOGO}</span><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><p class="wl-note">Für alle Systemkameras. Menüpfade und Beispiele beziehen sich auf Sony (älteres Menü, z. B. α6400). Für andere Marken: Reiter Kamera → „So heißt es bei anderen Herstellern“.</p><button class="btn primary">Los geht's</button>`;
+    w.innerHTML=`<span class="logo">${LOGO}</span><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><p class="wl-note">Für alle Systemkameras – Schwerpunkt Sony</p><button class="btn primary">Los geht's</button>`;
     w.querySelector("button").onclick=()=>{S.set("welcomed",true);w.remove();if(S.get("crop",null)===null)openSensor(true)};
     document.body.appendChild(w);
   } else if(S.get("crop",null)===null){openSensor(true)}
