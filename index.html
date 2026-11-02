@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.10.0 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.10.1 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -144,7 +144,8 @@ body.noscroll{overflow:hidden}
 .welcome .logo{width:132px;height:132px;display:block}
 .welcome h1{font-size:34px;margin:20px 0 6px}
 .welcome p{margin:2px 0;color:#c9cdd8;font-size:17px}
-.welcome .btn{margin-top:30px;font-size:17px;padding:12px 28px}
+.welcome p.wl-note{font-size:13.5px;color:#9aa0b0;max-width:340px;margin-top:22px;line-height:1.45}
+.welcome .btn{margin-top:26px;font-size:17px;padding:12px 28px}
 .toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:10px;z-index:40;font-size:14.5px}
 .mark{background:var(--accentBg);color:var(--accentText);border-radius:3px}
 </style>
@@ -167,7 +168,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.10.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.10.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1129,6 +1130,7 @@ const GLOSSAR = [
 /* ---------- Anleitung ---------- */
 const ANLEITUNG = [
   ["Los geht's",null],
+  ["Für welche Kameras?","Blitzschnell erklärt alles allgemein für Systemkameras. Die Kästen „So geht's bei Sony“ nennen Funktionsnamen und Menüpfade für Sony-Modelle mit dem älteren Menü (z. B. α6400); neuere Sony-Modelle heißen meist ähnlich. Für Canon, Nikon, Fujifilm, OM System und Panasonic zeigt der Reiter Kamera → „So heißt es bei anderen Herstellern“, wie die Funktionen dort heißen. Die Sony-Kästen kannst du in den Optionen ausblenden."],
   ["Sensorgröße","Beim ersten Start wählst du die Sensorgröße deiner Kamera (APS-C, Vollformat, Micro Four Thirds). Davon hängen Crop-Faktor, Faustregeln zur Brennweite und alle Rechner ab. Ändern kannst du sie oben im Reiter Regeln oder in den Optionen."],
   ["Die Reiter",null],
   ["Motive","Ganz oben die Checkliste vor dem Losgehen zum Abhaken (Akku, Karte, Einstellungen zurückgesetzt …), mit Zusätzen für Nacht, Tiere, Makro und Landschaft; die Haken bleiben, bis du sie zurücksetzt. Darunter Rezept-Karten für typische Situationen. Tippe auf ein Motiv, um die empfohlenen Einstellungen zu sehen. Bei manchen Karten kannst du oben zwischen Varianten wechseln (z. B. Vögel sitzend oder im Flug). Dazu gibt es Tipps, typische Fehler, „Probier mal“-Ideen und Platz für eigene Notizen."],
@@ -2220,7 +2222,7 @@ function init(){
   render();
   if(!S.get("welcomed",false)){
     const w=document.createElement("div");w.className="welcome";
-    w.innerHTML=`<span class="logo">${LOGO}</span><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><button class="btn primary">Los geht's</button>`;
+    w.innerHTML=`<span class="logo">${LOGO}</span><h1>Blitzschnell</h1><p>Kurz nachgeschaut –</p><p>scharf getroffen</p><p class="wl-note">Für alle Systemkameras. Menüpfade und Beispiele beziehen sich auf Sony (älteres Menü, z. B. α6400). Für andere Marken: Reiter Kamera → „So heißt es bei anderen Herstellern“.</p><button class="btn primary">Los geht's</button>`;
     w.querySelector("button").onclick=()=>{S.set("welcomed",true);w.remove();if(S.get("crop",null)===null)openSensor(true)};
     document.body.appendChild(w);
   } else if(S.get("crop",null)===null){openSensor(true)}
