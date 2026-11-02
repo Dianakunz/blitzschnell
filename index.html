@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.11.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.11.2 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -168,7 +168,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.11.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.11.2";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -2148,8 +2148,13 @@ function openSensor(first){
   if(first){o.addEventListener("click",e=>{if(e.target===o)e.stopImmediatePropagation()},true);}
 }
 function openHelp(){
-  openSheet(`<div class="sh"><h2>Anleitung</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
-  ${ANLEITUNG.map(([t,d])=>d===null?`<h2 style="font-size:15px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:22px 0 0;border-top:1px solid var(--line);padding-top:12px">${esc(t)}</h2>`:`<h3>${esc(t)}</h3><p style="margin:0">${esc(d)}</p>`).join("")}`);
+  const o=openSheet(`<div class="sh"><h2>Anleitung</h2><button class="iconbtn" data-close aria-label="Schließen">${I.x}</button></div>
+  ${ANLEITUNG.map(([t,d],k)=>{
+    const head=d===null?`<h2 style="font-size:15px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:22px 0 0;border-top:1px solid var(--line);padding-top:12px">${esc(t)}</h2>`:`<h3 id="anl-${k}" style="scroll-margin-top:60px">${esc(t)}</h3><p style="margin:0">${esc(d)}</p>`;
+    /* Inhaltsverzeichnis direkt nach der Einleitung */
+    const toc=t==="Was ist Blitzschnell?"?`<div class="chips" style="margin-top:12px">${ANLEITUNG.map(([t2,d2],k2)=>d2===null||t2==="Was ist Blitzschnell?"?"":`<button class="chip" data-anl="${k2}" style="font-size:13px;padding:4px 10px">${esc(t2)}</button>`).join("")}</div>`:"";
+    return head+toc}).join("")}`);
+  o.querySelectorAll("[data-anl]").forEach(b=>b.onclick=()=>{const el=o.querySelector("#anl-"+b.dataset.anl);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})});
 }
 
 /* ---------- Design ---------- */
