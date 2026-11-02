@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Blitzschnell – Version 1.9.1 – Stand 01.11.2026 -->
+<!-- Blitzschnell – Version 1.10.0 – Stand 01.11.2026 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -167,7 +167,7 @@ body.noscroll{overflow:hidden}
 <nav><div class="in" id="nav"></div></nav>
 
 <script>
-const VERSION = "1.9.1";  /* Versionsnummer auch oben in Zeile 2 anpassen */
+const VERSION = "1.10.0";  /* Versionsnummer auch oben in Zeile 2 anpassen */
 const LOGO = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#1d2230"/><path d="M150 168h44l22-34h80l22 34h44a36 36 0 0 1 36 36v150a36 36 0 0 1-36 36H150a36 36 0 0 1-36-36V204a36 36 0 0 1 36-36z" fill="#f2f2f2"/><circle cx="256" cy="280" r="78" fill="#1d2230"/><circle cx="256" cy="280" r="56" fill="#3b4256"/><circle cx="234" cy="258" r="14" fill="#f2f2f2" opacity="0.55"/><rect x="146" y="196" width="36" height="20" rx="6" fill="#1d2230"/><path d="M352 52 300 150h40l-22 78 74-108h-44l30-68z" fill="#ffc21a" stroke="#1d2230" stroke-width="10" stroke-linejoin="round"/></svg>';
 
 /* ---------- Symbole ---------- */
@@ -1135,7 +1135,7 @@ const ANLEITUNG = [
   ["Grundlagen","Ganz oben „Was ist schiefgelaufen?“: Du wählst aus, wie dein Foto aussieht (z. B. verwackelt, Fokus daneben, zu dunkel, verrauscht, Farbstich), und siehst die häufigsten Ursachen mit Abhilfe und Links. Darunter das Wichtigste zum Verstehen, Kapitel für Kapitel: Belichtungszeit, Blende, ISO und ihr Zusammenspiel, Belichtungsprogramme, Fokus, Schärfentiefe, Brennweite, Licht, Bildgestaltung, Blitz, Objektive und mehr."],
   ["Regeln","Ganz oben die Belichtungs-Spielwiese, darunter Faustregeln zum schnellen Nachschlagen und Rechner: längste Zeit aus der Hand (mit Erklärung der Stabilisator-Stufen), Sterne (500er- und NPF-Regel), Schärfentiefe und Graufilter."],
   ["Belichtungs-Spielwiese","Zu finden ganz oben im Reiter Regeln, außerdem verlinkt bei den Grundlagen zu Zeit, Blende, ISO und Belichtungsprogrammen. Blende, Zeit und ISO an Schiebereglern verstellen und am Beispielbild sehen, wie es heller oder dunkler wird, wie der Hintergrund verschwimmt, der Vogel verwischt und das Rauschen zunimmt. Mit „Was passt die Kamera automatisch an?“ lässt sich nachspielen, wie A-, S-Modus und ISO-Auto arbeiten."],
-  ["Kamera","Ganz oben die Grundeinstellung: was man einmal einstellt und dann so lässt (z. B. Gitterlinien, Zebra, Signaltöne aus) und was man sich vorher überlegen sollte (Dateiformat, Fokusmodus, Augen-AF, ISO-Auto oder feste ISO). Darunter Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
+  ["Kamera","Ganz oben die Grundeinstellung: was man einmal einstellt und dann so lässt (z. B. Gitterlinien, Zebra, Signaltöne aus) und was man sich vorher überlegen sollte (Dateiformat, Fokusmodus, Augen-AF, ISO-Auto oder feste ISO). Daneben „So heißt es bei anderen Herstellern“: Du wählst deine Marke (Sony, Canon, Nikon, Fujifilm, OM System, Panasonic) und siehst, wie die Funktionen dort heißen, z. B. Av statt A bei Canon oder Filmsimulation statt Bildstil bei Fujifilm. Darunter Kamera-Funktionen, die beim Fotografieren helfen, z. B. Augen-AF, Tracking, ISO-Auto mit Mindestzeit, Zebra, Fokus-Peaking, eigene Tasten, Speicherplätze und Serienbild – jeweils mit Erklärung, wofür man sie braucht."],
   ["Himmel","Oben legst du einmal deinen Ort fest (aktueller Standort, Ortssuche oder Koordinaten; er bleibt auf deinem Gerät) und wählst den Tag: heute, morgen, übermorgen, mit den Pfeilen Tag für Tag oder ein beliebiges Datum. Beides gilt für beide Unterreiter. „Sonne und Licht“ zeigt Sonnenauf- und -untergang, goldene und blaue Stunde und die dunkle Nacht für Sterne. „Mond“ zeigt die Mondform am gewählten Tag, Mondauf- und -untergang, die nächsten Phasen und alle Neu- und Vollmonde der folgenden zwölf Monate – mit Hinweisen, wann es gut für Sterne oder Mond mit Landschaft ist. „Wetter“ zeigt die Vorhersage für die nächsten 16 Tage: Wetterlage, Temperatur, Regen und Wind, die Bewölkung in drei Höhen zu Sonnenauf- und -untergang mit einer groben Einschätzung, ob sich der Himmel färbt, Wolken in der Nacht für Sterne und Nebel am Morgen. Sonne und Mond werden auf deinem Gerät berechnet; Wetter und Ortssuche brauchen Internet."],
   ["Glossar","Fachbegriffe von A bis Z, kurz erklärt. Viele Einträge führen per Tipp zur ausführlichen Erklärung."],
   ["Meine Ausrüstung","Über das Zahnrad → Meine Ausrüstung trägst du deine Objektive ein (Name, Brennweite, größte Blende, Stabilisator) und wählst aus, welches du gerade benutzt – auch direkt im Reiter Regeln und in der Spielwiese. Die Rechner werden damit vorbelegt (Zeit aus der Hand mit der längsten Brennweite, Sterne und Schärfentiefe mit der kürzesten), und die Spielwiese zeigt nur die Blenden, die dein Objektiv schafft. Die Motivkarten bleiben allgemein."],
@@ -1705,6 +1705,31 @@ function viewGrundein(){
   ${seeLinks([["karte","checkliste","Checkliste vor dem Losgehen"],["kamera","mr","Speicherplätze (MR)"]])}`;
 }
 
+
+/* ---------- Begriffs-Übersetzer: wie heißt die Funktion bei anderen Herstellern? ---------- */
+const BRANDS=[["sony","Sony"],["canon","Canon"],["nikon","Nikon"],["fuji","Fujifilm"],["om","OM System / Olympus"],["pana","Panasonic"]];
+const BRAND_ROWS=[ /* [Funktion, Link, {Marke: Name}] */
+  ["Zeit- und Blendenvorwahl",["grund","modus"],{sony:"A und S (dazu P, M)",canon:"Av (Blende) und Tv (Zeit)",nikon:"A und S",fuji:"je nach Modell Wahlrad A/S/M oder Blenden- und Zeitenrad auf „A“",om:"A und S",pana:"A und S"}],
+  ["Schnellmenü",["kamera","fn"],{sony:"Fn-Menü",canon:"Q-Menü (Schnelleinstellung)",nikon:"i-Menü",fuji:"Q-Menü",om:"Super-Kontrollfeld (SCP)",pana:"Q.MENU"}],
+  ["Speicherplätze für Einstellungen",["kamera","mr"],{sony:"MR (Speicherabruf) bzw. [BenutzAufnEinst reg.]",canon:"C1–C3",nikon:"U1–U3",fuji:"C1–C7 (Benutzereinstellungen), je nach Modell auch am Wahlrad",om:"C bzw. C1–C4 (je nach Modell)",pana:"C1–C3 (je nach Modell)"}],
+  ["Bildstil (Farbe, Kontrast, Schwarzweiß)",["grund","farbe"],{sony:"Kreativmodus bzw. Kreativ-Look",canon:"Bildstil (Picture Style)",nikon:"Picture Control",fuji:"Filmsimulation",om:"Bildmodus (Picture Mode)",pana:"Bildstil (Photo Style)"}],
+  ["Stabilisator im Objektiv",["grund","stabi"],{sony:"OSS",canon:"IS",nikon:"VR",fuji:"OIS",om:"IS",pana:"O.I.S. (MEGA bzw. POWER O.I.S.)"}],
+  ["Stabilisator in der Kamera und Zusammenspiel",["grund","stabi"],{sony:"SteadyShot INSIDE",canon:"IBIS (bei Modellen mit Sensor-Stabilisator), arbeitet mit IS-Objektiven zusammen",nikon:"VR im Gehäuse; zusammen mit VR-Objektiv: Synchro VR (je nach Modell)",fuji:"IBIS",om:"IBIS; zusammen mit IS-Objektiv: Sync IS",pana:"Body I.S.; zusammen mit O.I.S.: Dual I.S."}],
+  ["ISO-Auto mit Mindestzeit",["kamera","isoauto"],{sony:"ISO AUTO Min. VS",canon:"Min. shutter spd. (Min. Verschlusszeit) in den ISO-Einstellungen",nikon:"Minimum shutter speed (längste Belichtungszeit) bei der ISO-Automatik",fuji:"MIN. SHUTTER SPEED in den ISO-AUTO-Einstellungen",om:"je nach Modell anders gelöst – Handbuch prüfen",pana:"Min. Shtr Speed (Min. Verschlusszeit)"}],
+  ["Zebra (Überbelichtung vor dem Auslösen)",["kamera","zebra"],{sony:"Zebra-Einstellung",canon:"Zebra meist nur im Videomodus; für Fotos die Überbelichtungswarnung (blinkende Lichter) in der Wiedergabe",nikon:"Zebramuster – je nach Modell teils nur im Videomodus",fuji:"je nach Modell Zebra, teils nur im Videomodus",om:"je nach Modell; sonst Histogramm bzw. Überbelichtungswarnung",pana:"Zebramuster"}],
+  ["Fokus-Peaking",["kamera","peaking"],{sony:"Kantenanhebung",canon:"MF-Peaking",nikon:"Fokus-Peaking (Peaking-Hervorhebung)",fuji:"Fokus-Peak-Highlight",om:"Peaking",pana:"Peaking"}],
+  ["Augen- und Motiverkennung",["kamera","augenaf"],{sony:"Augen-AF bzw. Motiverkennung (Mensch, Tier, Vogel …)",canon:"Augenerkennung bzw. Motiverkennung",nikon:"Motiverkennung (Mensch, Tier, Fahrzeug …)",fuji:"Gesichts-/Augenerkennung bzw. Motiverkennung",om:"Gesichts-/Augenpriorität bzw. Motiverkennung",pana:"Gesichts-/Augen-/Körper- bzw. Tiererkennung"}],
+  ["Lautlos auslösen",["grund","antrieb"],{sony:"Lautlose Aufnahme",canon:"Elektronischer Verschluss",nikon:"Geräuschlose Auslösung",fuji:"Elektronischer Verschluss (ES)",om:"Lautlos-Modus",pana:"Lautloser Modus"}]
+];
+function viewBrands(){
+  const b=S.get("brand","sony"),bn=(BRANDS.find(x=>x[0]===b)||BRANDS[0])[1];
+  return `<div class="crumb"><a class="lk" href="#kamera">Kamera</a></div><h2 style="margin-top:4px">So heißt es bei anderen Herstellern</h2>
+  <p class="small muted" style="margin-top:0">Blitzschnell erklärt Funktionen allgemein und mit Sony-Beispielen. Hier siehst du, wie sie bei den großen Herstellern von Systemkameras heißen. Wähle deine Marke:</p>
+  <div class="chips">${BRANDS.map(([k,n])=>`<button class="chip ${b===k?"on":""}" data-brand="${k}">${esc(n)}</button>`).join("")}</div>
+  <div class="list" style="margin-top:12px">${BRAND_ROWS.map(([f,l,m])=>`<div class="item" style="cursor:default;align-items:flex-start"><span class="grow"><span class="s">${esc(f)}</span><br><span class="t">${esc(m[b]||"–")}</span><br><a class="lk small" href="${href(l[0],l[1])}">Erklärung in Blitzschnell</a></span></div>`).join("")}</div>
+  <p class="small muted">Die Namen können je nach Modell, Menügeneration und Menüsprache etwas abweichen, manche Funktionen haben nicht alle Modelle. Am schnellsten findest du sie, wenn du im Handbuch deiner Kamera nach dem Begriff suchst. Angaben zu ${esc(bn)} ohne Gewähr.</p>`;
+}
+
 /* ---------- Was ist schiefgelaufen? (Problem → Ursache → Abhilfe) ---------- */
 const FEHLER=[
   {id:"verwackelt",title:"Alles leicht unscharf, Kanten doppelt oder verschmiert",sym:"Das ganze Bild ist unscharf, auch Dinge, die stillstanden – oft mit Doppelkonturen in eine Richtung.",name:"Verwackelt",
@@ -2008,7 +2033,7 @@ function calcAll(){
 }
 
 function viewKamera(){
-  return `${tile("#kamera/grundeinstellung","gear","Grundeinstellung","Einmal einstellen und so lassen – die Ausgangslage")}<h2>Kamera-Funktionen</h2><p class="muted small" style="margin-top:0">Was moderne Systemkameras können und wofür man es braucht.</p><div class="list">${KAMERA.map(k=>
+  return `${tile("#kamera/grundeinstellung","gear","Grundeinstellung","Einmal einstellen und so lassen – die Ausgangslage")}${tile("#kamera/hersteller","book","So heißt es bei anderen Herstellern","Canon, Nikon, Fujifilm, OM System, Panasonic")}<h2>Kamera-Funktionen</h2><p class="muted small" style="margin-top:0">Was moderne Systemkameras können und wofür man es braucht.</p><div class="list">${KAMERA.map(k=>
     `<a class="item" href="#kamera/${k.id}" style="text-decoration:none;color:inherit"><span class="ic">${I[k.icon]}</span><span class="grow"><span class="t">${esc(k.title)}</span></span></a>`).join("")}</div>`;
 }
 function viewKam(id){
@@ -2040,6 +2065,7 @@ function searchIndex(){
   GLOSSAR.forEach(([t,d])=>r.push({t:t,k:"Glossar",h:"#glossar/"+glSlug(t),txt:d}));
   [["verwacklung","Rechner: Längste Zeit aus der Hand","Verwacklung Kehrwert Brennweite Stabilisator Stufen"],["sterne","Rechner: Längste Zeit für Sterne","500er-Regel NPF Sterne Milchstraße Strichspuren"],["schaerfe","Rechner: Schärfentiefe","Schärfentiefe hyperfokale Distanz Abstand Blende"],["graufilter","Rechner: Belichtungszeit mit Graufilter","Graufilter ND Langzeitbelichtung"]].forEach(([id,t,txt])=>r.push({t,k:"Rechner",h:"#regeln/rechner-"+id,txt}));
   r.push({t:"Checkliste vor dem Losgehen",k:"Motive",h:"#motive/checkliste",txt:"Checkliste Akku Speicherkarte Packliste mitnehmen vorbereiten Stativ Stirnlampe"});
+  r.push({t:"So heißt es bei anderen Herstellern",k:"Kamera",h:"#kamera/hersteller",txt:"Canon Nikon Fujifilm Fuji OM System Olympus Panasonic Lumix Hersteller Marke andere Kamera Begriffe Namen Picture Control Filmsimulation Av Tv i-Menü Q-Menü U1 C1 IS VR OIS"});
   r.push({t:"Grundeinstellung",k:"Kamera",h:"#kamera/grundeinstellung",txt:"Grundeinstellung einstellen RAW JPEG Gitterlinie Auslösen ohne Karte Signaltöne Ausgangslage"});
   r.push({t:"Was ist schiefgelaufen?",k:"Grundlagen",h:"#grundlagen/fehler",txt:"Fehler Problem unscharf verwackelt dunkel hell Rauschen Farbstich"});
   FEHLER.forEach(f=>r.push({t:f.title,k:"Was ist schiefgelaufen?",h:"#grundlagen/fehler/"+f.id,txt:f.sym+" "+f.c.map(x=>x[0]+" "+x[1]).join(" ")}));
@@ -2130,7 +2156,7 @@ function render(){
   else if(tab==="motive")h=sub==="checkliste"?viewCheck():sub?viewCard(sub):viewMotive();
   else if(tab==="grundlagen")h=sub==="fehler"?viewFehler(hash.split("/")[2]):sub?viewGrund(sub):viewGrundlagen();
   else if(tab==="regeln")h=sub==="spielwiese"?viewSpiel():viewRegeln();
-  else if(tab==="kamera")h=sub==="grundeinstellung"?viewGrundein():sub?viewKam(sub):viewKamera();
+  else if(tab==="kamera")h=sub==="grundeinstellung"?viewGrundein():sub==="hersteller"?viewBrands():sub?viewKam(sub):viewKamera();
   else if(tab==="glossar")h=viewGlossar(sub);
   else if(tab==="himmel"||tab==="mond")h=viewHimmel(sub);
   else h=viewMotive();
@@ -2149,6 +2175,7 @@ function bind(tab,sub){
   }
   document.querySelectorAll("[data-gear]").forEach(b=>b.onclick=openGear);
   ["calc","spiel"].forEach(w=>{const e=$("#gear_sel_"+w);if(e)e.onchange=()=>{gearPick(e.value);const y=scrollY;render();scrollTo(0,y)}});
+  document.querySelectorAll("[data-brand]").forEach(b=>b.onclick=()=>{S.set("brand",b.dataset.brand);const y=scrollY;render();scrollTo(0,y)});
   if(tab==="motive"&&sub==="checkliste"){
     const keep=()=>{const y=scrollY;render();scrollTo(0,y)};
     document.querySelectorAll("[data-chk]").forEach(c=>c.onchange=()=>{const st=checkState();const id=c.dataset.chk;st.done=c.checked?[...new Set([...st.done,id])]:st.done.filter(x=>x!==id);S.set("check",st);keep()});
